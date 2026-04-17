@@ -1,0 +1,1333 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title data-i18n="page.title">Bohemian Flow — AI Consulting & Automation Agency</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&family=Exo+2:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy:   '#0D1F3C',
+            'navy-light': '#142849',
+            'navy-mid': '#1a3460',
+            orange: '#F5A800',
+            ghost:  '#EBEBEB',
+          },
+          fontFamily: {
+            display: ['Rajdhani', 'Exo 2', 'sans-serif'],
+            body:    ['Inter', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+
+  <style>
+    :root {
+      --navy:        #0D1F3C;
+      --navy-light:  #142849;
+      --navy-mid:    #1a3460;
+      --orange:      #F5A800;
+      --orange-glow: rgba(245,168,0,0.18);
+      --white:       #FFFFFF;
+      --ghost:       #EBEBEB;
+      --ghost-dim:   rgba(235,235,235,0.45);
+
+      --text-hero:   clamp(3rem, 7vw, 5.5rem);
+      --text-section: clamp(2rem, 4vw, 3rem);
+      --text-card:   clamp(1.25rem, 2vw, 1.5rem);
+
+      --section-y:   clamp(5rem, 10vw, 9rem);
+      --card-gap:    1.5rem;
+      --container:   90rem;
+    }
+
+    /* Keyframe Animations */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(32px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes glowPulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(245,168,0,0), 0 4px 16px rgba(245,168,0,0.25); }
+      50%       { box-shadow: 0 0 24px 8px rgba(245,168,0,0.25), 0 4px 16px rgba(245,168,0,0.35); }
+    }
+
+    @keyframes auroraFlash {
+      0%   { transform: translate(-50%, -50%) scale(0.2); opacity: 0; }
+      25%  { opacity: 0.45; }
+      100% { transform: translate(-50%, -50%) scale(2); opacity: 0; }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-8px); }
+    }
+
+    @keyframes underlineReveal {
+      from { transform: scaleX(0); }
+      to   { transform: scaleX(1); }
+    }
+
+    @keyframes slideDown {
+      from { transform: translateY(-100%); opacity: 0; }
+      to   { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes blobFloat1 {
+      0%   { transform: translate(0, 0) scale(1);     border-radius: 58% 42% 35% 65% / 55% 38% 62% 45%; }
+      25%  { transform: translate(3%, 5%) scale(1.06); border-radius: 40% 60% 55% 45% / 48% 55% 45% 52%; }
+      50%  { transform: translate(6%, 2%) scale(0.97); border-radius: 65% 35% 40% 60% / 60% 42% 58% 40%; }
+      75%  { transform: translate(2%, 7%) scale(1.04); border-radius: 45% 55% 62% 38% / 52% 62% 38% 48%; }
+      100% { transform: translate(0, 0) scale(1);     border-radius: 58% 42% 35% 65% / 55% 38% 62% 45%; }
+    }
+
+    @keyframes blobFloat2 {
+      0%   { transform: translate(0, 0) scale(1);       border-radius: 45% 55% 60% 40% / 50% 45% 55% 50%; }
+      30%  { transform: translate(-4%, -3%) scale(1.08); border-radius: 60% 40% 45% 55% / 40% 58% 42% 60%; }
+      60%  { transform: translate(-2%, -6%) scale(0.95); border-radius: 35% 65% 55% 45% / 55% 35% 65% 45%; }
+      100% { transform: translate(0, 0) scale(1);       border-radius: 45% 55% 60% 40% / 50% 45% 55% 50%; }
+    }
+
+    @keyframes blobFloat3 {
+      0%   { transform: translate(0, 0) scale(1);       border-radius: 50%; }
+      40%  { transform: translate(-5%, 8%) scale(1.12); border-radius: 60% 40% 55% 45% / 45% 60% 40% 55%; }
+      80%  { transform: translate(3%, -5%) scale(0.92); border-radius: 40% 60% 45% 55% / 55% 40% 60% 45%; }
+      100% { transform: translate(0, 0) scale(1);       border-radius: 50%; }
+    }
+
+    /* Hero blob animations */
+    .hero-blob { position: absolute; pointer-events: none; }
+
+    .hero-blob-1 {
+      width: 55%; height: 70%;
+      background: radial-gradient(circle, rgba(245,168,0,0.75) 0%, rgba(245,140,0,0.4) 50%, transparent 70%);
+      top: -15%; left: -15%;
+      filter: blur(70px);
+      opacity: 0.48;
+      animation: blobFloat1 9s ease-in-out infinite;
+    }
+
+    .hero-blob-2 {
+      width: 60%; height: 75%;
+      background: radial-gradient(circle, rgba(40,80,160,0.9) 0%, rgba(26,52,96,0.6) 50%, transparent 70%);
+      bottom: -20%; right: -15%;
+      filter: blur(70px);
+      opacity: 0.55;
+      animation: blobFloat2 12s ease-in-out infinite;
+    }
+
+    .hero-blob-3 {
+      width: 30%; height: 40%;
+      background: radial-gradient(circle, rgba(245,168,0,0.65) 0%, rgba(245,168,0,0.2) 60%, transparent 80%);
+      top: 25%; right: 10%;
+      filter: blur(45px);
+      opacity: 0.42;
+      animation: blobFloat3 7s ease-in-out infinite;
+    }
+
+    /* Dot Grid Background */
+    .dot-grid {
+      background-image: radial-gradient(circle, rgba(235,235,235,0.08) 1px, transparent 1px);
+      background-size: 28px 28px;
+    }
+
+    /* Shadow Utilities */
+    .shadow-navy-sm  { box-shadow: 0 2px 8px rgba(13,31,60,0.55); }
+    .shadow-navy-md  { box-shadow: 0 6px 24px rgba(13,31,60,0.7), 0 2px 8px rgba(245,168,0,0.06); }
+    .shadow-orange   { box-shadow: 0 8px 32px rgba(245,168,0,0.22), 0 2px 8px rgba(245,168,0,0.1); }
+
+    /* Text Gradient */
+    .text-gradient-orange {
+      background: linear-gradient(135deg, #F5A800 0%, #ffcc55 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Reveal Animation */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+    }
+
+    .reveal.visible {
+      animation: fadeUp 0.65s cubic-bezier(0.22,1,0.36,1) forwards;
+    }
+
+    .reveal-delay-1 { --delay: 0.1s; animation-delay: var(--delay); }
+    .reveal-delay-2 { --delay: 0.2s; animation-delay: var(--delay); }
+    .reveal-delay-3 { --delay: 0.3s; animation-delay: var(--delay); }
+    .reveal-delay-4 { --delay: 0.4s; animation-delay: var(--delay); }
+    .reveal-delay-5 { --delay: 0.5s; animation-delay: var(--delay); }
+
+    /* Navbar Scroll Effect */
+    nav.scrolled {
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(245,168,0,0.12);
+      background-color: rgba(13,31,60,0.9);
+    }
+
+    /* Mobile Menu */
+    #mobile-menu {
+      transition: transform 0.3s cubic-bezier(0.22,1,0.36,1), opacity 0.3s ease;
+    }
+
+    #mobile-menu[data-open="false"] {
+      transform: translateY(-100%);
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    #mobile-menu[data-open="true"] {
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* Button Styles */
+    .btn-primary {
+      background-color: var(--orange);
+      color: var(--navy);
+      font-weight: 700;
+      padding: 1rem 2rem;
+      border-radius: 0.75rem;
+      font-family: Rajdhani, sans-serif;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.22,1,0.36,1);
+      animation: glowPulse 3s ease-in-out infinite;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(245,168,0,0.35);
+    }
+
+    .btn-ghost {
+      background-color: transparent;
+      color: white;
+      border: 1px solid rgba(255,255,255,0.25);
+      font-weight: 600;
+      padding: 1rem 2rem;
+      border-radius: 0.75rem;
+      font-family: Inter, sans-serif;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.22,1,0.36,1);
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--orange);
+      color: var(--orange);
+      transform: translateY(-2px);
+    }
+
+    /* Nav Links */
+    nav a[href^="#"] {
+      position: relative;
+      transition: color 0.2s ease;
+      color: var(--ghost);
+    }
+
+    nav a[href^="#"]:hover {
+      color: var(--orange);
+    }
+
+    nav a[href^="#"]::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background-color: var(--orange);
+      transform: scaleX(0);
+      transform-origin: center;
+      transition: transform 0.3s cubic-bezier(0.22,1,0.36,1);
+    }
+
+    nav a[href^="#"]:hover::after {
+      transform: scaleX(1);
+    }
+
+    nav a.active {
+      color: var(--orange);
+    }
+
+    /* Card Styles */
+    .card-hover {
+      border: 1px solid rgba(255,255,255,0.06);
+      transition: all 0.3s cubic-bezier(0.22,1,0.36,1);
+    }
+
+    .card-hover:hover {
+      border-color: rgba(245,168,0,0.3);
+      transform: translateY(-6px);
+      box-shadow: 0 6px 24px rgba(13,31,60,0.7), 0 2px 8px rgba(245,168,0,0.06);
+    }
+
+    /* Topic Card */
+    .topic-card {
+      position: relative;
+      border-left: 3px solid transparent;
+      transition: all 0.3s cubic-bezier(0.22,1,0.36,1);
+    }
+
+    .topic-card:hover {
+      border-left-color: var(--orange);
+    }
+
+    /* Footer Link */
+    footer a {
+      transition: color 0.2s ease;
+      color: var(--ghost);
+    }
+
+    footer a:hover {
+      color: var(--orange);
+    }
+
+    /* Star Icon */
+    .star { color: var(--orange); }
+
+    /* Hamburger Menu */
+    .hamburger {
+      width: 24px;
+      height: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      cursor: pointer;
+    }
+
+    .hamburger span {
+      width: 100%;
+      height: 2px;
+      background-color: var(--ghost);
+      border-radius: 1px;
+      transition: all 0.3s ease;
+    }
+
+    body {
+      background-color: var(--navy);
+      color: white;
+      font-family: Inter, sans-serif;
+    }
+
+    /* Override Tailwind's default border opacity */
+    * {
+      border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    /* Quote Modal */
+    #quote-modal {
+      display: none;
+    }
+    #quote-modal.open {
+      display: flex;
+    }
+    .modal-input {
+      width: 100%;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(245,168,0,0.25);
+      border-radius: 8px;
+      padding: 10px 14px;
+      color: var(--white);
+      font-family: Inter, sans-serif;
+      font-size: 0.95rem;
+      transition: border-color 0.2s, background 0.2s, color 0.2s;
+      outline: none;
+    }
+    .budget-btns {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .budget-btn {
+      padding: 7px 16px;
+      border-radius: 8px;
+      border: 1px solid rgba(245,168,0,0.35);
+      background: rgba(255,255,255,0.04);
+      color: var(--ghost);
+      font-family: Inter, sans-serif;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+    }
+    .budget-btn:hover {
+      background: rgba(245,168,0,0.25);
+      color: var(--white);
+      border-color: var(--orange);
+    }
+    .budget-btn.selected {
+      background: var(--orange);
+      color: #1e3a8a;
+      border-color: var(--orange);
+      font-weight: 600;
+    }
+    .modal-input::placeholder {
+      color: var(--ghost);
+      opacity: 0.6;
+    }
+    .modal-input:focus {
+      border-color: var(--orange);
+    }
+    .modal-label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--ghost);
+      margin-bottom: 6px;
+    }
+    .modal-field {
+      margin-bottom: 16px;
+    }
+    /* Flatpickr theme — navy/orange */
+    .flatpickr-calendar {
+      background: #142849;
+      border: 1px solid rgba(245,168,0,0.25);
+      border-radius: 8px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+      font-family: Inter, sans-serif;
+      color: #EBEBEB;
+    }
+    .flatpickr-months {
+      background: #142849;
+      border-radius: 8px 8px 0 0;
+    }
+    .flatpickr-months .flatpickr-month,
+    .flatpickr-weekdays,
+    span.flatpickr-weekday {
+      background: transparent;
+      color: #F5A800;
+      fill: #F5A800;
+    }
+    .flatpickr-current-month select.flatpickr-monthDropdown-months {
+      background: #1a3560;
+      color: #F5A800;
+      border: 1px solid rgba(245,168,0,0.3);
+      border-radius: 4px;
+    }
+    .flatpickr-current-month select.flatpickr-monthDropdown-months option {
+      background: #142849;
+      color: #EBEBEB;
+    }
+    .flatpickr-current-month .custom-month-trigger {
+      display: inline-block;
+      color: #F5A800;
+      cursor: pointer;
+      font-size: inherit;
+      font-weight: 600;
+      padding: 0 4px;
+      border-bottom: 1px solid rgba(245,168,0,0.4);
+    }
+    .flatpickr-current-month .custom-month-trigger:hover {
+      color: #ffffff;
+      border-bottom-color: #ffffff;
+    }
+    .custom-month-dropdown {
+      position: absolute;
+      z-index: 99999;
+      background: #0D1F3C;
+      border: 1px solid rgba(245,168,0,0.4);
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+      min-width: 130px;
+    }
+    .custom-month-dropdown .month-option {
+      padding: 8px 16px;
+      color: #F5A800;
+      cursor: pointer;
+      font-size: 14px;
+      font-family: inherit;
+      transition: background 0.15s;
+    }
+    .custom-month-dropdown .month-option:hover {
+      background: rgba(245,168,0,0.15);
+    }
+    .custom-month-dropdown .month-option.selected {
+      background: rgba(245,168,0,0.2);
+      font-weight: 700;
+    }
+    .flatpickr-current-month input.cur-year {
+      color: #F5A800;
+    }
+    .flatpickr-day {
+      color: #EBEBEB;
+      border-radius: 4px;
+    }
+    .flatpickr-day:hover, .flatpickr-day:focus {
+      background: rgba(245,168,0,0.15);
+      border-color: rgba(245,168,0,0.3);
+      color: #FFFFFF;
+    }
+    .flatpickr-day.selected, .flatpickr-day.selected:hover {
+      background: #F5A800;
+      border-color: #F5A800;
+      color: #0D1F3C;
+      font-weight: 700;
+    }
+    .flatpickr-day.today {
+      border-color: rgba(245,168,0,0.5);
+      color: #F5A800;
+    }
+    .flatpickr-day.flatpickr-disabled,
+    .flatpickr-day.flatpickr-disabled:hover {
+      color: rgba(235,235,235,0.2);
+      cursor: not-allowed;
+    }
+    .flatpickr-time {
+      border-top: 1px solid rgba(245,168,0,0.15);
+      background: transparent;
+      color: #EBEBEB;
+    }
+    .flatpickr-time input, .flatpickr-time .flatpickr-am-pm {
+      background: transparent;
+      color: #F5A800;
+      font-weight: 600;
+    }
+    .flatpickr-time input:focus, .flatpickr-time input:hover {
+      background: rgba(245,168,0,0.1);
+    }
+    .flatpickr-prev-month svg, .flatpickr-next-month svg {
+      fill: #F5A800 !important;
+    }
+    .flatpickr-prev-month:hover svg, .flatpickr-next-month:hover svg {
+      fill: #FFFFFF !important;
+    }
+    .numInputWrapper span.arrowUp:after {
+      border-bottom-color: #F5A800;
+    }
+    .numInputWrapper span.arrowDown:after {
+      border-top-color: #F5A800;
+    }
+  </style>
+</head>
+
+<body class="bg-navy text-white font-body">
+
+  <!-- NAVIGATION -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 w-full px-6 md:px-12 py-4 md:py-6 flex items-center justify-between transition-all duration-300">
+    <a href="#" class="flex items-center gap-3 group">
+      <img src="./brand_assests/logo.png" alt="Bohemian Flow" class="h-10 md:h-12" />
+      <span class="hidden md:block text-xs md:text-sm font-display font-bold uppercase tracking-[0.12em] text-ghost group-hover:text-orange transition-colors">Bohemian<br />Flow</span>
+    </a>
+
+    <!-- Desktop Nav -->
+    <div class="hidden md:flex items-center gap-8 lg:gap-12">
+      <!-- Language toggle -->
+      <div class="flex items-center gap-1 text-sm font-medium">
+        <button data-lang-btn="en" onclick="setLang('en')" class="text-orange font-semibold hover:text-orange transition-colors cursor-pointer bg-transparent border-none p-0">EN</button>
+        <span class="text-ghost opacity-40">/</span>
+        <button data-lang-btn="cs" onclick="setLang('cs')" class="text-gray-400 hover:text-orange transition-colors cursor-pointer bg-transparent border-none p-0">CZ</button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu Button -->
+    <button id="menu-btn" class="md:hidden flex flex-col gap-1.5 p-2 hover:opacity-80">
+      <span class="block w-6 h-0.5 bg-ghost rounded"></span>
+      <span class="block w-6 h-0.5 bg-ghost rounded"></span>
+      <span class="block w-6 h-0.5 bg-ghost rounded"></span>
+    </button>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" data-open="false" class="fixed top-16 left-0 right-0 z-40 bg-navy-light md:hidden border-b border-orange/20">
+    <div class="flex flex-col gap-4 p-6">
+      <a href="#how-we-work" class="text-sm font-medium text-ghost hover:text-orange" data-i18n="nav.howWeWork">How We Work</a>
+      <a href="#topics" class="text-sm font-medium text-ghost hover:text-orange" data-i18n="nav.work">Specializations</a>
+      <a href="#about" class="text-sm font-medium text-ghost hover:text-orange" data-i18n="nav.about">About</a>
+      <!-- Language toggle -->
+      <div class="flex items-center gap-2 text-sm font-medium">
+        <button data-lang-btn="en" onclick="setLang('en')" class="text-orange font-semibold hover:text-orange transition-colors cursor-pointer bg-transparent border-none p-0">EN</button>
+        <span class="text-ghost opacity-40">/</span>
+        <button data-lang-btn="cs" onclick="setLang('cs')" class="text-gray-400 hover:text-orange transition-colors cursor-pointer bg-transparent border-none p-0">CZ</button>
+      </div>
+      <button class="btn-primary w-full text-sm" onclick="openQuoteModal()" data-i18n="nav.cta">Get in Touch →</button>
+    </div>
+  </div>
+
+  <!-- HERO SECTION -->
+  <section id="hero" class="relative min-h-screen flex items-center justify-center px-6 md:px-12 pt-24 pb-16 overflow-hidden">
+    <!-- Flow Field Canvas Background -->
+    <canvas id="hero-flow-canvas" class="absolute inset-0 w-full h-full pointer-events-none" style="z-index:0;"></canvas>
+
+    <!-- Background Layers -->
+    <div class="absolute inset-0 dot-grid opacity-60 pointer-events-none" style="z-index:1;"></div>
+    <div class="absolute inset-0 bg-gradient-radial from-orange/12 to-transparent via-transparent" style="background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(245,168,0,0.12), transparent)"></div>
+    <div class="absolute bottom-0 left-0 right-0 h-1/3 pointer-events-none" style="background: radial-gradient(ellipse 50% 40% at 0% 100%, rgba(20,40,73,0.8), transparent)"></div>
+
+    <!-- Bottom fade: hero canvas → navy -->
+    <div class="absolute bottom-0 left-0 right-0 pointer-events-none"
+         style="height: 22%; z-index: 2; background: linear-gradient(to bottom, transparent, #0D1F3C);"></div>
+
+    <!-- Fluid Blob Animation -->
+    <div class="hero-blob hero-blob-1"></div>
+    <div class="hero-blob hero-blob-2"></div>
+    <div class="hero-blob hero-blob-3"></div>
+
+    <!-- Aurora Flash — one-shot radial glow on load -->
+    <div class="absolute top-1/2 left-1/2 pointer-events-none rounded-full"
+         style="width: 480px; height: 480px;
+                background: radial-gradient(circle, rgba(245,168,0,0.35) 0%, rgba(245,168,0,0.08) 45%, transparent 70%);
+                animation: auroraFlash 2.2s cubic-bezier(0.22,1,0.36,1) 0.4s forwards;"></div>
+
+    <!-- Hero Content -->
+    <div class="relative z-10 max-w-3xl mx-auto text-center">
+      <!-- H1 Hero -->
+      <h1 class="text-white font-display font-bold mb-6 reveal reveal-delay-2" style="font-size: var(--text-hero); line-height: 1.05; letter-spacing: -0.02em;" data-i18n="hero.heading">
+        Grow Your Business <span class="text-gradient-orange">Without Growing Your Headcount</span>
+      </h1>
+
+      <!-- Subheading -->
+      <p class="text-ghost text-lg md:text-xl leading-8 max-w-2xl mx-auto mb-10 reveal reveal-delay-3" data-i18n="hero.subheading">
+        We design and implement intelligent automation workflows and AI agents orchestration that replace manual work, accelerate growth, and give your team superpowers.
+      </p>
+
+      <!-- CTAs -->
+      <div class="flex flex-col sm:flex-row gap-4 justify-center mb-8 reveal reveal-delay-4">
+        <button class="btn-primary" onclick="openQuoteModal()" data-i18n="hero.cta_primary">Get in Touch →</button>
+      </div>
+
+      <!-- Social Proof -->
+      <div class="reveal reveal-delay-5 text-ghost text-sm md:text-base">
+        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+        <span data-i18n="hero.social_proof">200+ workflows delivered · Czech-based · Available globally</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW WE WORK SECTION -->
+  <section id="how-we-work" class="py-20 md:py-28 px-6 md:px-12 bg-navy">
+    <div class="max-w-7xl mx-auto">
+      <!-- Section Header -->
+      <div class="text-center mb-16 reveal">
+        <p class="text-orange font-display font-semibold uppercase tracking-widest text-xs mb-3" data-i18n="howWeWork.label">Our Process</p>
+        <h2 class="text-white font-display font-bold" style="font-size: var(--text-section); line-height: 1.1;" data-i18n="howWeWork.heading">How We Work</h2>
+      </div>
+
+      <!-- Timeline -->
+      <div class="relative">
+        <!-- Connecting line (desktop only) -->
+        <div class="hidden md:block absolute left-0 right-0 h-0.5 bg-orange/30" style="top: 2rem;"></div>
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-8 relative z-10">
+          <!-- Step 1 -->
+          <div class="flex flex-col items-center text-center reveal reveal-delay-1">
+            <div class="w-16 h-16 rounded-full bg-orange flex items-center justify-center font-display font-bold text-navy text-2xl mb-6 shadow-orange flex-shrink-0">1</div>
+            <h3 class="text-white font-display font-bold text-lg md:text-xl mb-3" data-i18n="howWeWork.step1_title">Discovery Call</h3>
+            <p class="text-ghost text-sm leading-6" data-i18n="howWeWork.step1_desc">We understand your business, goals, and the tools you currently use.</p>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="flex flex-col items-center text-center reveal reveal-delay-2">
+            <div class="w-16 h-16 rounded-full bg-orange flex items-center justify-center font-display font-bold text-navy text-2xl mb-6 shadow-orange flex-shrink-0">2</div>
+            <h3 class="text-white font-display font-bold text-lg md:text-xl mb-3" data-i18n="howWeWork.step2_title">Audit & Plan</h3>
+            <p class="text-ghost text-sm leading-6" data-i18n="howWeWork.step2_desc">We map your workflows and identify the highest-leverage automation opportunities.</p>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="flex flex-col items-center text-center reveal reveal-delay-3">
+            <div class="w-16 h-16 rounded-full bg-orange flex items-center justify-center font-display font-bold text-navy text-2xl mb-6 shadow-orange flex-shrink-0">3</div>
+            <h3 class="text-white font-display font-bold text-lg md:text-xl mb-3" data-i18n="howWeWork.step3_title">Build & Test</h3>
+            <p class="text-ghost text-sm leading-6" data-i18n="howWeWork.step3_desc">We build and rigorously test your custom automations before they touch production.</p>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="flex flex-col items-center text-center reveal reveal-delay-4">
+            <div class="w-16 h-16 rounded-full bg-orange flex items-center justify-center font-display font-bold text-navy text-2xl mb-6 shadow-orange flex-shrink-0">4</div>
+            <h3 class="text-white font-display font-bold text-lg md:text-xl mb-3" data-i18n="howWeWork.step4_title">Deploy & Support</h3>
+            <p class="text-ghost text-sm leading-6" data-i18n="howWeWork.step4_desc">We launch, monitor, and iterate — with ongoing support included.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOPICS SECTION -->
+  <section id="topics" class="py-20 md:py-28 px-6 md:px-12 bg-navy">
+    <div class="max-w-7xl mx-auto">
+      <!-- Section Header -->
+      <div class="text-center mb-16 reveal">
+        <p class="text-orange font-display font-semibold uppercase tracking-widest text-xs mb-3" data-i18n="topics.label">What We Build</p>
+        <h2 class="text-white font-display font-bold" style="font-size: var(--text-section); line-height: 1.1;" data-i18n="topics.heading">Our Automation Specializations</h2>
+      </div>
+
+      <!-- Topic Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Topic 1 -->
+        <div class="topic-card bg-navy-light rounded-xl p-6 reveal reveal-delay-1">
+          <span class="inline-block bg-orange/12 text-orange text-xs font-semibold uppercase tracking-wider px-3 py-1 rounded-md mb-4" data-i18n="topics.t1.tag">Workflow</span>
+          <h3 class="font-display font-bold text-lg text-white mb-2" data-i18n="topics.t1.title">n8n & Make Workflows</h3>
+          <p class="text-ghost text-sm" data-i18n="topics.t1.desc">Deep-dive automation builds and advanced node configurations.</p>
+        </div>
+
+        <!-- Topic 2 -->
+        <div class="topic-card bg-navy-light rounded-xl p-6 reveal reveal-delay-2">
+          <span class="inline-block bg-orange/12 text-orange text-xs font-semibold uppercase tracking-wider px-3 py-1 rounded-md mb-4" data-i18n="topics.t2.tag">Agents</span>
+          <h3 class="font-display font-bold text-lg text-white mb-2" data-i18n="topics.t2.title">AI Agent Architecture</h3>
+          <p class="text-ghost text-sm" data-i18n="topics.t2.desc">Multi-step agent design patterns and orchestration.</p>
+        </div>
+
+        <!-- Topic 3 -->
+        <div class="topic-card bg-navy-light rounded-xl p-6 reveal reveal-delay-3">
+          <span class="inline-block bg-orange/12 text-orange text-xs font-semibold uppercase tracking-wider px-3 py-1 rounded-md mb-4" data-i18n="topics.t3.tag">LeadGen</span>
+          <h3 class="font-display font-bold text-lg text-white mb-2" data-i18n="topics.t3.title">Lead Generation Systems</h3>
+          <p class="text-ghost text-sm" data-i18n="topics.t3.desc">Outbound automation, enrichment, and conversion flows.</p>
+        </div>
+
+        <!-- Topic 4 -->
+        <div class="topic-card bg-navy-light rounded-xl p-6 reveal reveal-delay-4">
+          <span class="inline-block bg-orange/12 text-orange text-xs font-semibold uppercase tracking-wider px-3 py-1 rounded-md mb-4" data-i18n="topics.t4.tag">CRM</span>
+          <h3 class="font-display font-bold text-lg text-white mb-2" data-i18n="topics.t4.title">CRM Automation</h3>
+          <p class="text-ghost text-sm" data-i18n="topics.t4.desc">Pipedrive, HubSpot, Close.io, and custom integrations.</p>
+        </div>
+
+        <!-- Topic 5 -->
+        <div class="topic-card bg-navy-light rounded-xl p-6 reveal reveal-delay-5">
+          <span class="inline-block bg-orange/12 text-orange text-xs font-semibold uppercase tracking-wider px-3 py-1 rounded-md mb-4" data-i18n="topics.t5.tag">Prompts</span>
+          <h3 class="font-display font-bold text-lg text-white mb-2" data-i18n="topics.t5.title">Prompt Engineering</h3>
+          <p class="text-ghost text-sm" data-i18n="topics.t5.desc">Production-grade prompt systems and advanced techniques.</p>
+        </div>
+
+        <!-- Topic 6 -->
+        <div class="topic-card bg-navy-light rounded-xl p-6 reveal reveal-delay-1">
+          <span class="inline-block bg-orange/12 text-orange text-xs font-semibold uppercase tracking-wider px-3 py-1 rounded-md mb-4" data-i18n="topics.t6.tag">Data</span>
+          <h3 class="font-display font-bold text-lg text-white mb-2" data-i18n="topics.t6.title">Scraping & Data Pipelines</h3>
+          <p class="text-ghost text-sm" data-i18n="topics.t6.desc">Web data collection and large-scale processing.</p>
+        </div>
+
+        <!-- Topic 7 -->
+        <div class="topic-card bg-navy-light rounded-xl p-6 reveal reveal-delay-2">
+          <span class="inline-block bg-orange/12 text-orange text-xs font-semibold uppercase tracking-wider px-3 py-1 rounded-md mb-4" data-i18n="topics.t7.tag">Chat</span>
+          <h3 class="font-display font-bold text-lg text-white mb-2" data-i18n="topics.t7.title">Voice & Chat Interfaces</h3>
+          <p class="text-ghost text-sm" data-i18n="topics.t7.desc">WhatsApp, Telegram, Slack bots, and conversational AI.</p>
+        </div>
+
+        <!-- Topic 8 -->
+        <div class="topic-card bg-navy-light rounded-xl p-6 reveal reveal-delay-3">
+          <span class="inline-block bg-orange/12 text-orange text-xs font-semibold uppercase tracking-wider px-3 py-1 rounded-md mb-4" data-i18n="topics.t8.tag">Process</span>
+          <h3 class="font-display font-bold text-lg text-white mb-2" data-i18n="topics.t8.title">Business Process Design</h3>
+          <p class="text-ghost text-sm" data-i18n="topics.t8.desc">SOP to automation conversion and optimization.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS SECTION -->
+  <section id="reviews" class="py-20 md:py-28 px-6 md:px-12 bg-navy border-t border-orange/10">
+    <div class="max-w-7xl mx-auto">
+      <!-- Section Header -->
+      <div class="text-center mb-16 reveal">
+        <p class="text-orange font-display font-semibold uppercase tracking-widest text-xs mb-3" data-i18n="reviews.label">Client Reviews</p>
+        <h2 class="text-white font-display font-bold" style="font-size: var(--text-section); line-height: 1.1;" data-i18n="reviews.heading">What Clients Say</h2>
+      </div>
+
+      <!-- Review Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+        <!-- Review 1 -->
+        <div class="card-hover bg-navy-light rounded-2xl p-8 reveal reveal-delay-1 flex flex-col">
+          <span class="text-orange font-display font-bold text-5xl leading-none mb-4">"</span>
+          <p class="text-ghost leading-7 flex-1" data-i18n="reviews.r1_quote">Bohemian Flow automated our entire lead pipeline in under two weeks. ROI was immediate.</p>
+          <div class="mt-6 pt-6 border-t border-white/10">
+            <div class="flex items-center gap-1 text-orange text-sm mb-2">★★★★★</div>
+            <p class="text-white font-semibold text-sm" data-i18n="reviews.r1_name">Jan Novák</p>
+            <p class="text-ghost text-xs mt-0.5" data-i18n="reviews.r1_company">CEO, TechStart s.r.o.</p>
+          </div>
+        </div>
+
+        <!-- Review 2 -->
+        <div class="card-hover bg-navy-light rounded-2xl p-8 reveal reveal-delay-2 flex flex-col">
+          <span class="text-orange font-display font-bold text-5xl leading-none mb-4">"</span>
+          <p class="text-ghost leading-7 flex-1" data-i18n="reviews.r2_quote">Finally someone who actually delivers. Our n8n workflows run flawlessly.</p>
+          <div class="mt-6 pt-6 border-t border-white/10">
+            <div class="flex items-center gap-1 text-orange text-sm mb-2">★★★★★</div>
+            <p class="text-white font-semibold text-sm" data-i18n="reviews.r2_name">Sarah Mitchell</p>
+            <p class="text-ghost text-xs mt-0.5" data-i18n="reviews.r2_company">Operations Manager, Growly</p>
+          </div>
+        </div>
+
+        <!-- Review 3 -->
+        <div class="card-hover bg-navy-light rounded-2xl p-8 reveal reveal-delay-3 flex flex-col">
+          <span class="text-orange font-display font-bold text-5xl leading-none mb-4">"</span>
+          <p class="text-ghost leading-7 flex-1" data-i18n="reviews.r3_quote">Jakub built exactly what we needed — no fluff, just results.</p>
+          <div class="mt-6 pt-6 border-t border-white/10">
+            <div class="flex items-center gap-1 text-orange text-sm mb-2">★★★★★</div>
+            <p class="text-white font-semibold text-sm" data-i18n="reviews.r3_name">Martin Dvořák</p>
+            <p class="text-ghost text-xs mt-0.5" data-i18n="reviews.r3_company">Founder, Scalable.io</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT SECTION -->
+  <section id="about" class="py-20 md:py-28 px-6 md:px-12 bg-navy border-t border-orange/10">
+    <div class="max-w-5xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 items-center">
+
+        <!-- Photo -->
+        <div class="reveal flex justify-center md:justify-start">
+          <div id="about-photo" class="w-56 h-56 md:w-72 md:h-72 rounded-full border-2 border-orange/30 overflow-hidden hover:border-orange/60 transition-colors duration-300 bg-white">
+            <img src="./brand_assests/jakub.jpg" alt="Jakub Nemcok" class="w-full h-full object-cover" style="object-position: 50% 50%;" />
+          </div>
+        </div>
+
+        <!-- Text -->
+        <div class="reveal reveal-delay-1">
+          <p class="text-orange font-display font-semibold uppercase tracking-widest text-xs mb-4" data-i18n="about.label">About</p>
+          <h1 class="text-white font-display font-bold mb-2" style="font-size: var(--text-section); line-height: 1.1;" data-i18n="about.heading">Meet the Founder</h1>
+          <h2 class="text-white font-display font-semibold mb-6" style="font-size: calc(var(--text-section) * 0.6); line-height: 1.2;" data-i18n="about.subheading">Jakub Nemcok</h2>
+          <p class="text-ghost leading-8 mb-8" data-i18n="about.bio">I'm Jakub, founder of Bohemian Flow. I help businesses escape manual work by building custom AI automations and intelligent workflows. If it's repetitive, we automate it.</p>
+          <div class="flex flex-wrap gap-4">
+            <a href="https://www.linkedin.com/in/jakub-nem%C4%8Dok-770484370/" class="btn-ghost text-sm" data-i18n="about.cta_linkedin" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-navy border-t border-white/5 px-6 py-6">
+    <p class="text-ghost text-xs text-center">
+      <span data-i18n="footer.copyright">© 2026 Bohemian Flow AI</span> · <a href="#" class="hover:text-orange transition-colors" data-i18n="footer.privacy">Privacy</a> · <a href="#" class="hover:text-orange transition-colors" data-i18n="footer.terms">Terms</a>
+    </p>
+  </footer>
+
+  <!-- JAVASCRIPT -->
+  <script>
+    // Navbar Scroll Effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 40) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    }, { passive: true });
+
+    // Mobile Menu Toggle
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    menuBtn.addEventListener('click', () => {
+      const isOpen = mobileMenu.dataset.open === 'true';
+      mobileMenu.dataset.open = !isOpen;
+    });
+
+    // Close menu when link clicked
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.dataset.open = 'false';
+      });
+    });
+
+    // Reveal Animation - IntersectionObserver
+    const reveals = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    reveals.forEach(el => revealObserver.observe(el));
+
+    // Counter Animation
+    function easeOutExpo(t) {
+      return t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
+    }
+
+    function animateCounter(el) {
+      const target = parseFloat(el.dataset.target);
+      const suffix = el.dataset.suffix || '';
+      const prefix = el.dataset.prefix || '';
+      const duration = 1800;
+      const start = performance.now();
+
+      function tick(now) {
+        const elapsed = now - start;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = easeOutExpo(progress);
+        const current = target * eased;
+
+        if (Number.isInteger(target)) {
+          el.textContent = prefix + Math.floor(current).toLocaleString() + suffix;
+        } else {
+          el.textContent = prefix + current.toFixed(1) + suffix;
+        }
+
+        if (progress < 1) {
+          requestAnimationFrame(tick);
+        }
+      }
+      requestAnimationFrame(tick);
+    }
+
+    // Observe stats section
+    const statsSection = document.getElementById('stats-section');
+    const statsObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.querySelectorAll('[data-target]').forEach(animateCounter);
+          statsObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    if (statsSection) statsObserver.observe(statsSection);
+
+    // Active Nav Link Tracking
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('nav a[href^="#"]');
+
+    const activeObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navLinks.forEach(l => {
+            l.classList.remove('text-orange');
+            l.classList.add('text-ghost');
+          });
+          const activeLink = document.querySelector(`nav a[href="#${entry.target.id}"]`);
+          if (activeLink) {
+            activeLink.classList.remove('text-ghost');
+            activeLink.classList.add('text-orange', 'active');
+          }
+        }
+      });
+    }, { rootMargin: '-40% 0px -55% 0px' });
+
+    sections.forEach(section => activeObserver.observe(section));
+
+    // Smooth scroll behavior fallback
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href !== '#') {
+          e.preventDefault();
+          const target = document.querySelector(href);
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }
+      });
+    });
+
+    // ── Quote Modal ─────────────────────────────────────────────
+    const N8N_WEBHOOK_URL = 'https://nemcokjakub.app.n8n.cloud/webhook/discover-call-lead';
+
+    let timingPicker = null;
+
+    function initTimingPicker() {
+      const lang = document.documentElement.lang || 'en';
+      timingPicker = flatpickr('#q-timing', {
+        enableTime: true,
+        dateFormat: 'd.m.Y H:i',
+        minDate: 'today',
+        minTime: '08:00',
+        maxTime: '18:00',
+        minuteIncrement: 30,
+        time_24hr: true,
+        locale: lang === 'cs' ? 'cs' : 'en',
+        onReady(_dates, _str, fp) {
+          const sel = fp.calendarContainer.querySelector('.flatpickr-monthDropdown-months');
+          if (!sel) return;
+
+          const monthNames = fp.l10n.months.longhand;
+
+          // Hide native select but keep it in DOM so Flatpickr still reads it
+          sel.style.position = 'absolute';
+          sel.style.opacity = '0';
+          sel.style.pointerEvents = 'none';
+          sel.style.width = '0';
+
+          // Create visible trigger span
+          const trigger = document.createElement('span');
+          trigger.className = 'custom-month-trigger';
+          trigger.textContent = monthNames[parseInt(sel.value, 10)];
+          sel.parentNode.insertBefore(trigger, sel);
+
+          let dropdown = null;
+
+          function closeDropdown() {
+            if (dropdown) { dropdown.remove(); dropdown = null; }
+            document.removeEventListener('click', onOutsideClick, true);
+          }
+
+          function onOutsideClick(e) {
+            if (dropdown && !dropdown.contains(e.target) && e.target !== trigger) {
+              closeDropdown();
+            }
+          }
+
+          trigger.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (dropdown) { closeDropdown(); return; }
+
+            dropdown = document.createElement('div');
+            dropdown.className = 'custom-month-dropdown';
+
+            const currentMonth = parseInt(sel.value, 10);
+            monthNames.forEach((name, idx) => {
+              const opt = document.createElement('div');
+              opt.className = 'month-option' + (idx === currentMonth ? ' selected' : '');
+              opt.textContent = name;
+              opt.addEventListener('click', (ev) => {
+                ev.stopPropagation();
+                sel.value = idx;
+                sel.dispatchEvent(new Event('change'));
+                trigger.textContent = monthNames[idx];
+                closeDropdown();
+              });
+              dropdown.appendChild(opt);
+            });
+
+            const rect = trigger.getBoundingClientRect();
+            const calRect = fp.calendarContainer.getBoundingClientRect();
+            dropdown.style.top = (rect.bottom - calRect.top + 4) + 'px';
+            dropdown.style.left = (rect.left - calRect.left) + 'px';
+            fp.calendarContainer.style.position = 'relative';
+            fp.calendarContainer.appendChild(dropdown);
+
+            document.addEventListener('click', onOutsideClick, true);
+          });
+
+          // Keep trigger text in sync when Flatpickr changes month via arrows
+          fp.config.onMonthChange.push(function() {
+            trigger.textContent = monthNames[fp.currentMonth];
+          });
+        },
+      });
+    }
+
+    function openQuoteModal() {
+      const modal = document.getElementById('quote-modal');
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      initTimingPicker();
+      setTimeout(() => {
+        const first = document.getElementById('q-name');
+        if (first) first.focus();
+      }, 50);
+    }
+
+    function closeQuoteModal() {
+      const modal = document.getElementById('quote-modal');
+      modal.classList.remove('open');
+      document.body.style.overflow = '';
+      // Reset after close animation
+      setTimeout(() => {
+        document.getElementById('quote-form').reset();
+        resetBudgetBtns();
+        document.getElementById('q-budget').value = '';
+        document.getElementById('quote-form').style.display = '';
+        document.getElementById('modal-success').classList.add('hidden');
+        document.getElementById('q-error').classList.add('hidden');
+        document.getElementById('q-error').textContent = '';
+        document.getElementById('q-submit-text').textContent = (window.t ? window.t('form.submit') : 'Request Free Consultation →');
+        document.getElementById('q-submit').disabled = false;
+        if (timingPicker) { timingPicker.destroy(); timingPicker = null; }
+      }, 200);
+    }
+
+    // Budget pill selection
+    function resetBudgetBtns() {
+      document.querySelectorAll('.budget-btn').forEach(function(b) {
+        b.classList.remove('selected');
+        b.style.background = '';
+        b.style.color = '';
+        b.style.borderColor = '';
+        b.style.fontWeight = '';
+      });
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+      document.getElementById('budget-btns').addEventListener('click', function(e) {
+        const btn = e.target.closest('.budget-btn');
+        if (!btn) return;
+        resetBudgetBtns();
+        btn.classList.add('selected');
+        btn.style.background = '#F5A800';
+        btn.style.color = '#1e3a8a';
+        btn.style.borderColor = '#F5A800';
+        btn.style.fontWeight = '600';
+        document.getElementById('q-budget').value = btn.dataset.value;
+      });
+
+      // Close on overlay click
+      document.getElementById('quote-overlay').addEventListener('click', closeQuoteModal);
+
+      // Close on Escape
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && document.getElementById('quote-modal').classList.contains('open')) {
+          closeQuoteModal();
+        }
+      });
+    });
+
+    async function handleQuoteSubmit(e) {
+      e.preventDefault();
+
+      const form = document.getElementById('quote-form');
+      const submitBtn = document.getElementById('q-submit');
+      const submitText = document.getElementById('q-submit-text');
+      const errorEl = document.getElementById('q-error');
+
+      // Basic validation
+      const name = document.getElementById('q-name').value.trim();
+      const email = document.getElementById('q-email').value.trim();
+      const goal = document.getElementById('q-goal').value.trim();
+
+      if (!name || !email || !goal) {
+        errorEl.textContent = (window.t ? window.t('form.error_required') : 'Please fill in all required fields.');
+        errorEl.classList.remove('hidden');
+        return;
+      }
+      errorEl.classList.add('hidden');
+
+      const payload = {
+        name,
+        email,
+        company: document.getElementById('q-company').value.trim(),
+        goal,
+        budget: document.getElementById('q-budget').value,
+        timing: document.getElementById('q-timing').value.trim(),
+        lang: document.documentElement.lang || 'en',
+        submitted_at: new Date().toLocaleDateString('en-GB').split('/').join('.')
+      };
+
+      submitText.textContent = (window.t ? window.t('form.sending') : 'Sending…');
+      submitBtn.disabled = true;
+
+      try {
+        const res = await fetch(N8N_WEBHOOK_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        if (!res.ok) throw new Error('Server error: ' + res.status);
+
+        // Show success
+        form.style.display = 'none';
+        document.getElementById('modal-success').classList.remove('hidden');
+      } catch (err) {
+        errorEl.textContent = (window.t ? window.t('form.error_generic') : 'Something went wrong. Please try again or email us directly.');
+        errorEl.classList.remove('hidden');
+        submitText.textContent = (window.t ? window.t('form.submit') : 'Request Free Consultation →');
+        submitBtn.disabled = false;
+      }
+    }
+  </script>
+
+  <!-- Flow Field Background Animation -->
+  <script>
+    (function () {
+      const canvas = document.getElementById('hero-flow-canvas');
+      if (!canvas) return;
+      const section = canvas.parentElement;
+      const ctx = canvas.getContext('2d');
+
+      // Config
+      const COLOR = '#818cf8';       // indigo-400
+      const TRAIL_OPACITY = 0.10;
+      const PARTICLE_COUNT = 600;
+      const SPEED = 0.8;
+
+      let width, height, particles, animId;
+      let mouse = { x: -9999, y: -9999 };
+
+      class Particle {
+        constructor() { this.reset(true); }
+
+        reset(init) {
+          this.x  = Math.random() * width;
+          this.y  = Math.random() * height;
+          this.vx = 0;
+          this.vy = 0;
+          this.age  = init ? Math.floor(Math.random() * 300) : 0;
+          this.life = Math.random() * 200 + 100;
+        }
+
+        update() {
+          const angle = (Math.cos(this.x * 0.005) + Math.sin(this.y * 0.005)) * Math.PI;
+          this.vx += Math.cos(angle) * 0.2 * SPEED;
+          this.vy += Math.sin(angle) * 0.2 * SPEED;
+
+          const dx = mouse.x - this.x;
+          const dy = mouse.y - this.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          const R = 150;
+          if (dist < R) {
+            const f = (R - dist) / R;
+            this.vx -= dx * f * 0.05;
+            this.vy -= dy * f * 0.05;
+          }
+
+          this.x  += this.vx;
+          this.y  += this.vy;
+          this.vx *= 0.95;
+          this.vy *= 0.95;
+          this.age++;
+
+          if (this.age > this.life) this.reset(false);
+          if (this.x < 0)      this.x = width;
+          if (this.x > width)  this.x = 0;
+          if (this.y < 0)      this.y = height;
+          if (this.y > height) this.y = 0;
+        }
+
+        draw() {
+          const alpha = 1 - Math.abs((this.age / this.life) - 0.5) * 2;
+          ctx.globalAlpha = alpha * 0.75;
+          ctx.fillStyle   = COLOR;
+          ctx.fillRect(this.x, this.y, 1.5, 1.5);
+        }
+      }
+
+      function init() {
+        const dpr = window.devicePixelRatio || 1;
+        width  = section.clientWidth;
+        height = section.clientHeight;
+        canvas.width  = width  * dpr;
+        canvas.height = height * dpr;
+        canvas.style.width  = width  + 'px';
+        canvas.style.height = height + 'px';
+        ctx.scale(dpr, dpr);
+        particles = Array.from({ length: PARTICLE_COUNT }, () => new Particle());
+      }
+
+      function animate() {
+        ctx.fillStyle = 'rgba(13,31,60,' + TRAIL_OPACITY + ')'; // navy #0D1F3C
+        ctx.fillRect(0, 0, width, height);
+        particles.forEach(p => { p.update(); p.draw(); });
+        ctx.globalAlpha = 1;
+        animId = requestAnimationFrame(animate);
+      }
+
+      init();
+      animate();
+
+      window.addEventListener('resize', () => {
+        cancelAnimationFrame(animId);
+        init();
+        animate();
+      });
+
+      section.addEventListener('mousemove', e => {
+        const r = canvas.getBoundingClientRect();
+        mouse.x = e.clientX - r.left;
+        mouse.y = e.clientY - r.top;
+      });
+
+      section.addEventListener('mouseleave', () => {
+        mouse.x = -9999;
+        mouse.y = -9999;
+      });
+    })();
+  </script>
+
+
+  <!-- QUOTE MODAL -->
+  <div id="quote-modal" class="fixed inset-0 z-50 items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <!-- Overlay -->
+    <div id="quote-overlay" class="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
+
+    <!-- Card -->
+    <div class="relative w-full max-w-lg bg-navy border border-orange/20 rounded-2xl shadow-orange overflow-hidden">
+      <!-- Header -->
+      <div class="flex items-center justify-between px-7 pt-7 pb-5 border-b border-orange/10">
+        <div>
+          <div class="inline-flex items-center gap-2 mb-2 border border-orange/30 rounded-full px-3 py-1">
+            <span class="text-orange font-display font-bold uppercase text-xs tracking-widest" data-i18n="modal.badge">Get in Touch</span>
+          </div>
+          <h2 id="modal-title" class="font-display font-bold text-white text-2xl" data-i18n="modal.title">Book an AI Consulting Call</h2>
+        </div>
+        <button onclick="closeQuoteModal()" class="text-ghost hover:text-white transition-colors ml-4 flex-shrink-0" data-i18n-aria="modal.close_aria" aria-label="Close">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+
+      <!-- Form body -->
+      <div id="modal-form-wrap" class="px-7 py-6 max-h-[70vh] overflow-y-auto">
+        <form id="quote-form" onsubmit="handleQuoteSubmit(event)" novalidate>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-4">
+            <div class="modal-field">
+              <label class="modal-label" for="q-name"><span data-i18n="form.name_label">Name</span> <span class="text-orange">*</span></label>
+              <input class="modal-input" type="text" id="q-name" name="name" placeholder="Jane Smith" required data-i18n-placeholder="form.name_placeholder" />
+            </div>
+            <div class="modal-field">
+              <label class="modal-label" for="q-email"><span data-i18n="form.email_label">Email</span> <span class="text-orange">*</span></label>
+              <input class="modal-input" type="email" id="q-email" name="email" placeholder="jane@company.com" required data-i18n-placeholder="form.email_placeholder" />
+            </div>
+          </div>
+
+          <div class="modal-field">
+            <label class="modal-label" for="q-company" data-i18n="form.company_label">Company / Business</label>
+            <input class="modal-input" type="text" id="q-company" name="company" placeholder="Acme Corp (optional)" data-i18n-placeholder="form.company_placeholder" />
+          </div>
+
+          <div class="modal-field">
+            <label class="modal-label" for="q-goal"><span data-i18n="form.goal_label">What do you want to automate?</span> <span class="text-orange">*</span></label>
+            <textarea class="modal-input" id="q-goal" name="goal" rows="4" placeholder="Describe the process or workflow you'd like to automate..." required style="resize:vertical;" data-i18n-placeholder="form.goal_placeholder"></textarea>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-4">
+            <div class="modal-field">
+              <label class="modal-label" data-i18n="form.budget_label">Budget Range</label>
+              <input type="hidden" id="q-budget" name="budget" value="" />
+              <div class="budget-btns" id="budget-btns">
+                <button type="button" class="budget-btn" data-value="under-5k" data-i18n="form.budget_under5k">Under €5k</button>
+                <button type="button" class="budget-btn" data-value="5k-20k" data-i18n="form.budget_5k20k">€5k – €20k</button>
+                <button type="button" class="budget-btn" data-value="20k-plus" data-i18n="form.budget_20kplus">€20k+</button>
+              </div>
+            </div>
+            <div class="modal-field">
+              <label class="modal-label" for="q-timing" data-i18n="form.timing_label">Preferred Meeting Time</label>
+              <input class="modal-input" type="text" id="q-timing" name="timing" readonly placeholder="Select date &amp; time" data-i18n-placeholder="form.timing_placeholder" />
+            </div>
+          </div>
+
+          <div id="q-error" class="hidden text-red-400 text-sm mb-4"></div>
+
+          <button type="submit" id="q-submit" class="btn-primary w-full">
+            <span id="q-submit-text" data-i18n="form.submit">Send Message →</span>
+          </button>
+        </form>
+
+        <!-- Success state (hidden initially) -->
+        <div id="modal-success" class="hidden text-center py-8">
+          <div class="text-orange text-5xl mb-4">✓</div>
+          <h3 class="font-display font-bold text-white text-xl mb-3" data-i18n="form.success_heading">You're on the list!</h3>
+          <p class="text-ghost" data-i18n="form.success_body">We'll be in touch within 24 hours to schedule your free scoping call.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Flatpickr -->
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/cs.js"></script>
+
+  <!-- i18n -->
+  <script src="./translations/en.js"></script>
+  <script src="./translations/cs.js"></script>
+  <script src="./i18n.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,60 @@
+<h2>What should happen to the existing sections?</h2>
+<p class="subtitle">Your current page has these sections below the hero. Where do they fit in the new structure?</p>
+
+<div style="display: flex; gap: 32px; margin: 24px 0; flex-wrap: wrap;">
+
+  <div style="flex: 1; min-width: 260px;">
+    <div style="background: #1a1a2e; border: 1px solid #333; border-radius: 12px; padding: 20px; margin-bottom: 16px;">
+      <div style="color: #888; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;">Current page order</div>
+      <div style="display: flex; flex-direction: column; gap: 6px;">
+        <div style="background: #2a2a4a; border: 1px solid #F5A800; border-radius: 6px; padding: 10px 14px; color: #F5A800; font-weight: 600;">🏠 Hero</div>
+        <div style="background: #222; border: 1px solid #444; border-radius: 6px; padding: 10px 14px; color: #ccc;">📋 Mission / About</div>
+        <div style="background: #222; border: 1px solid #444; border-radius: 6px; padding: 10px 14px; color: #ccc;">🧱 Pillars (3 services)</div>
+        <div style="background: #222; border: 1px solid #444; border-radius: 6px; padding: 10px 14px; color: #ccc;">📊 Stats (200+ workflows)</div>
+        <div style="background: #222; border: 1px solid #444; border-radius: 6px; padding: 10px 14px; color: #ccc;">🏷️ Topics (8 specializations)</div>
+        <div style="background: #222; border: 1px solid #444; border-radius: 6px; padding: 10px 14px; color: #ccc;">📣 Join CTA</div>
+        <div style="background: #222; border: 1px solid #444; border-radius: 6px; padding: 10px 14px; color: #ccc;">🔗 Footer</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="flex: 1; min-width: 260px;">
+    <div style="color: #888; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px;">Pick a new structure</div>
+
+    <div class="options">
+      <div class="option" data-choice="a" onclick="toggleSelect(this)">
+        <div class="letter">A</div>
+        <div class="content">
+          <h3>Add 3 new sections, keep the rest</h3>
+          <p>Insert <strong>How we work</strong> right after hero, push existing sections down, add <strong>Reviews</strong> and <strong>About me</strong> near the bottom before footer.</p>
+          <div style="margin-top: 10px; font-size: 12px; color: #888;">
+            Hero → How we work → Mission → Pillars → Stats → Topics → Join CTA → Reviews → About me → Footer
+          </div>
+        </div>
+      </div>
+
+      <div class="option" data-choice="b" onclick="toggleSelect(this)">
+        <div class="letter">B</div>
+        <div class="content">
+          <h3>Replace & simplify the page</h3>
+          <p>Keep only hero + the 3 new sections. Remove Mission, Pillars, Stats, Topics, Join CTA — cleaner, more focused.</p>
+          <div style="margin-top: 10px; font-size: 12px; color: #888;">
+            Hero → How we work → Reviews → About me → Footer
+          </div>
+        </div>
+      </div>
+
+      <div class="option" data-choice="c" onclick="toggleSelect(this)">
+        <div class="letter">C</div>
+        <div class="content">
+          <h3>Keep some, remove others</h3>
+          <p>Keep Pillars (services) and Join CTA, remove Mission, Stats, Topics. Insert 3 new sections in their intended places.</p>
+          <div style="margin-top: 10px; font-size: 12px; color: #888;">
+            Hero → How we work → Pillars → Reviews → About me → Join CTA → Footer
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

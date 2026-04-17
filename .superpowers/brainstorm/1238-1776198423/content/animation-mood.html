@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Animation Mood</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0a0a12;
+    color: #eee;
+    font-family: 'Inter', system-ui, sans-serif;
+    min-height: 100vh;
+    padding: 2rem;
+  }
+  h2 {
+    text-align: center;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 0.5rem;
+  }
+  .subtitle {
+    text-align: center;
+    color: #aaa;
+    font-size: 0.9rem;
+    margin-bottom: 2rem;
+  }
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .card {
+    border: 2px solid #1e2a45;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: border-color 0.2s, transform 0.2s;
+    background: #0D1F3C;
+  }
+  .card:hover { border-color: #F5A800; transform: translateY(-2px); }
+  .card.selected { border-color: #F5A800; box-shadow: 0 0 0 1px #F5A800, 0 0 24px rgba(245,168,0,0.2); }
+  .card-preview {
+    height: 180px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .card-body { padding: 1rem 1.25rem; border-top: 1px solid #1e2a45; }
+  .card-body h3 { font-size: 1rem; font-weight: 600; color: #fff; margin-bottom: 0.25rem; }
+  .card-body p { font-size: 0.8rem; color: #888; line-height: 1.5; }
+  .badge {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    margin-bottom: 0.4rem;
+    background: rgba(245,168,0,0.15);
+    color: #F5A800;
+  }
+
+  /* === OPTION A: Ethereal Particles === */
+  .preview-a { background: #0D1F3C; }
+  .preview-a canvas { position: absolute; inset: 0; }
+  .preview-a .label-overlay {
+    position: relative; z-index: 2;
+    font-family: 'Rajdhani', system-ui;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: rgba(235,235,235,0.9);
+    text-shadow: 0 0 20px rgba(245,168,0,0.4);
+    letter-spacing: 0.05em;
+  }
+
+  /* === OPTION B: Morphing Gradient === */
+  .preview-b {
+    background: #0D1F3C;
+  }
+  .morph-blob {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    filter: blur(40px);
+    opacity: 0.4;
+    animation: morphMove 5s ease-in-out infinite alternate;
+  }
+  .morph-blob-1 {
+    background: #F5A800;
+    top: -40px; left: -40px;
+    animation-duration: 6s;
+  }
+  .morph-blob-2 {
+    background: #1a3460;
+    bottom: -40px; right: -20px;
+    animation-duration: 8s;
+    animation-delay: -3s;
+  }
+  .morph-blob-3 {
+    background: rgba(245,168,0,0.5);
+    top: 30px; right: 20px;
+    width: 80px; height: 80px;
+    filter: blur(20px);
+    animation-duration: 4s;
+    animation-delay: -1s;
+  }
+  @keyframes morphMove {
+    0% { transform: translate(0,0) scale(1); border-radius: 60% 40% 30% 70%/60% 30% 70% 40%; }
+    50% { transform: translate(20px,-15px) scale(1.1); border-radius: 30% 60% 70% 40%/50% 60% 30% 60%; }
+    100% { transform: translate(-10px,10px) scale(0.95); border-radius: 50% 60% 40% 70%/40% 50% 60% 50%; }
+  }
+  .preview-b .label-overlay {
+    position: relative; z-index: 2;
+    font-family: 'Rajdhani', system-ui;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: rgba(235,235,235,0.9);
+    letter-spacing: 0.05em;
+  }
+
+  /* === OPTION C: Kinetic Lines === */
+  .preview-c { background: #0D1F3C; overflow: hidden; }
+  .line-group {
+    position: absolute;
+    inset: 0;
+  }
+  .kin-line {
+    position: absolute;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(245,168,0,0.6), transparent);
+    animation: lineSweep 4s ease-in-out infinite;
+    transform-origin: left center;
+  }
+  .kin-line:nth-child(1) { top: 30%; width: 70%; left: -10%; animation-delay: 0s; opacity: 0.7; }
+  .kin-line:nth-child(2) { top: 50%; width: 50%; left: 20%; animation-delay: 1s; opacity: 0.5; }
+  .kin-line:nth-child(3) { top: 70%; width: 80%; left: -5%; animation-delay: 2s; opacity: 0.6; }
+  .kin-line:nth-child(4) { top: 20%; width: 40%; left: 30%; animation-delay: 0.5s; opacity: 0.3; }
+  .kin-line:nth-child(5) { top: 85%; width: 60%; left: 10%; animation-delay: 1.5s; opacity: 0.4; }
+  @keyframes lineSweep {
+    0% { transform: translateX(-20px) scaleX(0.8); opacity: 0; }
+    30% { opacity: 1; }
+    70% { opacity: 1; }
+    100% { transform: translateX(30px) scaleX(1.1); opacity: 0; }
+  }
+  .dot-accent {
+    position: absolute;
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: #F5A800;
+    box-shadow: 0 0 6px rgba(245,168,0,0.8);
+    animation: dotPulse 3s ease-in-out infinite;
+  }
+  .dot-accent:nth-child(6) { top: 30%; left: 60%; animation-delay: 0s; }
+  .dot-accent:nth-child(7) { top: 50%; left: 70%; animation-delay: 1s; }
+  .dot-accent:nth-child(8) { top: 70%; left: 55%; animation-delay: 2s; }
+  @keyframes dotPulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(2); opacity: 0.5; }
+  }
+  .preview-c .label-overlay {
+    position: relative; z-index: 2;
+    font-family: 'Rajdhani', system-ui;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: rgba(235,235,235,0.9);
+    letter-spacing: 0.05em;
+  }
+
+  /* === OPTION D: Shimmer Text + Glow Rings === */
+  .preview-d { background: #0D1F3C; }
+  .glow-ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(245,168,0,0.3);
+    animation: ringExpand 4s ease-out infinite;
+  }
+  .glow-ring:nth-child(1) { width: 60px; height: 60px; animation-delay: 0s; }
+  .glow-ring:nth-child(2) { width: 60px; height: 60px; animation-delay: 1.3s; }
+  .glow-ring:nth-child(3) { width: 60px; height: 60px; animation-delay: 2.6s; }
+  @keyframes ringExpand {
+    0% { transform: scale(0.5); opacity: 0.8; border-color: rgba(245,168,0,0.6); }
+    100% { transform: scale(4); opacity: 0; border-color: rgba(245,168,0,0); }
+  }
+  .shimmer-text {
+    position: relative; z-index: 2;
+    font-family: 'Rajdhani', system-ui;
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    background: linear-gradient(90deg, #EBEBEB 0%, #F5A800 30%, #fff 50%, #F5A800 70%, #EBEBEB 100%);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 3s linear infinite;
+  }
+  @keyframes shimmer {
+    0% { background-position: -200% center; }
+    100% { background-position: 200% center; }
+  }
+
+  /* selection indicator */
+  .selected-indicator {
+    display: none;
+    position: fixed;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #F5A800;
+    color: #0D1F3C;
+    font-weight: 700;
+    font-size: 0.85rem;
+    padding: 0.6rem 1.5rem;
+    border-radius: 999px;
+    z-index: 100;
+  }
+  .selected-indicator.visible { display: block; }
+</style>
+</head>
+<body>
+
+<h2>Which animation mood fits Bohemian Flow?</h2>
+<p class="subtitle">Click a card to select. You can pick more than one.</p>
+
+<div class="cards">
+
+  <!-- OPTION A: Particles -->
+  <div class="card" data-choice="a" onclick="toggleCard(this)">
+    <div class="card-preview preview-a">
+      <canvas id="canvas-a"></canvas>
+      <span class="label-overlay">BOHEMIAN FLOW</span>
+    </div>
+    <div class="card-body">
+      <div class="badge">A</div>
+      <h3>Drifting Particles</h3>
+      <p>Tiny glowing dots float slowly across the hero. Organic, ethereal, meditative. Feels alive without being distracting.</p>
+    </div>
+  </div>
+
+  <!-- OPTION B: Morphing Blobs -->
+  <div class="card" data-choice="b" onclick="toggleCard(this)">
+    <div class="card-preview preview-b">
+      <div class="morph-blob morph-blob-1"></div>
+      <div class="morph-blob morph-blob-2"></div>
+      <div class="morph-blob morph-blob-3"></div>
+      <span class="label-overlay">BOHEMIAN FLOW</span>
+    </div>
+    <div class="card-body">
+      <div class="badge">B</div>
+      <h3>Fluid Gradient Blobs</h3>
+      <p>Soft glowing shapes slowly shift and breathe behind the content. Warm, flowing, ambient. Adds depth without competing.</p>
+    </div>
+  </div>
+
+  <!-- OPTION C: Kinetic Lines -->
+  <div class="card" data-choice="c" onclick="toggleCard(this)">
+    <div class="card-preview preview-c">
+      <div class="line-group">
+        <div class="kin-line"></div>
+        <div class="kin-line"></div>
+        <div class="kin-line"></div>
+        <div class="kin-line"></div>
+        <div class="kin-line"></div>
+        <div class="dot-accent"></div>
+        <div class="dot-accent"></div>
+        <div class="dot-accent"></div>
+      </div>
+      <span class="label-overlay">BOHEMIAN FLOW</span>
+    </div>
+    <div class="card-body">
+      <div class="badge">C</div>
+      <h3>Flowing Lines + Dots</h3>
+      <p>Horizontal light streaks sweep through the background with glowing orange dot accents. Elegant, directional, tech-meets-art.</p>
+    </div>
+  </div>
+
+  <!-- OPTION D: Shimmer + Rings -->
+  <div class="card" data-choice="d" onclick="toggleCard(this)">
+    <div class="card-preview preview-d">
+      <div class="glow-ring"></div>
+      <div class="glow-ring"></div>
+      <div class="glow-ring"></div>
+      <span class="shimmer-text">BOHEMIAN FLOW</span>
+    </div>
+    <div class="card-body">
+      <div class="badge">D</div>
+      <h3>Shimmer Text + Pulse Rings</h3>
+      <p>The heading gets a subtle gold shimmer sweep. Expanding glow rings radiate from the logo. Refined, ceremonial, premium.</p>
+    </div>
+  </div>
+
+</div>
+
+<div class="selected-indicator" id="indicator">Selected — tell me in the terminal!</div>
+
+<script>
+  // Particle canvas for option A
+  const canvas = document.getElementById('canvas-a');
+  const ctx = canvas.getContext('2d');
+  let particles = [];
+  function resizeCanvas() {
+    canvas.width = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+  }
+  function createParticles() {
+    particles = [];
+    for (let i = 0; i < 50; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        r: Math.random() * 1.5 + 0.3,
+        vx: (Math.random() - 0.5) * 0.3,
+        vy: (Math.random() - 0.5) * 0.3,
+        alpha: Math.random() * 0.6 + 0.1,
+        color: Math.random() > 0.7 ? '#F5A800' : '#EBEBEB'
+      });
+    }
+  }
+  function animateParticles() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(p => {
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = p.color;
+      ctx.globalAlpha = p.alpha;
+      ctx.fill();
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < 0) p.x = canvas.width;
+      if (p.x > canvas.width) p.x = 0;
+      if (p.y < 0) p.y = canvas.height;
+      if (p.y > canvas.height) p.y = 0;
+    });
+    ctx.globalAlpha = 1;
+    requestAnimationFrame(animateParticles);
+  }
+  resizeCanvas(); createParticles(); animateParticles();
+
+  // Card selection
+  const selections = new Set();
+  function toggleCard(el) {
+    const choice = el.dataset.choice;
+    if (selections.has(choice)) {
+      selections.delete(choice);
+      el.classList.remove('selected');
+    } else {
+      selections.add(choice);
+      el.classList.add('selected');
+    }
+    const indicator = document.getElementById('indicator');
+    if (selections.size > 0) {
+      indicator.textContent = 'Selected: ' + [...selections].map(c => c.toUpperCase()).join(', ') + ' — tell me in the terminal!';
+      indicator.classList.add('visible');
+    } else {
+      indicator.classList.remove('visible');
+    }
+    // Record for state_dir events if helper is present
+    if (typeof recordChoice === 'function') recordChoice(choice, el.querySelector('h3').textContent);
+  }
+</script>
+</body>
+</html>

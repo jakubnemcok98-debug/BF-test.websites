@@ -1,0 +1,97 @@
+<style>
+  .hero-preview {
+    background: #0D1F3C;
+    border-radius: 12px;
+    padding: 40px 32px;
+    text-align: center;
+    border: 1px solid rgba(255,255,255,0.08);
+    cursor: pointer;
+    transition: border-color 0.2s, transform 0.15s;
+    margin-bottom: 0;
+  }
+  .hero-preview:hover {
+    border-color: #F5A800;
+    transform: translateY(-2px);
+  }
+  .hero-preview.selected-card {
+    border-color: #F5A800;
+    box-shadow: 0 0 0 2px #F5A800;
+  }
+  .badge {
+    display: inline-block;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: #F5A800;
+    border: 1px solid rgba(245,168,0,0.4);
+    border-radius: 100px;
+    padding: 4px 14px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+  }
+  .hero-hl {
+    font-size: 2.2rem;
+    font-weight: 800;
+    line-height: 1.15;
+    color: #fff;
+    margin: 0 0 8px;
+    font-family: system-ui, sans-serif;
+  }
+  .hero-hl .accent {
+    color: #F5A800;
+  }
+  .hero-sub {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.5);
+    margin-top: 12px;
+    font-family: system-ui, sans-serif;
+  }
+  .option-label {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    margin-bottom: 10px;
+    font-family: system-ui, sans-serif;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 24px;
+  }
+</style>
+
+<h2>Pick a headline direction</h2>
+<p class="subtitle">All shown with your actual badge and subheadline. Click to select.</p>
+
+<div class="grid">
+
+  <div class="hero-preview option" data-choice="a" onclick="toggleSelect(this)">
+    <div class="option-label">Option A</div>
+    <div class="badge">◈ AI Consulting &amp; Automation Agency</div>
+    <p class="hero-hl">More Revenue,<br><span class="accent">Less Busywork</span></p>
+    <p class="hero-sub">We replace manual work, accelerate growth,<br>and give your team superpowers.</p>
+  </div>
+
+  <div class="hero-preview option" data-choice="b" onclick="toggleSelect(this)">
+    <div class="option-label">Option B</div>
+    <div class="badge">◈ AI Consulting &amp; Automation Agency</div>
+    <p class="hero-hl">The Unfair Advantage<br><span class="accent">Your Competitors<br>Don't Have Yet</span></p>
+    <p class="hero-sub">We replace manual work, accelerate growth,<br>and give your team superpowers.</p>
+  </div>
+
+  <div class="hero-preview option" data-choice="c" onclick="toggleSelect(this)">
+    <div class="option-label">Option C</div>
+    <div class="badge">◈ AI Consulting &amp; Automation Agency</div>
+    <p class="hero-hl">Grow Your Business<br><span class="accent">Without Growing<br>Your Headcount</span></p>
+    <p class="hero-sub">We replace manual work, accelerate growth,<br>and give your team superpowers.</p>
+  </div>
+
+  <div class="hero-preview option" data-choice="d" onclick="toggleSelect(this)">
+    <div class="option-label">Option D</div>
+    <div class="badge">◈ AI Consulting &amp; Automation Agency</div>
+    <p class="hero-hl">Your Business,<br><span class="accent">Running Like<br>a Machine</span></p>
+    <p class="hero-sub">We replace manual work, accelerate growth,<br>and give your team superpowers.</p>
+  </div>
+
+</div>

@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hero Blob Preview v2</title>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #060e1d; color: #eee; font-family: 'Inter', sans-serif; padding: 1.5rem; }
+
+  h2 { text-align: center; color: #fff; font-size: 1.2rem; font-weight: 600; margin-bottom: 0.4rem; }
+  .subtitle { text-align: center; color: #aaa; font-size: 0.85rem; margin-bottom: 1.5rem; }
+
+  .hero-mockup {
+    position: relative;
+    width: 100%;
+    max-width: 860px;
+    margin: 0 auto;
+    aspect-ratio: 16/9;
+    background: #0D1F3C;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #1e2a45;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .dot-grid {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, rgba(235,235,235,0.08) 1px, transparent 1px);
+    background-size: 24px 24px;
+    opacity: 0.6;
+    pointer-events: none;
+  }
+
+  .hero-radial {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(245,168,0,0.12), transparent);
+    pointer-events: none;
+  }
+
+  .hero-corner {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 33%;
+    background: radial-gradient(ellipse 50% 40% at 0% 100%, rgba(20,40,73,0.8), transparent);
+    pointer-events: none;
+  }
+
+  .blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(55px);
+    pointer-events: none;
+  }
+
+  .blob-1 {
+    width: 38%;
+    height: 55%;
+    background: radial-gradient(circle, rgba(245,168,0,0.75) 0%, rgba(245,140,0,0.4) 50%, transparent 70%);
+    top: -8%;
+    left: -8%;
+    animation: blobFloat1 9s ease-in-out infinite;
+    opacity: 0.48;
+  }
+
+  .blob-2 {
+    width: 42%;
+    height: 60%;
+    background: radial-gradient(circle, rgba(40,80,160,0.9) 0%, rgba(26,52,96,0.6) 50%, transparent 70%);
+    bottom: -15%;
+    right: -10%;
+    animation: blobFloat2 12s ease-in-out infinite;
+    opacity: 0.55;
+  }
+
+  .blob-3 {
+    width: 22%;
+    height: 32%;
+    background: radial-gradient(circle, rgba(245,168,0,0.65) 0%, rgba(245,168,0,0.2) 60%, transparent 80%);
+    top: 30%;
+    right: 8%;
+    animation: blobFloat3 7s ease-in-out infinite;
+    opacity: 0.42;
+    filter: blur(35px);
+  }
+
+  @keyframes blobFloat1 {
+    0%   { transform: translate(0, 0) scale(1); border-radius: 58% 42% 35% 65% / 55% 38% 62% 45%; }
+    25%  { transform: translate(3%, 5%) scale(1.06); border-radius: 40% 60% 55% 45% / 48% 55% 45% 52%; }
+    50%  { transform: translate(6%, 2%) scale(0.97); border-radius: 65% 35% 40% 60% / 60% 42% 58% 40%; }
+    75%  { transform: translate(2%, 7%) scale(1.04); border-radius: 45% 55% 62% 38% / 52% 62% 38% 48%; }
+    100% { transform: translate(0, 0) scale(1); border-radius: 58% 42% 35% 65% / 55% 38% 62% 45%; }
+  }
+
+  @keyframes blobFloat2 {
+    0%   { transform: translate(0, 0) scale(1); border-radius: 45% 55% 60% 40% / 50% 45% 55% 50%; }
+    30%  { transform: translate(-4%, -3%) scale(1.08); border-radius: 60% 40% 45% 55% / 40% 58% 42% 60%; }
+    60%  { transform: translate(-2%, -6%) scale(0.95); border-radius: 35% 65% 55% 45% / 55% 35% 65% 45%; }
+    100% { transform: translate(0, 0) scale(1); border-radius: 45% 55% 60% 40% / 50% 45% 55% 50%; }
+  }
+
+  @keyframes blobFloat3 {
+    0%   { transform: translate(0, 0) scale(1); border-radius: 50%; }
+    40%  { transform: translate(-5%, 8%) scale(1.12); border-radius: 60% 40% 55% 45% / 45% 60% 40% 55%; }
+    80%  { transform: translate(3%, -5%) scale(0.92); border-radius: 40% 60% 45% 55% / 55% 40% 60% 45%; }
+    100% { transform: translate(0, 0) scale(1); border-radius: 50%; }
+  }
+
+  /* Floating logo — actual image */
+  .float-logo {
+    position: absolute;
+    top: 8%;
+    right: 5%;
+    opacity: 0.1;
+    width: 13%;
+    animation: floatY 6s ease-in-out infinite;
+    pointer-events: none;
+  }
+  .float-logo img { width: 100%; height: auto; display: block; }
+  /* Fallback placeholder shown if image doesn't load */
+  .logo-placeholder {
+    width: 100%;
+    aspect-ratio: 1;
+    border: 1px solid rgba(235,235,235,0.4);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: rgba(235,235,235,0.6);
+    letter-spacing: 0.1em;
+  }
+
+  @keyframes floatY {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    padding: 0 8%;
+  }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: #F5A800;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border: 1px solid rgba(245,168,0,0.3);
+    padding: 0.3rem 0.8rem;
+    border-radius: 999px;
+    margin-bottom: 1rem;
+  }
+
+  .hero-h1 {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: clamp(1.4rem, 3.5vw, 2.2rem);
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.75rem;
+  }
+
+  .orange-text {
+    background: linear-gradient(135deg, #F5A800, #ffcc55);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-sub {
+    font-size: clamp(0.65rem, 1.2vw, 0.85rem);
+    color: rgba(235,235,235,0.7);
+    line-height: 1.7;
+    max-width: 480px;
+    margin: 0 auto 1rem;
+  }
+
+  .btn-row {
+    display: flex;
+    gap: 0.6rem;
+    justify-content: center;
+    margin-bottom: 0.75rem;
+  }
+
+  .btn-p {
+    background: #F5A800;
+    color: #0D1F3C;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 0.5rem 1.1rem;
+    border-radius: 6px;
+    border: none;
+    cursor: default;
+    letter-spacing: 0.03em;
+  }
+
+  .btn-g {
+    background: transparent;
+    color: #EBEBEB;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 0.5rem 1.1rem;
+    border-radius: 6px;
+    border: 1px solid rgba(235,235,235,0.35);
+    cursor: default;
+    letter-spacing: 0.03em;
+  }
+
+  .social-proof { font-size: 0.65rem; color: rgba(235,235,235,0.55); }
+  .stars { color: #F5A800; letter-spacing: 0.05em; }
+
+  .notes {
+    max-width: 860px;
+    margin: 1.25rem auto 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+  }
+  .note {
+    background: #0D1F3C;
+    border: 1px solid #1e2a45;
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+  }
+  .note-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #F5A800; margin-bottom: 0.3rem; }
+  .note p { font-size: 0.75rem; color: #aaa; line-height: 1.5; }
+</style>
+</head>
+<body>
+
+<h2>Hero section — with logo watermark</h2>
+<p class="subtitle">Live animation. Actual logo in top-right corner.</p>
+
+<div class="hero-mockup">
+  <div class="dot-grid"></div>
+  <div class="hero-radial"></div>
+  <div class="hero-corner"></div>
+
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+
+  <!-- Actual logo (falls back to placeholder if server can't resolve path) -->
+  <div class="float-logo">
+    <img src="../../../../brand_assests/logo.png" alt=""
+         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+    <div class="logo-placeholder" style="display:none">logo.png</div>
+  </div>
+
+  <div class="hero-content">
+    <div class="eyebrow">◈ AI Consulting & Automation Agency</div>
+    <h1 class="hero-h1">
+      We Build the AI Systems That<br>
+      <span class="orange-text">Scale Your Business</span>
+    </h1>
+    <p class="hero-sub">
+      Intelligent automation workflows, AI agents, and lead generation systems that replace manual work and give your team superpowers.
+    </p>
+    <div class="btn-row">
+      <div class="btn-p">Get a Free Consultation →</div>
+      <div class="btn-g">See Our Work ↓</div>
+    </div>
+    <div class="social-proof">
+      <span class="stars">★★★★★</span> Trusted by 50+ businesses across 18 countries
+    </div>
+  </div>
+</div>
+
+<div class="notes">
+  <div class="note">
+    <div class="note-label">Blob 1 — Orange</div>
+    <p>Upper-left, warm glow. Breathes and morphs slowly. The main warmth source.</p>
+  </div>
+  <div class="note">
+    <div class="note-label">Blob 2 — Navy-Blue</div>
+    <p>Lower-right, cool counter-weight. Gives depth and dimension to the dark background.</p>
+  </div>
+  <div class="note">
+    <div class="note-label">Blob 3 — Orange accent</div>
+    <p>Mid-right, smaller, faster. Adds asymmetry and life.</p>
+  </div>
+</div>
+
+</body>
+</html>
