@@ -395,6 +395,82 @@
     .modal-field {
       margin-bottom: 16px;
     }
+    /* Form sections */
+    .form-section {
+      margin-bottom: 24px;
+    }
+    .form-section-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(245,168,0,0.15);
+    }
+    .form-section-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--orange);
+      color: #0D1F3C;
+      font-family: Inter, sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .form-section-label {
+      font-family: Inter, sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: rgba(245,168,0,0.7);
+    }
+    /* Chips */
+    .chip-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .chip {
+      padding: 6px 14px;
+      border-radius: 20px;
+      border: 1px solid rgba(245,168,0,0.35);
+      background: rgba(255,255,255,0.04);
+      color: var(--ghost);
+      font-family: Inter, sans-serif;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+    }
+    .chip:hover {
+      background: rgba(245,168,0,0.15);
+      color: var(--white);
+      border-color: var(--orange);
+    }
+    .chip.selected {
+      background: var(--orange);
+      color: #0D1F3C;
+      border-color: var(--orange);
+      font-weight: 600;
+    }
+    /* Select styling */
+    select.modal-input {
+      appearance: none;
+      -webkit-appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23F5A800' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 36px;
+      cursor: pointer;
+    }
+    select.modal-input option {
+      background: #142849;
+      color: var(--ghost);
+    }
     /* Flatpickr theme — navy/orange */
     .flatpickr-calendar {
       background: #142849;
@@ -1023,51 +1099,57 @@
       document.body.style.overflow = 'hidden';
       initTimingPicker();
       setTimeout(() => {
-        const first = document.getElementById('q-name');
+        const first = document.getElementById('q-first-name');
         if (first) first.focus();
       }, 50);
+    }
+
+    function resetChips(groupId, hiddenId) {
+      document.querySelectorAll('#' + groupId + ' .chip').forEach(function(c) {
+        c.classList.remove('selected');
+      });
+      document.getElementById(hiddenId).value = '';
     }
 
     function closeQuoteModal() {
       const modal = document.getElementById('quote-modal');
       modal.classList.remove('open');
       document.body.style.overflow = '';
-      // Reset after close animation
       setTimeout(() => {
         document.getElementById('quote-form').reset();
-        resetBudgetBtns();
-        document.getElementById('q-budget').value = '';
+        resetChips('automate-chips', 'q-automate');
+        resetChips('budget-chips', 'q-budget');
         document.getElementById('quote-form').style.display = '';
         document.getElementById('modal-success').classList.add('hidden');
         document.getElementById('q-error').classList.add('hidden');
         document.getElementById('q-error').textContent = '';
-        document.getElementById('q-submit-text').textContent = (window.t ? window.t('form.submit') : 'Request Free Consultation →');
+        document.getElementById('q-submit-text').textContent = (window.t ? window.t('form.submit') : 'Send Message →');
         document.getElementById('q-submit').disabled = false;
         if (timingPicker) { timingPicker.destroy(); timingPicker = null; }
       }, 200);
     }
 
-    // Budget pill selection
-    function resetBudgetBtns() {
-      document.querySelectorAll('.budget-btn').forEach(function(b) {
-        b.classList.remove('selected');
-        b.style.background = '';
-        b.style.color = '';
-        b.style.borderColor = '';
-        b.style.fontWeight = '';
-      });
-    }
     document.addEventListener('DOMContentLoaded', function() {
-      document.getElementById('budget-btns').addEventListener('click', function(e) {
-        const btn = e.target.closest('.budget-btn');
-        if (!btn) return;
-        resetBudgetBtns();
-        btn.classList.add('selected');
-        btn.style.background = '#F5A800';
-        btn.style.color = '#1e3a8a';
-        btn.style.borderColor = '#F5A800';
-        btn.style.fontWeight = '600';
-        document.getElementById('q-budget').value = btn.dataset.value;
+      // Multi-select automate chips
+      document.getElementById('automate-chips').addEventListener('click', function(e) {
+        const chip = e.target.closest('.chip');
+        if (!chip) return;
+        chip.classList.toggle('selected');
+        const selected = Array.from(document.querySelectorAll('#automate-chips .chip.selected'))
+          .map(function(c) { return c.dataset.value; });
+        document.getElementById('q-automate').value = selected.join(',');
+      });
+
+      // Single-select budget chips
+      document.getElementById('budget-chips').addEventListener('click', function(e) {
+        const chip = e.target.closest('.chip');
+        if (!chip) return;
+        const alreadySelected = chip.classList.contains('selected');
+        resetChips('budget-chips', 'q-budget');
+        if (!alreadySelected) {
+          chip.classList.add('selected');
+          document.getElementById('q-budget').value = chip.dataset.value;
+        }
       });
 
       // Close on overlay click
@@ -1089,12 +1171,16 @@
       const submitText = document.getElementById('q-submit-text');
       const errorEl = document.getElementById('q-error');
 
-      // Basic validation
-      const name = document.getElementById('q-name').value.trim();
-      const email = document.getElementById('q-email').value.trim();
-      const goal = document.getElementById('q-goal').value.trim();
+      const firstName = document.getElementById('q-first-name').value.trim();
+      const lastName  = document.getElementById('q-last-name').value.trim();
+      const email     = document.getElementById('q-email').value.trim();
+      const company   = document.getElementById('q-company').value.trim();
+      const role      = document.getElementById('q-role').value;
+      const size      = document.getElementById('q-size').value;
+      const automate  = document.getElementById('q-automate').value;
+      const project   = document.getElementById('q-project').value.trim();
 
-      if (!name || !email || !goal) {
+      if (!firstName || !lastName || !email || !company || !role || !size || !automate || !project) {
         errorEl.textContent = (window.t ? window.t('form.error_required') : 'Please fill in all required fields.');
         errorEl.classList.remove('hidden');
         return;
@@ -1102,13 +1188,19 @@
       errorEl.classList.add('hidden');
 
       const payload = {
-        name,
+        first_name: firstName,
+        last_name:  lastName,
         email,
-        company: document.getElementById('q-company').value.trim(),
-        goal,
-        budget: document.getElementById('q-budget').value,
-        timing: document.getElementById('q-timing').value.trim(),
-        lang: document.documentElement.lang || 'en',
+        phone:      document.getElementById('q-phone').value.trim(),
+        company,
+        website:    document.getElementById('q-website').value.trim(),
+        role,
+        company_size: size,
+        automate,
+        budget:     document.getElementById('q-budget').value,
+        project,
+        timing:     document.getElementById('q-timing').value.trim(),
+        lang:       document.documentElement.lang || 'en',
         submitted_at: new Date().toLocaleDateString('en-GB').split('/').join('.')
       };
 
@@ -1249,7 +1341,7 @@
     <div id="quote-overlay" class="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
 
     <!-- Card -->
-    <div class="relative w-full max-w-lg bg-navy border border-orange/20 rounded-2xl shadow-orange overflow-hidden">
+    <div class="relative w-full max-w-2xl bg-navy border border-orange/20 rounded-2xl shadow-orange overflow-hidden">
       <!-- Header -->
       <div class="flex items-center justify-between px-7 pt-7 pb-5 border-b border-orange/10">
         <div>
@@ -1264,39 +1356,117 @@
       </div>
 
       <!-- Form body -->
-      <div id="modal-form-wrap" class="px-7 py-6 max-h-[70vh] overflow-y-auto">
+      <div id="modal-form-wrap" class="px-7 py-6 overflow-y-auto" style="max-height: calc(100vh - 140px);">
         <form id="quote-form" onsubmit="handleQuoteSubmit(event)" novalidate>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-4">
-            <div class="modal-field">
-              <label class="modal-label" for="q-name"><span data-i18n="form.name_label">Name</span> <span class="text-orange">*</span></label>
-              <input class="modal-input" type="text" id="q-name" name="name" placeholder="Jane Smith" required data-i18n-placeholder="form.name_placeholder" />
+
+          <!-- Section 1: Contact Info -->
+          <div class="form-section">
+            <div class="form-section-title">
+              <span class="form-section-num">1</span>
+              <span class="form-section-label" data-i18n="form.section1_title">Contact Info</span>
             </div>
-            <div class="modal-field">
-              <label class="modal-label" for="q-email"><span data-i18n="form.email_label">Email</span> <span class="text-orange">*</span></label>
-              <input class="modal-input" type="email" id="q-email" name="email" placeholder="jane@company.com" required data-i18n-placeholder="form.email_placeholder" />
-            </div>
-          </div>
 
-          <div class="modal-field">
-            <label class="modal-label" for="q-company" data-i18n="form.company_label">Company / Business</label>
-            <input class="modal-input" type="text" id="q-company" name="company" placeholder="Acme Corp (optional)" data-i18n-placeholder="form.company_placeholder" />
-          </div>
-
-          <div class="modal-field">
-            <label class="modal-label" for="q-goal"><span data-i18n="form.goal_label">What do you want to automate?</span> <span class="text-orange">*</span></label>
-            <textarea class="modal-input" id="q-goal" name="goal" rows="4" placeholder="Describe the process or workflow you'd like to automate..." required style="resize:vertical;" data-i18n-placeholder="form.goal_placeholder"></textarea>
-          </div>
-
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-4">
-            <div class="modal-field">
-              <label class="modal-label" data-i18n="form.budget_label">Budget Range</label>
-              <input type="hidden" id="q-budget" name="budget" value="" />
-              <div class="budget-btns" id="budget-btns">
-                <button type="button" class="budget-btn" data-value="under-5k" data-i18n="form.budget_under5k">Under €5k</button>
-                <button type="button" class="budget-btn" data-value="5k-20k" data-i18n="form.budget_5k20k">€5k – €20k</button>
-                <button type="button" class="budget-btn" data-value="20k-plus" data-i18n="form.budget_20kplus">€20k+</button>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-4">
+              <div class="modal-field">
+                <label class="modal-label" for="q-first-name"><span data-i18n="form.first_name_label">First Name</span> <span class="text-orange">*</span></label>
+                <input class="modal-input" type="text" id="q-first-name" name="first_name" placeholder="Jan" required data-i18n-placeholder="form.first_name_placeholder" />
+              </div>
+              <div class="modal-field">
+                <label class="modal-label" for="q-last-name"><span data-i18n="form.last_name_label">Last Name</span> <span class="text-orange">*</span></label>
+                <input class="modal-input" type="text" id="q-last-name" name="last_name" placeholder="Novák" required data-i18n-placeholder="form.last_name_placeholder" />
               </div>
             </div>
+
+            <div class="modal-field">
+              <label class="modal-label" for="q-email"><span data-i18n="form.email_label">Work Email</span> <span class="text-orange">*</span></label>
+              <input class="modal-input" type="email" id="q-email" name="email" placeholder="jan@company.com" required data-i18n-placeholder="form.email_placeholder" />
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-4">
+              <div class="modal-field">
+                <label class="modal-label" for="q-phone" data-i18n="form.phone_label">Phone</label>
+                <input class="modal-input" type="tel" id="q-phone" name="phone" placeholder="+420 123 456 789" data-i18n-placeholder="form.phone_placeholder" />
+              </div>
+              <div class="modal-field">
+                <label class="modal-label" for="q-company"><span data-i18n="form.company_label">Company Name</span> <span class="text-orange">*</span></label>
+                <input class="modal-input" type="text" id="q-company" name="company" placeholder="Acme Corp" required data-i18n-placeholder="form.company_placeholder" />
+              </div>
+            </div>
+
+            <div class="modal-field">
+              <label class="modal-label" for="q-website" data-i18n="form.website_label">Company Website</label>
+              <input class="modal-input" type="url" id="q-website" name="website" placeholder="https://acme.com" data-i18n-placeholder="form.website_placeholder" />
+            </div>
+          </div>
+
+          <!-- Section 2: Your Role -->
+          <div class="form-section">
+            <div class="form-section-title">
+              <span class="form-section-num">2</span>
+              <span class="form-section-label" data-i18n="form.section2_title">Your Role</span>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-4">
+              <div class="modal-field">
+                <label class="modal-label" for="q-role"><span data-i18n="form.role_label">Your Role</span> <span class="text-orange">*</span></label>
+                <select class="modal-input" id="q-role" name="role" required>
+                  <option value="" data-i18n="form.role_placeholder">Select role…</option>
+                  <option value="ceo" data-i18n="form.role_opt_ceo">Owner / CEO</option>
+                  <option value="sales" data-i18n="form.role_opt_sales">Sales Director</option>
+                  <option value="mktg" data-i18n="form.role_opt_mktg">Marketing Manager</option>
+                  <option value="ops" data-i18n="form.role_opt_ops">Operations</option>
+                  <option value="other" data-i18n="form.role_opt_other">Other</option>
+                </select>
+              </div>
+              <div class="modal-field">
+                <label class="modal-label" for="q-size"><span data-i18n="form.size_label">Company Size</span> <span class="text-orange">*</span></label>
+                <select class="modal-input" id="q-size" name="company_size" required>
+                  <option value="" data-i18n="form.size_placeholder">Select size…</option>
+                  <option value="1-10" data-i18n="form.size_opt_1">1–10</option>
+                  <option value="11-50" data-i18n="form.size_opt_2">11–50</option>
+                  <option value="51-200" data-i18n="form.size_opt_3">51–200</option>
+                  <option value="200+" data-i18n="form.size_opt_4">200+</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 3: Project Context -->
+          <div class="form-section">
+            <div class="form-section-title">
+              <span class="form-section-num">3</span>
+              <span class="form-section-label" data-i18n="form.section3_title">Project Context</span>
+            </div>
+
+            <div class="modal-field">
+              <label class="modal-label"><span data-i18n="form.automate_label">What do you want to automate?</span> <span class="text-orange">*</span></label>
+              <input type="hidden" id="q-automate" name="automate" value="" />
+              <div class="chip-group" id="automate-chips">
+                <button type="button" class="chip" data-value="customer-service" data-i18n="form.automate_opt_cs">Customer service</button>
+                <button type="button" class="chip" data-value="lead-generation" data-i18n="form.automate_opt_lg">Lead generation</button>
+                <button type="button" class="chip" data-value="internal-processes" data-i18n="form.automate_opt_ip">Internal processes</button>
+                <button type="button" class="chip" data-value="marketing-content" data-i18n="form.automate_opt_mc">Marketing &amp; content</button>
+                <button type="button" class="chip" data-value="data-reports" data-i18n="form.automate_opt_dr">Data reports</button>
+                <button type="button" class="chip" data-value="not-sure" data-i18n="form.automate_opt_ns">Not sure</button>
+              </div>
+            </div>
+
+            <div class="modal-field">
+              <label class="modal-label" data-i18n="form.budget_label">Project Budget</label>
+              <input type="hidden" id="q-budget" name="budget" value="" />
+              <div class="chip-group" id="budget-chips">
+                <button type="button" class="chip" data-value="under-50k" data-i18n="form.budget_opt_1">Under €50k</button>
+                <button type="button" class="chip" data-value="50k-150k" data-i18n="form.budget_opt_2">€50k – €150k</button>
+                <button type="button" class="chip" data-value="150k-plus" data-i18n="form.budget_opt_3">€150k+</button>
+                <button type="button" class="chip" data-value="not-sure" data-i18n="form.budget_opt_ns">Not sure</button>
+              </div>
+            </div>
+
+            <div class="modal-field">
+              <label class="modal-label" for="q-project"><span data-i18n="form.project_label">Describe your project</span> <span class="text-orange">*</span></label>
+              <textarea class="modal-input" id="q-project" name="project" rows="3" placeholder="Describe the challenge or process you want to solve…" required style="resize:vertical;" data-i18n-placeholder="form.project_placeholder"></textarea>
+            </div>
+
             <div class="modal-field">
               <label class="modal-label" for="q-timing" data-i18n="form.timing_label">Preferred Meeting Time</label>
               <input class="modal-input" type="text" id="q-timing" name="timing" readonly placeholder="Select date &amp; time" data-i18n-placeholder="form.timing_placeholder" />
