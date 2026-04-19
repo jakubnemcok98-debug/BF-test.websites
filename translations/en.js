@@ -11,8 +11,8 @@ window.translations.en = {
   },
   hero: {
     eyebrow:      '◈ AI Consulting & Automation Agency',
-    heading:      'Grow Your Business <span class="text-gradient-orange">Without Growing Your Headcount</span>',
-    subheading:   'We design and implement intelligent automation workflows and AI agents orchestration that replace manual work, accelerate growth, and give your team superpowers.',
+    heading:      'Automate the Routine. <span class="text-gradient-orange">Focus on Growth.</span>',
+    subheading:   'We help businesses automate repetitive tasks with AI. Less manual work, lower costs, more room for what actually drives results.',
     cta_primary:  'Get in Touch →',
     cta_secondary:'See Our Work ↓',
     social_proof: '200+ workflows delivered · Czech-based · Available globally'

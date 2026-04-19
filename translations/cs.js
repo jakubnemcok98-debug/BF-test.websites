@@ -11,8 +11,8 @@ window.translations.cs = {
   },
   hero: {
     eyebrow:      '◈ AI Konzultace & Automatizační Agentura',
-    heading:      'Rozvíjejte podnikání <span class="text-gradient-orange">bez rozšiřování týmu</span>',
-    subheading:   'Navrhujeme a implementujeme inteligentní automatizační workflows a orchestraci AI agentů, které nahrazují manuální práci, urychlují růst a dávají vašemu týmu superschopnosti.',
+    heading:      'Automatizujte rutinu. <span class="text-gradient-orange">Soustřeďte se na růst.</span>',
+    subheading:   'Pomáháme firmám automatizovat opakující se úkoly pomocí AI. Méně ruční práce, nižší náklady, víc prostoru pro to, co skutečně přináší výsledky.',
     cta_primary:  'Spojit se →',
     cta_secondary:'Zobrazit naše práce ↓',
     social_proof: '200+ workflows · Česká firma · Globální dostupnost'
