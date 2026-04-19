@@ -33,13 +33,13 @@ window.translations.cs = {
     label:   'Co stavíme',
     heading: 'Naše automatizační specializace',
     t1: { tag: 'Workflow', title: 'n8n Workflows',                  desc: 'Tvoříme automatizace v n8n, nástroji pro propojení aplikací a procesů bez ruční práce. Postaráme se o celé nastavení od prvního kroku až po spuštění v ostrém provozu.' },
-    t2: { tag: 'Agenti',   title: 'Architektura AI agentů',       desc: 'Stavíme AI agenty, kteří myslí a jednají samostatně, bez toho, aby je kdokoli řídil. Zvládnou složité úkoly sami nebo ve spolupráci s dalšími agenty.' },
+    t2: { tag: 'Procesy',  title: 'Design firemních procesů',     desc: 'Zmapujeme, jak váš tým pracuje, a nahradíme opakující se ruční kroky automatizací. Výsledkem je rychlejší provoz, méně chyb a víc času na důležitou práci.' },
     t3: { tag: 'LeadGen',  title: 'Systémy pro generování leadů', desc: 'Automatizujeme celý proces hledání a oslovování potenciálních zákazníků. Od prvního kontaktu po domluvení schůzky vše proběhne bez ruční práce.' },
     t4: { tag: 'Email',    title: 'Automatizace e-mailů',         desc: 'AI za vás třídí, píše a odpovídá na e-maily podle vašich pravidel. Váš inbox vám slouží místo toho, aby vás ovládal.' },
     t5: { tag: 'Obsah',    title: 'Generování AI obsahu',         desc: 'Systém, který sám vyhledá podklady, napíše a zveřejní obsah na vašich kanálech. Pravidelný výstup bez toho, aby někdo sedel a psal ručně.' },
     t6: { tag: 'Data',     title: 'Scraping & datové pipeline',   desc: 'Automaticky sbíráme data z webu a ukládáme je přehledně na jedno místo. Vždy aktuální, čistá data připravená k dalšímu využití.' },
     t7: { tag: 'Chat',     title: 'Hlasová & chatová rozhraní',   desc: 'Stavíme chatboty pro WhatsApp, Telegram, Slack i vlastní AI asistenty. Vaše firma zůstává dostupná na každém kanálu, nepřetržitě.' },
-    t8: { tag: 'Procesy',  title: 'Design firemních procesů',     desc: 'Zmapujeme, jak váš tým pracuje, a nahradíme opakující se ruční kroky automatizací. Výsledkem je rychlejší provoz, méně chyb a víc času na důležitou práci.' }
+    t8: { tag: 'Agenti',   title: 'Architektura AI agentů',       desc: 'Stavíme AI agenty, kteří myslí a jednají samostatně, bez toho, aby je kdokoli řídil. Zvládnou složité úkoly sami nebo ve spolupráci s dalšími agenty.' }
   },
   reviews: {
     label:   'Reference klientů',

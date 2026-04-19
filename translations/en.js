@@ -33,13 +33,13 @@ window.translations.en = {
     label:   'What We Build',
     heading: 'Our Automation Specializations',
     t1: { tag: 'Workflow', title: 'n8n Workflows',                desc: 'We build automations in n8n, a tool that connects your apps and processes so nothing needs to be done by hand. We handle the full setup from the first step to going live.' },
-    t2: { tag: 'Agents',   title: 'AI Agent Architecture',      desc: 'We build AI agents that think and act on their own, without anyone managing them. They handle complex tasks independently or work together with other agents.' },
+    t2: { tag: 'Process',  title: 'Business Process Design',    desc: 'We map how your team works and replace repetitive manual steps with automation. The result is faster operations, fewer mistakes, and more time for what matters.' },
     t3: { tag: 'LeadGen',  title: 'Lead Generation Systems',    desc: 'We automate the entire process of finding and reaching out to potential customers. From first contact to a booked meeting, everything runs without manual effort.' },
     t4: { tag: 'Email',    title: 'Email Management Automation', desc: 'AI sorts, writes, and responds to emails based on your rules, automatically. Your inbox works for you instead of the other way around.' },
     t5: { tag: 'Content',  title: 'AI Content Generation',      desc: 'A system that researches, writes, and publishes content across your channels on its own. Consistent output without anyone sitting down to write it manually.' },
     t6: { tag: 'Data',     title: 'Scraping & Data Pipelines',  desc: 'We automatically collect data from the web and store it cleanly in one place. Always up-to-date, structured data ready to use.' },
     t7: { tag: 'Chat',     title: 'Voice & Chat Interfaces',    desc: 'We build chatbots for WhatsApp, Telegram, Slack, and custom AI assistants. Your business stays reachable on every channel, around the clock.' },
-    t8: { tag: 'Process',  title: 'Business Process Design',    desc: 'We map how your team works and replace repetitive manual steps with automation. The result is faster operations, fewer mistakes, and more time for what matters.' }
+    t8: { tag: 'Agents',   title: 'AI Agent Architecture',      desc: 'We build AI agents that think and act on their own, without anyone managing them. They handle complex tasks independently or work together with other agents.' }
   },
   reviews: {
     label:   'Client Reviews',
