@@ -27,19 +27,19 @@ window.translations.cs = {
     step3_title: 'Stavba & testování',
     step3_desc:  'Postavíme vaše automatizace a důkladně je otestujeme, než se nasadí do aktivního provozu.',
     step4_title: 'Nasazení & podpora',
-    step4_desc:  'Spustíme, monitorujeme a iterujeme — průběžná podpora je součástí.'
+    step4_desc:  'Spustíme, monitorujeme a vylepšujeme — průběžná podpora je součástí.'
   },
   topics: {
     label:   'Co stavíme',
     heading: 'Naše automatizační specializace',
-    t1: { tag: 'Workflow', title: 'n8n Workflows',                  desc: 'Pokročilé automatizační buildy v n8n, od jednoduchých triggerů po složité víceúrovňové workflows. Postaráme se o konfiguraci nodů, ošetření chyb i produkční nasazení.' },
-    t2: { tag: 'Agenti',   title: 'Architektura AI agentů',       desc: 'Navrhujeme víceúrovňové architektury agentů s jasnými rolemi a předáváním úkolů. Od samostatných agentů až po plně orchestrované multi-agent pipeline.' },
-    t3: { tag: 'LeadGen',  title: 'Systémy pro generování leadů', desc: 'Stavíme outbound automatizace, které nacházejí, obohacují a kvalifikují leady ve velkém měřítku. Každý krok od prvního kontaktu po rezervovaný hovor probíhá bez ruční práce.' },
-    t4: { tag: 'Email',    title: 'Automatizace e-mailů',         desc: 'AI workflows, které automaticky třídí, sestavují, odpovídají a eskalují e-maily. Váš inbox vám slouží místo toho, aby vás ovládal.' },
-    t5: { tag: 'Obsah',    title: 'Generování AI obsahu',         desc: 'Automatizované pipeline, které výzkumují, píší a publikují obsah napříč kanály. Konzistentní výstup ve velkém objemu bez jakékoli ruční práce.' },
-    t6: { tag: 'Data',     title: 'Scraping & datové pipeline',   desc: 'Stavíme scrapery a datové pipeline, které sbírají a strukturují webová data ve velkém. Čisté, spolehlivé datasety připravené k analýze nebo další automatizaci.' },
-    t7: { tag: 'Chat',     title: 'Hlasová & chatová rozhraní',   desc: 'Stavíme boty pro WhatsApp, Telegram, Slack i vlastní konverzační AI. Vaše firma zůstává dostupná na každém kanálu, nepřetržitě.' },
-    t8: { tag: 'Procesy',  title: 'Design firemních procesů',     desc: 'Zmapujeme vaše stávající SOP a převedeme ruční kroky na automatizované workflows. Výsledkem je rychlejší provoz, méně chyb a uvolněná kapacita týmu.' }
+    t1: { tag: 'Workflow', title: 'n8n Workflows',                  desc: 'Tvoříme automatizace v n8n, nástroji pro propojení aplikací a procesů bez ruční práce. Postaráme se o celé nastavení od prvního kroku až po spuštění v ostrém provozu.' },
+    t2: { tag: 'Agenti',   title: 'Architektura AI agentů',       desc: 'Stavíme AI agenty, kteří myslí a jednají samostatně, bez toho, aby je kdokoli řídil. Zvládnou složité úkoly sami nebo ve spolupráci s dalšími agenty.' },
+    t3: { tag: 'LeadGen',  title: 'Systémy pro generování leadů', desc: 'Automatizujeme celý proces hledání a oslovování potenciálních zákazníků. Od prvního kontaktu po domluvení schůzky vše proběhne bez ruční práce.' },
+    t4: { tag: 'Email',    title: 'Automatizace e-mailů',         desc: 'AI za vás třídí, píše a odpovídá na e-maily podle vašich pravidel. Váš inbox vám slouží místo toho, aby vás ovládal.' },
+    t5: { tag: 'Obsah',    title: 'Generování AI obsahu',         desc: 'Systém, který sám vyhledá podklady, napíše a zveřejní obsah na vašich kanálech. Pravidelný výstup bez toho, aby někdo sedel a psal ručně.' },
+    t6: { tag: 'Data',     title: 'Scraping & datové pipeline',   desc: 'Automaticky sbíráme data z webu a ukládáme je přehledně na jedno místo. Vždy aktuální, čistá data připravená k dalšímu využití.' },
+    t7: { tag: 'Chat',     title: 'Hlasová & chatová rozhraní',   desc: 'Stavíme chatboty pro WhatsApp, Telegram, Slack i vlastní AI asistenty. Vaše firma zůstává dostupná na každém kanálu, nepřetržitě.' },
+    t8: { tag: 'Procesy',  title: 'Design firemních procesů',     desc: 'Zmapujeme, jak váš tým pracuje, a nahradíme opakující se ruční kroky automatizací. Výsledkem je rychlejší provoz, méně chyb a víc času na důležitou práci.' }
   },
   reviews: {
     label:   'Reference klientů',
