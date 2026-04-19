@@ -50,7 +50,7 @@ window.translations.en = {
     r2_quote:   'Finally someone who actually delivers. Our n8n workflows run flawlessly.',
     r2_name:    'Sarah Mitchell',
     r2_company: 'Operations Manager, Growly',
-    r3_quote:   'Jakub built exactly what we needed — no fluff, just results.',
+    r3_quote:   'Jakub understood our requirements from day one and delivered a precise, well-executed solution. Clean process, measurable results — exactly what we needed.',
     r3_name:    'Martin Dvořák',
     r3_company: 'Founder, Scalable.io'
   },
@@ -90,9 +90,9 @@ window.translations.en = {
     section3_title:     'Project Context',
 
     first_name_label:       'First Name',
-    first_name_placeholder: 'Jan',
+    first_name_placeholder: 'James',
     last_name_label:        'Last Name',
-    last_name_placeholder:  'Novák',
+    last_name_placeholder:  'Anderson',
     email_label:            'Work Email',
     email_placeholder:      'jan@company.com',
     phone_label:            'Phone',

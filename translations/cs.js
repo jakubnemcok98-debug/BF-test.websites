@@ -50,7 +50,7 @@ window.translations.cs = {
     r2_quote:   'Konečně někdo, kdo opravdu dodává. Naše n8n workflows běží bezchybně.',
     r2_name:    'Sarah Mitchell',
     r2_company: 'Operations Manager, Growly',
-    r3_quote:   'Jakub postavil přesně to, co jsme potřebovali — žádný fluff, jen výsledky.',
+    r3_quote:   'Jakub od prvního dne rozuměl našim požadavkům a dodal přesné, kvalitně zpracované řešení. Čistý proces, měřitelné výsledky — přesně to, co jsme potřebovali.',
     r3_name:    'Martin Dvořák',
     r3_company: 'Founder, Scalable.io'
   },
