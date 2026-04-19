@@ -23,23 +23,23 @@ window.translations.cs = {
     step1_title: 'Discovery call',
     step1_desc:  'Poznáme vaše podnikání, cíle a nástroje, které aktuálně používáte.',
     step2_title: 'Audit & plán',
-    step2_desc:  'Zmapujeme vaše workflows a identifikujeme příležitosti s nejvyšší pákou.',
+    step2_desc:  'Zmapujeme vaše procesy a najdeme místa, kde automatizace přinese největší efekt.',
     step3_title: 'Stavba & testování',
-    step3_desc:  'Postavíme a důkladně otestujeme vaše automatizace, než se dotknou produkce.',
+    step3_desc:  'Postavíme vaše automatizace a důkladně je otestujeme, než se nasadí do aktivního provozu.',
     step4_title: 'Nasazení & podpora',
     step4_desc:  'Spustíme, monitorujeme a iterujeme — průběžná podpora je součástí.'
   },
   topics: {
     label:   'Co stavíme',
     heading: 'Naše automatizační specializace',
-    t1: { tag: 'Workflow', title: 'n8n Workflows',                  desc: 'Pokročilé automatizační buildy v n8n — od jednoduchých triggerů po složité víceúrovňové workflows.' },
-    t2: { tag: 'Agenti',   title: 'Architektura AI agentů',       desc: 'Vzory pro víceúrovňové agenty a orchestraci.' },
-    t3: { tag: 'LeadGen',  title: 'Systémy pro generování leadů', desc: 'Outbound automatizace, obohacování a konverzní toky.' },
-    t4: { tag: 'Email',    title: 'Automatizace e-mailů',         desc: 'AI workflows, které třídí, sestavují, odpovídají a eskalují e-maily — váš inbox vám slouží.' },
-    t5: { tag: 'Obsah',    title: 'Generování AI obsahu',         desc: 'Automatizované pipeline, které výzkumují, píší a publikují obsah — konzistentní výstup bez ruční práce.' },
-    t6: { tag: 'Data',     title: 'Scraping & datové pipeline',   desc: 'Sběr webových dat a velkoobjemové zpracování.' },
-    t7: { tag: 'Chat',     title: 'Hlasová & chatová rozhraní',   desc: 'WhatsApp, Telegram, Slack boty a konverzační AI.' },
-    t8: { tag: 'Procesy',  title: 'Design firemních procesů',     desc: 'Převod SOP na automatizace a optimalizace.' }
+    t1: { tag: 'Workflow', title: 'n8n Workflows',                  desc: 'Pokročilé automatizační buildy v n8n, od jednoduchých triggerů po složité víceúrovňové workflows. Postaráme se o konfiguraci nodů, ošetření chyb i produkční nasazení.' },
+    t2: { tag: 'Agenti',   title: 'Architektura AI agentů',       desc: 'Navrhujeme víceúrovňové architektury agentů s jasnými rolemi a předáváním úkolů. Od samostatných agentů až po plně orchestrované multi-agent pipeline.' },
+    t3: { tag: 'LeadGen',  title: 'Systémy pro generování leadů', desc: 'Stavíme outbound automatizace, které nacházejí, obohacují a kvalifikují leady ve velkém měřítku. Každý krok od prvního kontaktu po rezervovaný hovor probíhá bez ruční práce.' },
+    t4: { tag: 'Email',    title: 'Automatizace e-mailů',         desc: 'AI workflows, které automaticky třídí, sestavují, odpovídají a eskalují e-maily. Váš inbox vám slouží místo toho, aby vás ovládal.' },
+    t5: { tag: 'Obsah',    title: 'Generování AI obsahu',         desc: 'Automatizované pipeline, které výzkumují, píší a publikují obsah napříč kanály. Konzistentní výstup ve velkém objemu bez jakékoli ruční práce.' },
+    t6: { tag: 'Data',     title: 'Scraping & datové pipeline',   desc: 'Stavíme scrapery a datové pipeline, které sbírají a strukturují webová data ve velkém. Čisté, spolehlivé datasety připravené k analýze nebo další automatizaci.' },
+    t7: { tag: 'Chat',     title: 'Hlasová & chatová rozhraní',   desc: 'Stavíme boty pro WhatsApp, Telegram, Slack i vlastní konverzační AI. Vaše firma zůstává dostupná na každém kanálu, nepřetržitě.' },
+    t8: { tag: 'Procesy',  title: 'Design firemních procesů',     desc: 'Zmapujeme vaše stávající SOP a převedeme ruční kroky na automatizované workflows. Výsledkem je rychlejší provoz, méně chyb a uvolněná kapacita týmu.' }
   },
   reviews: {
     label:   'Reference klientů',

@@ -23,7 +23,7 @@ window.translations.en = {
     step1_title: 'Discovery Call',
     step1_desc:  'We understand your business, goals, and the tools you currently use.',
     step2_title: 'Audit & Plan',
-    step2_desc:  'We map your workflows and identify the highest-leverage automation opportunities.',
+    step2_desc:  'We map your processes and identify the highest-leverage automation opportunities.',
     step3_title: 'Build & Test',
     step3_desc:  'We build and rigorously test your custom automations before they touch production.',
     step4_title: 'Deploy & Support',
@@ -32,14 +32,14 @@ window.translations.en = {
   topics: {
     label:   'What We Build',
     heading: 'Our Automation Specializations',
-    t1: { tag: 'Workflow', title: 'n8n Workflows',                desc: 'Deep-dive automation builds in n8n — from simple triggers to complex multi-step workflows.' },
-    t2: { tag: 'Agents',   title: 'AI Agent Architecture',      desc: 'Multi-step agent design patterns and orchestration.' },
-    t3: { tag: 'LeadGen',  title: 'Lead Generation Systems',    desc: 'Outbound automation, enrichment, and conversion flows.' },
-    t4: { tag: 'Email',    title: 'Email Management Automation', desc: 'AI workflows that sort, draft, respond to, and escalate emails — so your inbox serves you.' },
-    t5: { tag: 'Content',  title: 'AI Content Generation',      desc: 'Automated pipelines that research, draft, and publish content — consistent output without the manual grind.' },
-    t6: { tag: 'Data',     title: 'Scraping & Data Pipelines',  desc: 'Web data collection and large-scale processing.' },
-    t7: { tag: 'Chat',     title: 'Voice & Chat Interfaces',    desc: 'WhatsApp, Telegram, Slack bots, and conversational AI.' },
-    t8: { tag: 'Process',  title: 'Business Process Design',    desc: 'SOP to automation conversion and optimization.' }
+    t1: { tag: 'Workflow', title: 'n8n Workflows',                desc: 'Deep-dive automation builds in n8n, from simple triggers to complex multi-step workflows. We handle node configuration, error handling, and production-ready deployment.' },
+    t2: { tag: 'Agents',   title: 'AI Agent Architecture',      desc: 'We design multi-step agent architectures with clear roles and handoffs. From single autonomous agents to fully orchestrated multi-agent pipelines.' },
+    t3: { tag: 'LeadGen',  title: 'Lead Generation Systems',    desc: 'We build outbound automation that finds, enriches, and qualifies leads at scale. Every step from discovery to booked call runs without manual effort.' },
+    t4: { tag: 'Email',    title: 'Email Management Automation', desc: 'AI workflows that sort, draft, respond to, and escalate emails automatically. Your inbox works for you instead of the other way around.' },
+    t5: { tag: 'Content',  title: 'AI Content Generation',      desc: 'Automated pipelines that research, draft, and publish content across channels. Consistent output at volume, with no manual effort required.' },
+    t6: { tag: 'Data',     title: 'Scraping & Data Pipelines',  desc: 'We build scrapers and data pipelines that collect and structure web data at scale. Clean, reliable datasets ready for analysis or automation.' },
+    t7: { tag: 'Chat',     title: 'Voice & Chat Interfaces',    desc: 'We build bots for WhatsApp, Telegram, Slack, and custom conversational AI. Your business stays responsive across every channel, around the clock.' },
+    t8: { tag: 'Process',  title: 'Business Process Design',    desc: 'We map your existing SOPs and convert manual steps into automated workflows. The result is faster execution, fewer errors, and freed-up team capacity.' }
   },
   reviews: {
     label:   'Client Reviews',
