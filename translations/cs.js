@@ -6,7 +6,7 @@ window.translations.cs = {
   nav: {
     howWeWork: 'Jak pracujeme',
     work:      'Specializace',
-    about:     'O mně',
+    about:     'O',
     cta:       'Spojit se →'
   },
   hero: {
@@ -42,8 +42,8 @@ window.translations.cs = {
     t8: { tag: 'Agenti',   title: 'Architektura AI agentů',       desc: 'Stavíme AI agenty, kteří myslí a jednají samostatně, bez toho, aby je kdokoli řídil. Zvládnou složité úkoly sami nebo ve spolupráci s dalšími agenty.' }
   },
   about: {
-    label:        'O mně',
-    heading:      'Zakladatel',
+    label:        'O',
+    heading:      'Zakladateli',
     subheading:   'Jakub Nemčok',
     bio:          'Pomáhám firmám nahradit manuální práci inteligentními systémy — aby se váš tým mohl soustředit na to, co skutečně posouvá podnikání kupředu.<br><br>S pozadím v IT infrastruktuře a praktickými zkušenostmi s vývojem AI automatizací přináším do každého projektu technickou hloubku i pragmatické myšlení. Sídlím v Praze a pracuji se společnostmi připravenými stavět chytřeji.',
     cta_email:    'Napsat e-mail',
@@ -54,7 +54,7 @@ window.translations.cs = {
     services_heading: 'Navigace',
     service1:         'Jak pracujeme',
     service2:         'Specializace',
-    service3:         'O mně',
+    service3:         'O',
     service4:         'Spojit se',
     company_heading:  'Společnost',
     company1:         'Případové studie',
