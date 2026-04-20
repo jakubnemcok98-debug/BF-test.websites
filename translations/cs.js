@@ -15,7 +15,7 @@ window.translations.cs = {
     subheading:   'Pomáháme firmám automatizovat opakující se úkoly pomocí AI. Méně ruční práce, nižší náklady, víc prostoru pro to, co skutečně přináší výsledky.',
     cta_primary:  'Spojit se →',
     cta_secondary:'Zobrazit naše práce ↓',
-    social_proof: '200+ workflows · Česká firma · Globální dostupnost'
+    social_proof: 'Česká firma · Globální dostupnost'
   },
   howWeWork: {
     label:   'Náš proces',
@@ -40,19 +40,6 @@ window.translations.cs = {
     t6: { tag: 'Data',     title: 'Scraping & datové pipeline',   desc: 'Automaticky sbíráme data z webu a ukládáme je přehledně na jedno místo. Vždy aktuální, čistá data připravená k dalšímu využití.' },
     t7: { tag: 'Chat',     title: 'Hlasová & chatová rozhraní',   desc: 'Stavíme chatboty pro WhatsApp, Telegram, Slack i vlastní AI asistenty. Vaše firma zůstává dostupná na každém kanálu, nepřetržitě.' },
     t8: { tag: 'Agenti',   title: 'Architektura AI agentů',       desc: 'Stavíme AI agenty, kteří myslí a jednají samostatně, bez toho, aby je kdokoli řídil. Zvládnou složité úkoly sami nebo ve spolupráci s dalšími agenty.' }
-  },
-  reviews: {
-    label:   'Reference klientů',
-    heading: 'Co říkají klienti',
-    r1_quote:   'Bohemian Flow automatizoval celý náš lead pipeline za méně než dva týdny. ROI bylo okamžité.',
-    r1_name:    'Jan Novák',
-    r1_company: 'CEO, TechStart s.r.o.',
-    r2_quote:   'Konečně někdo, kdo opravdu dodává. Naše n8n workflows běží bezchybně.',
-    r2_name:    'Sarah Mitchell',
-    r2_company: 'Operations Manager, Growly',
-    r3_quote:   'Jakub od prvního dne rozuměl našim požadavkům a dodal přesné, kvalitně zpracované řešení. Čistý proces, měřitelné výsledky — přesně to, co jsme potřebovali.',
-    r3_name:    'Martin Dvořák',
-    r3_company: 'Founder, Scalable.io'
   },
   about: {
     label:        'O mně',

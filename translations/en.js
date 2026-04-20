@@ -15,7 +15,7 @@ window.translations.en = {
     subheading:   'We help businesses automate repetitive tasks with AI. Less manual work, lower costs, more room for what actually drives results.',
     cta_primary:  'Get in Touch →',
     cta_secondary:'See Our Work ↓',
-    social_proof: '200+ workflows delivered · Czech-based · Available globally'
+    social_proof: 'Czech-based · Available globally'
   },
   howWeWork: {
     label:   'Our Process',
@@ -40,19 +40,6 @@ window.translations.en = {
     t6: { tag: 'Data',     title: 'Scraping & Data Pipelines',  desc: 'We automatically collect data from the web and store it cleanly in one place. Always up-to-date, structured data ready to use.' },
     t7: { tag: 'Chat',     title: 'Voice & Chat Interfaces',    desc: 'We build chatbots for WhatsApp, Telegram, Slack, and custom AI assistants. Your business stays reachable on every channel, around the clock.' },
     t8: { tag: 'Agents',   title: 'AI Agent Architecture',      desc: 'We build AI agents that think and act on their own, without anyone managing them. They handle complex tasks independently or work together with other agents.' }
-  },
-  reviews: {
-    label:   'Client Reviews',
-    heading: 'What Clients Say',
-    r1_quote:   'Bohemian Flow automated our entire lead pipeline in under two weeks. ROI was immediate.',
-    r1_name:    'Jan Novák',
-    r1_company: 'CEO, TechStart s.r.o.',
-    r2_quote:   'Finally someone who actually delivers. Our n8n workflows run flawlessly.',
-    r2_name:    'Sarah Mitchell',
-    r2_company: 'Operations Manager, Growly',
-    r3_quote:   'Jakub understood our requirements from day one and delivered a precise, well-executed solution. Clean process, measurable results — exactly what we needed.',
-    r3_name:    'Martin Dvořák',
-    r3_company: 'Founder, Scalable.io'
   },
   about: {
     label:      'About',
