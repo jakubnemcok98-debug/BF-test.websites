@@ -6,7 +6,6 @@ window.translations.cs = {
   nav: {
     howWeWork: 'Jak pracujeme',
     work:      'Specializace',
-    about:     'O',
     cta:       'Spojit se →'
   },
   hero: {

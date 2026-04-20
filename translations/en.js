@@ -6,7 +6,6 @@ window.translations.en = {
   nav: {
     howWeWork: 'How We Work',
     work:      'Specializations',
-    about:     'About',
     cta:       'Get in Touch →'
   },
   hero: {
