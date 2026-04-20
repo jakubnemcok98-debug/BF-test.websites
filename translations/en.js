@@ -126,10 +126,9 @@ window.translations.en = {
     automate_opt_ns:  'Not sure',
 
     budget_label:     'Project Budget',
-    budget_opt_1:     'Under €50k',
-    budget_opt_2:     '€50k – €150k',
-    budget_opt_3:     '€150k+',
-    budget_opt_ns:    'Not sure',
+    budget_opt_1:     'Under €5k',
+    budget_opt_2:     '€5k - €20k',
+    budget_opt_3:     '€20k+',
 
     project_label:       'Describe your project',
     project_placeholder: 'Describe the challenge or process you want to solve…',
@@ -140,6 +139,7 @@ window.translations.en = {
     submit:          'Send Message →',
     sending:         'Sending…',
     error_required:  'Please fill in all required fields.',
+    error_email_invalid: 'Please enter a valid email address.',
     error_generic:   'Something went wrong. Please try again or email us directly.',
     success_heading: "You're on the list!",
     success_body:    ''

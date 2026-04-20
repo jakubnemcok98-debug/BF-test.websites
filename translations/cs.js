@@ -126,9 +126,9 @@ window.translations.cs = {
     automate_opt_ns:  'Nejsem si jistý',
 
     budget_label:     'Rozpočet projektu',
-    budget_opt_1:     'Do 50 000 Kč',
-    budget_opt_2:     '50–150 000 Kč',
-    budget_opt_3:     '150 000+ Kč',
+    budget_opt_1:     'Pod 10 000 Kč',
+    budget_opt_2:     '100 000–500 000 Kč',
+    budget_opt_3:     '500 000+ Kč',
     budget_opt_ns:    'Nejsem si jistý',
 
     project_label:       'Popište váš projekt',
@@ -140,6 +140,7 @@ window.translations.cs = {
     submit:          'Odeslat zprávu →',
     sending:         'Odesílám…',
     error_required:  'Vyplňte prosím všechna povinná pole.',
+    error_email_invalid: 'Zadejte prosím platnou e-mailovou adresu.',
     error_generic:   'Něco se pokazilo. Zkuste to prosím znovu nebo nám napište přímo.',
     success_heading: 'Jste na seznamu!',
     success_body:    ''

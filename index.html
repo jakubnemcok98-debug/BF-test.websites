@@ -1185,6 +1185,14 @@
         errorEl.classList.remove('hidden');
         return;
       }
+
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        errorEl.textContent = (window.t ? window.t('form.error_email_invalid') : 'Please enter a valid email address.');
+        errorEl.classList.remove('hidden');
+        return;
+      }
+
       errorEl.classList.add('hidden');
 
       const payload = {
@@ -1455,10 +1463,9 @@
               <label class="modal-label" data-i18n="form.budget_label">Project Budget</label>
               <input type="hidden" id="q-budget" name="budget" value="" />
               <div class="chip-group" id="budget-chips">
-                <button type="button" class="chip" data-value="under-50k" data-i18n="form.budget_opt_1">Under €50k</button>
-                <button type="button" class="chip" data-value="50k-150k" data-i18n="form.budget_opt_2">€50k – €150k</button>
-                <button type="button" class="chip" data-value="150k-plus" data-i18n="form.budget_opt_3">€150k+</button>
-                <button type="button" class="chip" data-value="not-sure" data-i18n="form.budget_opt_ns">Not sure</button>
+                <button type="button" class="chip" data-value="under-5k" data-i18n="form.budget_opt_1">Under €5k</button>
+                <button type="button" class="chip" data-value="5k-20k" data-i18n="form.budget_opt_2">€5k - €20k</button>
+                <button type="button" class="chip" data-value="20k-plus" data-i18n="form.budget_opt_3">€20k+</button>
               </div>
             </div>
 
