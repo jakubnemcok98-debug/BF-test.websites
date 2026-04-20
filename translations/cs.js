@@ -126,7 +126,7 @@ window.translations.cs = {
     automate_opt_ns:  'Nejsem si jistý',
 
     budget_label:     'Rozpočet projektu',
-    budget_opt_1:     'Pod 10 000 Kč',
+    budget_opt_1:     'Pod 100 000 Kč',
     budget_opt_2:     '100 000–500 000 Kč',
     budget_opt_3:     '500 000+ Kč',
     budget_opt_ns:    'Nejsem si jistý',
