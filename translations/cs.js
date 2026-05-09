@@ -31,14 +31,14 @@ window.translations.cs = {
   topics: {
     label:   'Co stavíme',
     heading: 'Naše automatizační specializace',
-    t1: { tag: 'Workflow', title: 'n8n Workflows',                  desc: 'Tvoříme automatizace v n8n, nástroji pro propojení aplikací a procesů bez ruční práce. Postaráme se o celé nastavení od prvního kroku až po spuštění v ostrém provozu.' },
-    t2: { tag: 'Procesy',  title: 'Design firemních procesů',     desc: 'Zmapujeme, jak váš tým pracuje, a nahradíme opakující se ruční kroky automatizací. Výsledkem je rychlejší provoz, méně chyb a víc času na důležitou práci.' },
-    t3: { tag: 'LeadGen',  title: 'Systémy pro generování leadů', desc: 'Automatizujeme celý proces hledání a oslovování potenciálních zákazníků. Od prvního kontaktu po domluvení schůzky vše proběhne bez ruční práce.' },
-    t4: { tag: 'Email',    title: 'Automatizace e-mailů',         desc: 'AI za vás třídí, píše a odpovídá na e-maily podle vašich pravidel. Váš inbox vám slouží místo toho, aby vás ovládal.' },
-    t5: { tag: 'Obsah',    title: 'Generování AI obsahu',         desc: 'Systém, který sám vyhledá podklady, napíše a zveřejní obsah na vašich kanálech. Váš obsah vychází pravidelně, aniž byste na něm museli trávit čas.' },
-    t6: { tag: 'Data',     title: 'Scraping & datové pipeline',   desc: 'Automaticky sbíráme data z webu a ukládáme je přehledně na jedno místo. Vždy aktuální, čistá data připravená k dalšímu využití.' },
-    t7: { tag: 'Chat',     title: 'Hlasová & chatová rozhraní',   desc: 'Stavíme chatboty pro WhatsApp, Telegram, Slack i vlastní AI asistenty. Vaše firma zůstává dostupná na každém kanálu, nepřetržitě.' },
-    t8: { tag: 'Agenti',   title: 'Architektura AI agentů',       desc: 'Stavíme AI agenty, kteří myslí a jednají samostatně, bez toho, aby je kdokoli řídil. Zvládnou složité úkoly sami nebo ve spolupráci s dalšími agenty.' }
+    t1: { tag: 'Email',   title: 'E-mailový agent',     desc: 'Přečte váš inbox, roztřídí e-maily do složek, napíše odpověď vaším stylem a upozorní vás jen na to, co vyžaduje vás. Inbox funguje sám.' },
+    t2: { tag: 'RAG',     title: 'Znalostní asistent',   desc: 'Čte vaše dokumenty, ceníky nebo znalostní bázi a odpovídá z nich — ne z domněnek. Vždy aktuální, bez vymýšlení. Napojíme ho na WhatsApp, Telegram nebo přímo na váš web.' },
+    t3: { tag: 'LeadGen', title: 'Agent pro leady',     desc: 'Najde firmy, které odpovídají vašemu ideálnímu zákazníkovi, obohatí data a pošle personalizovanou první zprávu. Dostanete seznam leadů — bez jediného kliknutí.' },
+    t4: { tag: 'Obsah',   title: 'Agent pro obsah',     desc: 'Vybere téma, nastuduje ho, napíše příspěvek a zveřejní ho na vašich kanálech — podle plánu. Vaše online přítomnost běží dál, zatímco vy řídíte firmu.' },
+    t5: { tag: 'Data',    title: 'Web scraper',         desc: 'Každé ráno automaticky stáhne ceny, inzeráty nebo kontakty z webů a uloží je čistě do tabulky nebo databáze. Vždy aktuální, bez ručního procházení.' },
+    t6: { tag: 'Voice AI', title: 'Hlasový AI agent',   desc: 'AI agent, který volá vašim leadům, přijímá příchozí dotazy a domlouvá schůzky — přirozeným hlasem. Dostupný v jakémkoliv jazyce, nonstop.' },
+    t7: { tag: 'CRM',     title: 'CRM automatizace',    desc: 'Kontakty, obchody a úkoly se aktualizují samy. Když lead vyplní formulář, záznam v CRM se vytvoří, označí a přiřadí — dřív než někdo zkontroluje inbox.' },
+    t8: { tag: 'Reporting', title: 'Automatický reporting', desc: 'Každý týden nebo měsíc dostanete přehled klíčových čísel — tržby, leady, výkon kampaní — rovnou do inboxu. Žádné ruční stahování, žádné přepínání tabulek.' }
   },
   about: {
     label:        'O',

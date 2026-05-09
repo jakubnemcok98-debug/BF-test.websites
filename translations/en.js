@@ -31,14 +31,14 @@ window.translations.en = {
   topics: {
     label:   'What We Build',
     heading: 'Our Automation Specializations',
-    t1: { tag: 'Workflow', title: 'n8n Workflows',                desc: 'We build automations in n8n, a tool that connects your apps and processes so nothing needs to be done by hand. We handle the full setup from the first step to going live.' },
-    t2: { tag: 'Process',  title: 'Business Process Design',    desc: 'We map how your team works and replace repetitive manual steps with automation. The result is faster operations, fewer mistakes, and more time for what matters.' },
-    t3: { tag: 'LeadGen',  title: 'Lead Generation Systems',    desc: 'We automate the entire process of finding and reaching out to potential customers. From first contact to a booked meeting, everything runs without manual effort.' },
-    t4: { tag: 'Email',    title: 'Email Management Automation', desc: 'AI sorts, writes, and responds to emails based on your rules, automatically. Your inbox works for you instead of the other way around.' },
-    t5: { tag: 'Content',  title: 'AI Content Generation',      desc: 'A system that researches, writes, and publishes content across your channels on its own. Your content goes live regularly, so you never have to spend time writing.' },
-    t6: { tag: 'Data',     title: 'Scraping & Data Pipelines',  desc: 'We automatically collect data from the web and store it cleanly in one place. Always up-to-date, structured data ready to use.' },
-    t7: { tag: 'Chat',     title: 'Voice & Chat Interfaces',    desc: 'We build chatbots for WhatsApp, Telegram, Slack, and custom AI assistants. Your business stays reachable on every channel, around the clock.' },
-    t8: { tag: 'Agents',   title: 'AI Agent Architecture',      desc: 'We build AI agents that think and act on their own, without anyone managing them. They handle complex tasks independently or work together with other agents.' }
+    t1: { tag: 'Email',   title: 'Email Agent',       desc: 'Reads your inbox, sorts emails into folders, drafts replies in your tone, and flags only what needs your attention. Your inbox works — you just check in.' },
+    t2: { tag: 'RAG',     title: 'Knowledge Assistant',   desc: 'Reads your documents, price lists, or knowledge base — and answers from those, not from guesswork. Always current, no hallucinations. Deploy on WhatsApp, Telegram, or as a chat widget on your site.' },
+    t3: { tag: 'LeadGen', title: 'Lead Agent',        desc: 'Finds companies that match your ideal customer, enriches the data, and sends a personalized first message. You get a list of warm leads — without lifting a finger.' },
+    t4: { tag: 'Content', title: 'Content Agent',     desc: 'Picks a topic, researches it, writes the post, and publishes it to your channels — on a schedule. Your social presence keeps running while you focus on the business.' },
+    t5: { tag: 'Data',    title: 'Web Scraper',       desc: 'Automatically collects prices, listings, or leads from websites every morning and drops clean rows into your spreadsheet or database. Always fresh, no manual checking.' },
+    t6: { tag: 'Voice AI', title: 'Voice AI Agent',    desc: 'An AI agent that calls your leads, handles inbound inquiries, and books meetings — in natural voice conversation. Available in any language, 24/7, at scale.' },
+    t7: { tag: 'CRM',     title: 'CRM Automation',    desc: 'Contacts, deals, and tasks update themselves. When a lead fills a form, the CRM record is created, tagged, and assigned — before anyone even checks their inbox.' },
+    t8: { tag: 'Reporting', title: 'Automated Reporting', desc: 'Every week or month, a report on your key metrics — revenue, leads, campaign performance — lands in your inbox automatically. No manual exports, no spreadsheet juggling.' }
   },
   about: {
     label:      'About',
