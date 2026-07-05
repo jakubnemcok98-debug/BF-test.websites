@@ -1,19 +1,19 @@
 window.translations = window.translations || {};
 window.translations.cs = {
   page: {
-    title: 'Bohemian Flow — AI Konzultace & Automatizační Agentura'
+    title: 'Bohemian Flow — AI Agenti na míru'
   },
   nav: {
     howWeWork: 'Jak pracujeme',
-    work:      'Specializace',
+    work:      'Naši agenti',
     cta:       'Spojit se →'
   },
   hero: {
-    eyebrow:      '◈ AI Konzultace & Automatizační Agentura',
-    heading:      'Automatizujte rutinu. <span class="text-gradient-orange">Soustřeďte se na růst.</span>',
-    subheading:   'Pomáháme firmám automatizovat opakující se úkoly pomocí AI. Méně ruční práce, nižší náklady, víc prostoru pro to, co skutečně přináší výsledky.',
+    eyebrow:      '◈ AI Agenti na míru',
+    heading:      'AI agenti, kteří <span class="text-gradient-orange">skutečně odvádí práci.</span>',
+    subheading:   'Navrhujeme a stavíme AI agenty na míru, kteří pro vaši firmu pracují nonstop — vyřizují e-maily, hovory, leady i reporty sami od sebe. Méně ruční práce, víc prostoru pro to, co skutečně přináší výsledky.',
     cta_primary:  'Spojit se →',
-    cta_secondary:'Zobrazit naše práce ↓',
+    cta_secondary:'Zobrazit naše agenty ↓',
     social_proof: 'Česká firma · Globální dostupnost'
   },
   howWeWork: {
@@ -22,34 +22,34 @@ window.translations.cs = {
     step1_title: 'Discovery call',
     step1_desc:  'Poznáme vaše podnikání, cíle a nástroje, které aktuálně používáte.',
     step2_title: 'Audit & plán',
-    step2_desc:  'Zmapujeme vaše procesy a najdeme místa, kde automatizace přinese největší efekt.',
+    step2_desc:  'Zmapujeme vaše procesy a najdeme místa, kde AI agent přinese největší efekt.',
     step3_title: 'Stavba & testování',
-    step3_desc:  'Postavíme vaše automatizace a důkladně je otestujeme, než se nasadí do aktivního provozu.',
+    step3_desc:  'Postavíme vašeho AI agenta na míru a důkladně ho otestujeme, než se nasadí do aktivního provozu.',
     step4_title: 'Nasazení & podpora',
     step4_desc:  'Spustíme, monitorujeme a vylepšujeme — průběžná podpora je součástí.'
   },
   topics: {
     label:   'Co stavíme',
-    heading: 'Naše automatizační specializace',
+    heading: 'Poznejte naše AI agenty',
     t1: { tag: 'Email',   title: 'E-mailový agent',     desc: 'Přečte váš inbox, roztřídí e-maily do složek, napíše odpověď vaším stylem a upozorní vás jen na to, co vyžaduje vás. Inbox funguje sám.' },
-    t2: { tag: 'RAG',     title: 'Znalostní asistent',   desc: 'Čte vaše dokumenty, ceníky nebo znalostní bázi a odpovídá z nich — ne z domněnek. Vždy aktuální, bez vymýšlení. Napojíme ho na WhatsApp, Telegram nebo přímo na váš web.' },
-    t3: { tag: 'LeadGen', title: 'Agent pro leady',     desc: 'Najde firmy, které odpovídají vašemu ideálnímu zákazníkovi, obohatí data a pošle personalizovanou první zprávu. Dostanete seznam leadů — bez jediného kliknutí.' },
+    t2: { tag: 'RAG',     title: 'Znalostní agent',     desc: 'Čte vaše dokumenty, ceníky nebo znalostní bázi a odpovídá z nich — ne z domněnek. Vždy aktuální, bez vymýšlení. Napojíme ho na WhatsApp, Telegram nebo přímo na váš web.' },
+    t3: { tag: 'Sales',   title: 'Obchodní agent',      desc: 'Najde firmy, které odpovídají vašemu ideálnímu zákazníkovi, obohatí data a pošle personalizovanou první zprávu. Dostanete seznam leadů — bez jediného kliknutí.' },
     t4: { tag: 'Obsah',   title: 'Agent pro obsah',     desc: 'Vybere téma, nastuduje ho, napíše příspěvek a zveřejní ho na vašich kanálech — podle plánu. Vaše online přítomnost běží dál, zatímco vy řídíte firmu.' },
-    t5: { tag: 'Data',    title: 'Web scraper',         desc: 'Každé ráno automaticky stáhne ceny, inzeráty nebo kontakty z webů a uloží je čistě do tabulky nebo databáze. Vždy aktuální, bez ručního procházení.' },
-    t6: { tag: 'Voice AI', title: 'Hlasový AI agent',   desc: 'AI agent, který volá vašim leadům, přijímá příchozí dotazy a domlouvá schůzky — přirozeným hlasem. Dostupný v jakémkoliv jazyce, nonstop.' },
-    t7: { tag: 'CRM',     title: 'CRM automatizace',    desc: 'Kontakty, obchody a úkoly se aktualizují samy. Když lead vyplní formulář, záznam v CRM se vytvoří, označí a přiřadí — dřív než někdo zkontroluje inbox.' },
-    t8: { tag: 'Reporting', title: 'Automatický reporting', desc: 'Každý týden nebo měsíc dostanete přehled klíčových čísel — tržby, leady, výkon kampaní — rovnou do inboxu. Žádné ruční stahování, žádné přepínání tabulek.' }
+    t5: { tag: 'Data',    title: 'Datový agent',        desc: 'Každé ráno automaticky stáhne ceny, inzeráty nebo kontakty z webů a uloží je čistě do tabulky nebo databáze. Vždy aktuální, bez ručního procházení.' },
+    t6: { tag: 'Voice AI', title: 'Hlasový agent',      desc: 'AI agent, který volá vašim leadům, přijímá příchozí dotazy a domlouvá schůzky — přirozeným hlasem. Dostupný v jakémkoliv jazyce, nonstop.' },
+    t7: { tag: 'Ops',     title: 'Provozní agent',      desc: 'Kontakty, obchody a úkoly se aktualizují samy. Když lead vyplní formulář, záznam v CRM se vytvoří, označí a přiřadí — dřív než někdo zkontroluje inbox.' },
+    t8: { tag: 'Reporting', title: 'Reportingový agent', desc: 'Každý týden nebo měsíc dostanete přehled klíčových čísel — tržby, leady, výkon kampaní — rovnou do inboxu. Žádné ruční stahování, žádné přepínání tabulek.' }
   },
   about: {
     label:        'O',
     heading:      'Zakladateli',
     subheading:   'Jakub Nemčok',
-    bio:          'Pomáhám firmám nahradit manuální práci inteligentními systémy — aby se váš tým mohl soustředit na to, co skutečně posouvá podnikání kupředu.<br><br>S pozadím v IT infrastruktuře a praktickými zkušenostmi s vývojem AI automatizací přináším do každého projektu technickou hloubku i pragmatické myšlení. Sídlím v Praze a pracuji se společnostmi připravenými stavět chytřeji.',
+    bio:          'Pomáhám firmám nahradit manuální práci AI agenty na míru — aby se váš tým mohl soustředit na to, co skutečně posouvá podnikání kupředu.<br><br>S pozadím v IT infrastruktuře a praktickými zkušenostmi s vývojem AI agentů přináším do každého projektu technickou hloubku i pragmatické myšlení. Sídlím v Praze a pracuji se společnostmi připravenými stavět chytřeji.',
     cta_email:    'Napsat e-mail',
     cta_linkedin: 'LinkedIn'
   },
   footer: {
-    tagline:          'AI konzultace & automatizační agentura. Stavíme systémy, které škálují vaše podnikání.',
+    tagline:          'Navrhujeme a stavíme AI agenty na míru, kteří škálují vaše podnikání.',
     services_heading: 'Navigace',
     service1:         'Jak pracujeme',
     service2:         'Specializace',
@@ -103,12 +103,12 @@ window.translations.cs = {
     size_opt_3:       '51–200',
     size_opt_4:       '200+',
 
-    automate_label:   'Co chcete automatizovat?',
-    automate_opt_cs:  'Zákaznický servis',
-    automate_opt_lg:  'Lead generation',
-    automate_opt_ip:  'Interní procesy',
-    automate_opt_mc:  'Marketing & obsah',
-    automate_opt_dr:  'Datové reporty',
+    automate_label:   'Jakého agenta potřebujete?',
+    automate_opt_cs:  'Zákaznická podpora',
+    automate_opt_lg:  'Obchodní agent',
+    automate_opt_ip:  'Provozní agent',
+    automate_opt_mc:  'Agent pro obsah',
+    automate_opt_dr:  'Datový / reportingový agent',
     automate_opt_ns:  'Nejsem si jistý',
 
     budget_label:     'Rozpočet projektu',

@@ -1,19 +1,19 @@
 window.translations = window.translations || {};
 window.translations.en = {
   page: {
-    title: 'Bohemian Flow — AI Consulting & Automation Agency'
+    title: 'Bohemian Flow — Custom AI Agents'
   },
   nav: {
     howWeWork: 'How We Work',
-    work:      'Specializations',
+    work:      'Our Agents',
     cta:       'Get in Touch →'
   },
   hero: {
-    eyebrow:      '◈ AI Consulting & Automation Agency',
-    heading:      'Automate the Routine. <span class="text-gradient-orange">Focus on Growth.</span>',
-    subheading:   'We help businesses automate repetitive tasks with AI. Less manual work, lower costs, more room for what actually drives results.',
+    eyebrow:      '◈ Custom AI Agents',
+    heading:      'AI Agents That Actually <span class="text-gradient-orange">Get Work Done.</span>',
+    subheading:   'We design and build custom AI agents that work your business round the clock — handling emails, calls, leads, and reporting on their own. Less manual work, more room for what actually drives results.',
     cta_primary:  'Get in Touch →',
-    cta_secondary:'See Our Work ↓',
+    cta_secondary:'See Our Agents ↓',
     social_proof: 'Czech-based · Available globally'
   },
   howWeWork: {
@@ -22,34 +22,34 @@ window.translations.en = {
     step1_title: 'Discovery Call',
     step1_desc:  'We understand your business, goals, and the tools you currently use.',
     step2_title: 'Audit & Plan',
-    step2_desc:  'We map your processes and identify the highest-leverage automation opportunities.',
+    step2_desc:  'We map your processes and identify where a custom AI agent has the highest leverage.',
     step3_title: 'Build & Test',
-    step3_desc:  'We build and rigorously test your custom automations before they touch production.',
+    step3_desc:  'We build and rigorously test your custom AI agent before it touches production.',
     step4_title: 'Deploy & Support',
     step4_desc:  'We launch, monitor, and iterate — with ongoing support included.'
   },
   topics: {
     label:   'What We Build',
-    heading: 'Our Automation Specializations',
+    heading: 'Meet Your AI Agents',
     t1: { tag: 'Email',   title: 'Email Agent',       desc: 'Reads your inbox, sorts emails into folders, drafts replies in your tone, and flags only what needs your attention. Your inbox works — you just check in.' },
-    t2: { tag: 'RAG',     title: 'Knowledge Assistant',   desc: 'Reads your documents, price lists, or knowledge base — and answers from those, not from guesswork. Always current, no hallucinations. Deploy on WhatsApp, Telegram, or as a chat widget on your site.' },
-    t3: { tag: 'LeadGen', title: 'Lead Agent',        desc: 'Finds companies that match your ideal customer, enriches the data, and sends a personalized first message. You get a list of warm leads — without lifting a finger.' },
+    t2: { tag: 'RAG',     title: 'Knowledge Agent',   desc: 'Reads your documents, price lists, or knowledge base — and answers from those, not from guesswork. Always current, no hallucinations. Deploy on WhatsApp, Telegram, or as a chat widget on your site.' },
+    t3: { tag: 'Sales',   title: 'Sales Agent',       desc: 'Finds companies that match your ideal customer, enriches the data, and sends a personalized first message. You get a list of warm leads — without lifting a finger.' },
     t4: { tag: 'Content', title: 'Content Agent',     desc: 'Picks a topic, researches it, writes the post, and publishes it to your channels — on a schedule. Your social presence keeps running while you focus on the business.' },
-    t5: { tag: 'Data',    title: 'Web Scraper',       desc: 'Automatically collects prices, listings, or leads from websites every morning and drops clean rows into your spreadsheet or database. Always fresh, no manual checking.' },
-    t6: { tag: 'Voice AI', title: 'Voice AI Agent',    desc: 'An AI agent that calls your leads, handles inbound inquiries, and books meetings — in natural voice conversation. Available in any language, 24/7, at scale.' },
-    t7: { tag: 'CRM',     title: 'CRM Automation',    desc: 'Contacts, deals, and tasks update themselves. When a lead fills a form, the CRM record is created, tagged, and assigned — before anyone even checks their inbox.' },
-    t8: { tag: 'Reporting', title: 'Automated Reporting', desc: 'Every week or month, a report on your key metrics — revenue, leads, campaign performance — lands in your inbox automatically. No manual exports, no spreadsheet juggling.' }
+    t5: { tag: 'Data',    title: 'Data Agent',        desc: 'Automatically collects prices, listings, or leads from websites every morning and drops clean rows into your spreadsheet or database. Always fresh, no manual checking.' },
+    t6: { tag: 'Voice AI', title: 'Voice Agent',       desc: 'An AI agent that calls your leads, handles inbound inquiries, and books meetings — in natural voice conversation. Available in any language, 24/7, at scale.' },
+    t7: { tag: 'Ops',     title: 'Ops Agent',         desc: 'Contacts, deals, and tasks update themselves. When a lead fills a form, the CRM record is created, tagged, and assigned — before anyone even checks their inbox.' },
+    t8: { tag: 'Reporting', title: 'Reporting Agent', desc: 'Every week or month, a report on your key metrics — revenue, leads, campaign performance — lands in your inbox automatically. No manual exports, no spreadsheet juggling.' }
   },
   about: {
     label:      'About',
     heading:    'The Founder',
     subheading: 'Jakub Nemcok',
-    bio:        'I help businesses replace manual work with intelligent systems — so your team can focus on what actually moves the needle.<br><br>With a background in IT infrastructure and hands-on experience building AI automations, I bring both technical depth and practical thinking to every engagement. Based in Prague, working with companies ready to build smarter.',
+    bio:        'I help businesses replace manual work with custom AI agents — so your team can focus on what actually moves the needle.<br><br>With a background in IT infrastructure and hands-on experience building AI agents, I bring both technical depth and practical thinking to every engagement. Based in Prague, working with companies ready to build smarter.',
     cta_email:  'Send an Email',
     cta_linkedin: 'LinkedIn'
   },
   footer: {
-    tagline:          'AI consulting & automation agency. We build the systems that scale your business.',
+    tagline:          'We design and build custom AI agents that scale your business.',
     services_heading: 'Navigate',
     service1:         'How We Work',
     service2:         'Specializations',
@@ -103,12 +103,12 @@ window.translations.en = {
     size_opt_3:       '51–200',
     size_opt_4:       '200+',
 
-    automate_label:   'What do you want to automate?',
-    automate_opt_cs:  'Customer service',
-    automate_opt_lg:  'Lead generation',
-    automate_opt_ip:  'Internal processes',
-    automate_opt_mc:  'Marketing & content',
-    automate_opt_dr:  'Data reports',
+    automate_label:   'What kind of agent do you need?',
+    automate_opt_cs:  'Support agent',
+    automate_opt_lg:  'Sales agent',
+    automate_opt_ip:  'Ops agent',
+    automate_opt_mc:  'Content agent',
+    automate_opt_dr:  'Data / reporting agent',
     automate_opt_ns:  'Not sure',
 
     budget_label:     'Project Budget',
