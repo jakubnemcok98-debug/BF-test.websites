@@ -115,6 +115,10 @@
       background-color: rgba(13,31,60,0.9);
     }
 
+    nav.nav-hidden {
+      transform: translateY(-100%);
+    }
+
     /* Mobile Menu */
     #mobile-menu {
       transition: transform 0.3s cubic-bezier(0.22,1,0.36,1), opacity 0.3s ease;
@@ -700,14 +704,27 @@
 
   <!-- JAVASCRIPT -->
   <script>
-    // Navbar Scroll Effect
+    // Navbar Scroll Effect — hide on scroll down, show on scroll up or near the top
     const navbar = document.getElementById('navbar');
+    let lastScrollY = window.scrollY;
     window.addEventListener('scroll', () => {
-      if (window.scrollY > 40) {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY > 40) {
         navbar.classList.add('scrolled');
       } else {
         navbar.classList.remove('scrolled');
       }
+
+      if (currentScrollY < 80) {
+        navbar.classList.remove('nav-hidden');
+      } else if (currentScrollY > lastScrollY) {
+        navbar.classList.add('nav-hidden');
+      } else {
+        navbar.classList.remove('nav-hidden');
+      }
+
+      lastScrollY = currentScrollY;
     }, { passive: true });
 
     // Mobile Menu Toggle
