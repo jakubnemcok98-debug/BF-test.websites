@@ -13,8 +13,7 @@ window.translations.en = {
     heading:      'Your business runs on work <span class="text-gradient-orange">nobody should be doing.</span>',
     subheading:   'Answering questions, sending quotes, handling bookings — an agent can do this instead of you. We set it up, launch it, and keep watch. You keep the work that actually needs a human.',
     cta_primary:  'Get a Free Consultation →',
-    cta_secondary:'How It Works ↓',
-    social_proof: '30-minute audit · first automation free · no commitment'
+    cta_secondary:'How It Works ↓'
   },
   howWeWork: {
     label:   'How It Works',

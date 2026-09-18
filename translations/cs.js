@@ -13,8 +13,7 @@ window.translations.cs = {
     heading:      'Vaše firma běží na práci, <span class="text-gradient-orange">kterou by nikdo dělat neměl.</span>',
     subheading:   'Odpovídání na dotazy, posílání nabídek, zpracování rezervací — tohle může dělat agent místo vás. My ho nastavíme, spustíme a pohlídáme. Vám zůstane práce, která potřebuje člověka.',
     cta_primary:  'Chci konzultaci zdarma →',
-    cta_secondary:'Jak to funguje ↓',
-    social_proof: '30minutový audit · první automatizace zdarma · bez závazku'
+    cta_secondary:'Jak to funguje ↓'
   },
   howWeWork: {
     label:   'Jak to funguje',
