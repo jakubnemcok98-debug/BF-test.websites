@@ -707,6 +707,8 @@
     // Navbar Scroll Effect — hide on scroll down, show on scroll up or near the top
     const navbar = document.getElementById('navbar');
     let lastScrollY = window.scrollY;
+    const DIRECTION_THRESHOLD = 10; // ignore tiny jitter from trackpad momentum
+
     window.addEventListener('scroll', () => {
       const currentScrollY = window.scrollY;
 
@@ -718,13 +720,18 @@
 
       if (currentScrollY < 80) {
         navbar.classList.remove('nav-hidden');
-      } else if (currentScrollY > lastScrollY) {
-        navbar.classList.add('nav-hidden');
-      } else {
-        navbar.classList.remove('nav-hidden');
+        lastScrollY = currentScrollY;
+      } else if (Math.abs(currentScrollY - lastScrollY) > DIRECTION_THRESHOLD) {
+        // Only decide direction once movement clears the threshold, and only
+        // reset the reference point then — comparing every single scroll
+        // event to the immediate last one caused rapid flicker on trackpads.
+        if (currentScrollY > lastScrollY) {
+          navbar.classList.add('nav-hidden');
+        } else {
+          navbar.classList.remove('nav-hidden');
+        }
+        lastScrollY = currentScrollY;
       }
-
-      lastScrollY = currentScrollY;
     }, { passive: true });
 
     // Mobile Menu Toggle
