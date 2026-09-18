@@ -4,29 +4,29 @@ window.translations.en = {
     title: 'Bohemian Flow — Custom AI Agents'
   },
   nav: {
-    howWeWork: 'How We Work',
-    work:      'Our Agents',
-    cta:       'Get in Touch →'
+    howWeWork: 'How It Works',
+    work:      'How We Work',
+    cta:       'Free Consultation →'
   },
   hero: {
     eyebrow:      '◈ Custom AI Agents',
-    heading:      'AI Agents That Actually <span class="text-gradient-orange">Get Work Done.</span>',
-    subheading:   'We design and build custom AI agents that work your business round the clock — handling emails, calls, leads, and reporting on their own. Less manual work, more room for what actually drives results.',
-    cta_primary:  'Get in Touch →',
-    cta_secondary:'See Our Agents ↓',
-    social_proof: 'Czech-based · Available globally'
+    heading:      'Your business runs on work <span class="text-gradient-orange">nobody should be doing.</span>',
+    subheading:   'Answering questions, sending quotes, handling bookings — an agent can do this instead of you. We set it up, launch it, and keep watch. You keep the work that actually needs a human.',
+    cta_primary:  'Get a Free Consultation →',
+    cta_secondary:'How It Works ↓',
+    social_proof: '30-minute audit · first automation free · no commitment'
   },
   howWeWork: {
-    label:   'Our Process',
-    heading: 'How We Work',
-    step1_title: 'Discovery Call',
-    step1_desc:  'We understand your business, goals, and the tools you currently use.',
-    step2_title: 'Audit & Plan',
-    step2_desc:  'We map your processes and identify where a custom AI agent has the highest leverage.',
-    step3_title: 'Build & Test',
-    step3_desc:  'We build and rigorously test your custom AI agent before it touches production.',
-    step4_title: 'Deploy & Support',
-    step4_desc:  'We launch, monitor, and iterate — with ongoing support included.'
+    label:   'How It Works',
+    heading: 'Three steps. No risk.',
+    step1_title: 'Free 30-minute audit',
+    step1_desc:  "Tell us what's slowing you down. We'll map out exactly what to automate — no jargon, tailored to your business.",
+    step2_title: 'Proposal by email in 48 hours',
+    step2_desc:  "We send you an exact plan — what we'll build, how it'll work, and how much time it'll save you. No commitment, no invoice.",
+    step3_title: "We build — you don't risk it",
+    step3_desc:  "If the result doesn't meet expectations, you pay nothing. The risk is ours. We want to earn it, not just sell it.",
+    tagline: "Just 30 minutes. We handle the rest.",
+    cta: 'Get a Free Consultation →'
   },
   topics: {
     label:   'What We Build',

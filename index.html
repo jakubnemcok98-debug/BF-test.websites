@@ -64,12 +64,6 @@
       50%       { box-shadow: 0 0 24px 8px rgba(245,168,0,0.25), 0 4px 16px rgba(245,168,0,0.35); }
     }
 
-    @keyframes auroraFlash {
-      0%   { transform: translate(-50%, -50%) scale(0.2); opacity: 0; }
-      25%  { opacity: 0.45; }
-      100% { transform: translate(-50%, -50%) scale(2); opacity: 0; }
-    }
-
     @keyframes float {
       0%, 100% { transform: translateY(0); }
       50%       { transform: translateY(-8px); }
@@ -83,64 +77,6 @@
     @keyframes slideDown {
       from { transform: translateY(-100%); opacity: 0; }
       to   { transform: translateY(0); opacity: 1; }
-    }
-
-    @keyframes blobFloat1 {
-      0%   { transform: translate(0, 0) scale(1);     border-radius: 58% 42% 35% 65% / 55% 38% 62% 45%; }
-      25%  { transform: translate(3%, 5%) scale(1.06); border-radius: 40% 60% 55% 45% / 48% 55% 45% 52%; }
-      50%  { transform: translate(6%, 2%) scale(0.97); border-radius: 65% 35% 40% 60% / 60% 42% 58% 40%; }
-      75%  { transform: translate(2%, 7%) scale(1.04); border-radius: 45% 55% 62% 38% / 52% 62% 38% 48%; }
-      100% { transform: translate(0, 0) scale(1);     border-radius: 58% 42% 35% 65% / 55% 38% 62% 45%; }
-    }
-
-    @keyframes blobFloat2 {
-      0%   { transform: translate(0, 0) scale(1);       border-radius: 45% 55% 60% 40% / 50% 45% 55% 50%; }
-      30%  { transform: translate(-4%, -3%) scale(1.08); border-radius: 60% 40% 45% 55% / 40% 58% 42% 60%; }
-      60%  { transform: translate(-2%, -6%) scale(0.95); border-radius: 35% 65% 55% 45% / 55% 35% 65% 45%; }
-      100% { transform: translate(0, 0) scale(1);       border-radius: 45% 55% 60% 40% / 50% 45% 55% 50%; }
-    }
-
-    @keyframes blobFloat3 {
-      0%   { transform: translate(0, 0) scale(1);       border-radius: 50%; }
-      40%  { transform: translate(-5%, 8%) scale(1.12); border-radius: 60% 40% 55% 45% / 45% 60% 40% 55%; }
-      80%  { transform: translate(3%, -5%) scale(0.92); border-radius: 40% 60% 45% 55% / 55% 40% 60% 45%; }
-      100% { transform: translate(0, 0) scale(1);       border-radius: 50%; }
-    }
-
-    /* Hero blob animations */
-    .hero-blob { position: absolute; pointer-events: none; }
-
-    .hero-blob-1 {
-      width: 55%; height: 70%;
-      background: radial-gradient(circle, rgba(245,168,0,0.75) 0%, rgba(245,140,0,0.4) 50%, transparent 70%);
-      top: -15%; left: -15%;
-      filter: blur(70px);
-      opacity: 0.48;
-      animation: blobFloat1 9s ease-in-out infinite;
-    }
-
-    .hero-blob-2 {
-      width: 60%; height: 75%;
-      background: radial-gradient(circle, rgba(40,80,160,0.9) 0%, rgba(26,52,96,0.6) 50%, transparent 70%);
-      bottom: -20%; right: -15%;
-      filter: blur(70px);
-      opacity: 0.55;
-      animation: blobFloat2 12s ease-in-out infinite;
-    }
-
-    .hero-blob-3 {
-      width: 30%; height: 40%;
-      background: radial-gradient(circle, rgba(245,168,0,0.65) 0%, rgba(245,168,0,0.2) 60%, transparent 80%);
-      top: 25%; right: 10%;
-      filter: blur(45px);
-      opacity: 0.42;
-      animation: blobFloat3 7s ease-in-out infinite;
-    }
-
-    /* Dot Grid Background */
-    .dot-grid {
-      background-image: radial-gradient(circle, rgba(235,235,235,0.08) 1px, transparent 1px);
-      background-size: 28px 28px;
     }
 
     /* Shadow Utilities */
@@ -606,12 +542,17 @@
 
     <!-- Desktop Nav -->
     <div class="hidden md:flex items-center gap-8 lg:gap-12">
+      <a href="#how-we-work" class="text-sm font-medium text-ghost hover:text-orange transition-colors" data-i18n="nav.howWeWork">How It Works</a>
+      <a href="#topics" class="text-sm font-medium text-ghost hover:text-orange transition-colors" data-i18n="nav.work">How We Work</a>
+
       <!-- Language toggle -->
       <div class="flex items-center gap-1 text-sm font-medium">
         <button data-lang-btn="en" onclick="setLang('en')" class="text-orange font-semibold hover:text-orange transition-colors cursor-pointer bg-transparent border-none p-0">EN</button>
         <span class="text-ghost opacity-40">/</span>
         <button data-lang-btn="cs" onclick="setLang('cs')" class="text-gray-400 hover:text-orange transition-colors cursor-pointer bg-transparent border-none p-0">CZ</button>
       </div>
+
+      <button class="btn-primary text-sm !py-2.5 !px-5" onclick="openQuoteModal()" data-i18n="nav.cta">Free Consultation →</button>
     </div>
 
     <!-- Mobile Menu Button -->
@@ -625,8 +566,8 @@
   <!-- Mobile Menu -->
   <div id="mobile-menu" data-open="false" class="fixed top-16 left-0 right-0 z-40 bg-navy-light md:hidden border-b border-orange/20">
     <div class="flex flex-col gap-4 p-6">
-      <a href="#how-we-work" class="text-sm font-medium text-ghost hover:text-orange" data-i18n="nav.howWeWork">How We Work</a>
-      <a href="#topics" class="text-sm font-medium text-ghost hover:text-orange" data-i18n="nav.work">Specializations</a>
+      <a href="#how-we-work" class="text-sm font-medium text-ghost hover:text-orange" data-i18n="nav.howWeWork">How It Works</a>
+      <a href="#topics" class="text-sm font-medium text-ghost hover:text-orange" data-i18n="nav.work">How We Work</a>
       <!-- Language toggle -->
       <div class="flex items-center gap-2 text-sm font-medium">
         <button data-lang-btn="en" onclick="setLang('en')" class="text-orange font-semibold hover:text-orange transition-colors cursor-pointer bg-transparent border-none p-0">EN</button>
@@ -640,48 +581,38 @@
   <!-- HERO SECTION -->
   <section id="hero" class="relative min-h-screen flex items-center justify-center px-6 md:px-12 pt-24 pb-16 overflow-hidden">
     <!-- Flow Field Canvas Background -->
-    <canvas id="hero-flow-canvas" class="absolute inset-0 w-full h-full pointer-events-none" style="z-index:0;"></canvas>
+    <canvas id="hero-flow-canvas" data-webgl="true" class="absolute inset-0 w-full h-full pointer-events-none" style="z-index:0;"></canvas>
 
-    <!-- Background Layers -->
-    <div class="absolute inset-0 dot-grid opacity-60 pointer-events-none" style="z-index:1;"></div>
-    <div class="absolute inset-0 bg-gradient-radial from-orange/12 to-transparent via-transparent" style="background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(245,168,0,0.12), transparent)"></div>
-    <div class="absolute bottom-0 left-0 right-0 h-1/3 pointer-events-none" style="background: radial-gradient(ellipse 50% 40% at 0% 100%, rgba(20,40,73,0.8), transparent)"></div>
+    <!-- Readability scrim: dims the centre so the shader stays vivid at the
+         edges without fighting the headline for contrast -->
+    <div class="absolute inset-0 pointer-events-none" style="z-index:1;
+         background: radial-gradient(ellipse 70% 55% at 50% 50%, rgba(13,31,60,0.72), rgba(13,31,60,0.25) 60%, transparent 85%);"></div>
 
     <!-- Bottom fade: hero canvas → navy -->
     <div class="absolute bottom-0 left-0 right-0 pointer-events-none"
          style="height: 22%; z-index: 2; background: linear-gradient(to bottom, transparent, #0D1F3C);"></div>
 
-    <!-- Fluid Blob Animation -->
-    <div class="hero-blob hero-blob-1"></div>
-    <div class="hero-blob hero-blob-2"></div>
-    <div class="hero-blob hero-blob-3"></div>
-
-    <!-- Aurora Flash — one-shot radial glow on load -->
-    <div class="absolute top-1/2 left-1/2 pointer-events-none rounded-full"
-         style="width: 480px; height: 480px;
-                background: radial-gradient(circle, rgba(245,168,0,0.35) 0%, rgba(245,168,0,0.08) 45%, transparent 70%);
-                animation: auroraFlash 2.2s cubic-bezier(0.22,1,0.36,1) 0.4s forwards;"></div>
-
     <!-- Hero Content -->
     <div class="relative z-10 max-w-3xl mx-auto text-center">
       <!-- H1 Hero -->
       <h1 class="text-white font-display font-bold mb-6 reveal reveal-delay-2" style="font-size: var(--text-hero); line-height: 1.05; letter-spacing: -0.02em;" data-i18n="hero.heading">
-        AI Agents That Actually <span class="text-gradient-orange">Get Work Done.</span>
+        Your business runs on work <span class="text-gradient-orange">nobody should be doing.</span>
       </h1>
 
       <!-- Subheading -->
       <p class="text-ghost text-lg md:text-xl leading-8 max-w-2xl mx-auto mb-10 reveal reveal-delay-3" data-i18n="hero.subheading">
-        We design and build custom AI agents that work your business round the clock — handling emails, calls, leads, and reporting on their own. Less manual work, more room for what actually drives results.
+        Answering questions, sending quotes, handling bookings — an agent can do this instead of you. We set it up, launch it, and keep watch. You keep the work that actually needs a human.
       </p>
 
       <!-- CTAs -->
       <div class="flex flex-col sm:flex-row gap-4 justify-center mb-8 reveal reveal-delay-4">
-        <button class="btn-primary" onclick="openQuoteModal()" data-i18n="hero.cta_primary">Get in Touch →</button>
+        <button class="btn-primary" onclick="openQuoteModal()" data-i18n="hero.cta_primary">Get a Free Consultation →</button>
+        <button class="btn-ghost" onclick="document.getElementById('how-we-work').scrollIntoView({behavior:'smooth'})" data-i18n="hero.cta_secondary">How It Works ↓</button>
       </div>
 
       <!-- Social Proof -->
       <div class="reveal reveal-delay-5 text-ghost text-sm md:text-base">
-        <span data-i18n="hero.social_proof">Czech-based · Available globally</span>
+        <span data-i18n="hero.social_proof">30-minute audit · first automation free · no commitment</span>
       </div>
     </div>
   </section>
@@ -691,8 +622,8 @@
     <div class="max-w-7xl mx-auto">
       <!-- Section Header -->
       <div class="text-center mb-16 reveal">
-        <p class="text-orange font-display font-semibold uppercase tracking-widest text-xs mb-3" data-i18n="howWeWork.label">Our Process</p>
-        <h2 class="text-white font-display font-bold" style="font-size: var(--text-section); line-height: 1.1;" data-i18n="howWeWork.heading">How We Work</h2>
+        <p class="text-orange font-display font-semibold uppercase tracking-widest text-xs mb-3" data-i18n="howWeWork.label">How It Works</p>
+        <h2 class="text-white font-display font-bold" style="font-size: var(--text-section); line-height: 1.1;" data-i18n="howWeWork.heading">Three steps. No risk.</h2>
       </div>
 
       <!-- Timeline -->
@@ -700,35 +631,34 @@
         <!-- Connecting line (desktop only) -->
         <div class="hidden md:block absolute left-0 right-0 h-0.5 bg-orange/30" style="top: 2rem;"></div>
 
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-8 relative z-10">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8 relative z-10">
           <!-- Step 1 -->
           <div class="flex flex-col items-center text-center reveal reveal-delay-1">
             <div class="w-16 h-16 rounded-full bg-orange flex items-center justify-center font-display font-bold text-navy text-2xl mb-6 shadow-orange flex-shrink-0">1</div>
-            <h3 class="text-white font-display font-bold text-lg md:text-xl mb-3" data-i18n="howWeWork.step1_title">Discovery Call</h3>
-            <p class="text-ghost text-sm leading-6" data-i18n="howWeWork.step1_desc">We understand your business, goals, and the tools you currently use.</p>
+            <h3 class="text-white font-display font-bold text-lg md:text-xl mb-3" data-i18n="howWeWork.step1_title">Free 30-minute audit</h3>
+            <p class="text-ghost text-sm leading-6" data-i18n="howWeWork.step1_desc">Tell us what's slowing you down. We'll map out exactly what to automate — no jargon, tailored to your business.</p>
           </div>
 
           <!-- Step 2 -->
           <div class="flex flex-col items-center text-center reveal reveal-delay-2">
             <div class="w-16 h-16 rounded-full bg-orange flex items-center justify-center font-display font-bold text-navy text-2xl mb-6 shadow-orange flex-shrink-0">2</div>
-            <h3 class="text-white font-display font-bold text-lg md:text-xl mb-3" data-i18n="howWeWork.step2_title">Audit & Plan</h3>
-            <p class="text-ghost text-sm leading-6" data-i18n="howWeWork.step2_desc">We map your processes and identify where a custom AI agent has the highest leverage.</p>
+            <h3 class="text-white font-display font-bold text-lg md:text-xl mb-3" data-i18n="howWeWork.step2_title">Proposal by email in 48 hours</h3>
+            <p class="text-ghost text-sm leading-6" data-i18n="howWeWork.step2_desc">We send you an exact plan — what we'll build, how it'll work, and how much time it'll save you. No commitment, no invoice.</p>
           </div>
 
           <!-- Step 3 -->
           <div class="flex flex-col items-center text-center reveal reveal-delay-3">
             <div class="w-16 h-16 rounded-full bg-orange flex items-center justify-center font-display font-bold text-navy text-2xl mb-6 shadow-orange flex-shrink-0">3</div>
-            <h3 class="text-white font-display font-bold text-lg md:text-xl mb-3" data-i18n="howWeWork.step3_title">Build & Test</h3>
-            <p class="text-ghost text-sm leading-6" data-i18n="howWeWork.step3_desc">We build and rigorously test your custom AI agent before it touches production.</p>
-          </div>
-
-          <!-- Step 4 -->
-          <div class="flex flex-col items-center text-center reveal reveal-delay-4">
-            <div class="w-16 h-16 rounded-full bg-orange flex items-center justify-center font-display font-bold text-navy text-2xl mb-6 shadow-orange flex-shrink-0">4</div>
-            <h3 class="text-white font-display font-bold text-lg md:text-xl mb-3" data-i18n="howWeWork.step4_title">Deploy & Support</h3>
-            <p class="text-ghost text-sm leading-6" data-i18n="howWeWork.step4_desc">We launch, monitor, and iterate — with ongoing support included.</p>
+            <h3 class="text-white font-display font-bold text-lg md:text-xl mb-3" data-i18n="howWeWork.step3_title">We build — you don't risk it</h3>
+            <p class="text-ghost text-sm leading-6" data-i18n="howWeWork.step3_desc">If the result doesn't meet expectations, you pay nothing. The risk is ours. We want to earn it, not just sell it.</p>
           </div>
         </div>
+      </div>
+
+      <!-- Tagline + CTA -->
+      <div class="text-center mt-16 reveal">
+        <p class="text-ghost text-base md:text-lg mb-6" data-i18n="howWeWork.tagline">Just 30 minutes. We handle the rest.</p>
+        <button class="btn-primary" onclick="openQuoteModal()" data-i18n="howWeWork.cta">Get a Free Consultation →</button>
       </div>
     </div>
   </section>
@@ -1196,109 +1126,136 @@
     }
   </script>
 
-  <!-- Flow Field Background Animation -->
+  <!-- Flow Field WebGL Background -->
   <script>
     (function () {
-      const canvas = document.getElementById('hero-flow-canvas');
+      var canvas = document.getElementById('hero-flow-canvas');
       if (!canvas) return;
-      const section = canvas.parentElement;
-      const ctx = canvas.getContext('2d');
 
-      // Config
-      const COLOR = '#818cf8';       // indigo-400
-      const TRAIL_OPACITY = 0.10;
-      const PARTICLE_COUNT = 600;
-      const SPEED = 0.8;
+      var VERT = 'attribute vec2 aPos;void main(){gl_Position=vec4(aPos,0.0,1.0);}';
 
-      let width, height, particles, animId;
-      let mouse = { x: -9999, y: -9999 };
+      var PRE = [
+        'precision highp float;',
+        'uniform vec2 uRes;uniform float uTime;uniform vec2 uMouse;uniform float uIntro;',
+        'const vec3 NAVY=vec3(0.051,0.122,0.235);',
+        'const vec3 NAVYLT=vec3(0.078,0.157,0.286);',
+        'const vec3 NAVYMD=vec3(0.102,0.204,0.376);',
+        'const vec3 ORANGE=vec3(0.961,0.659,0.000);',
+        'const vec3 AMBER=vec3(1.000,0.800,0.333);',
+        'float hash(vec2 p){p=fract(p*vec2(233.34,851.73));p+=dot(p,p+23.45);return fract(p.x*p.y);}',
+        'float noise(vec2 p){vec2 i=floor(p);vec2 f=fract(p);vec2 u=f*f*(3.0-2.0*f);float a=hash(i);float b=hash(i+vec2(1,0));float c=hash(i+vec2(0,1));float d=hash(i+vec2(1,1));return mix(mix(a,b,u.x),mix(c,d,u.x),u.y);}',
+        'float fbm(vec2 p){float v=0.0;float amp=0.5;mat2 rot=mat2(0.8,0.6,-0.6,0.8);for(int i=0;i<5;i++){v+=amp*noise(p);p=rot*p*2.02;amp*=0.5;}return v;}',
+        'vec2 uvC(){return(gl_FragCoord.xy-0.5*uRes)/min(uRes.x,uRes.y);}',
+        'vec3 tm(vec3 c){return c/(c+vec3(0.85))*1.35;}',
+        'vec3 dith(vec3 c,vec2 fc){return c+(hash(fc)-0.5)*(1.4/255.0);}'
+      ].join('');
 
-      class Particle {
-        constructor() { this.reset(true); }
+      var FRAG = PRE + [
+        'void main(){',
+        'vec2 uv=uvC();float t=uTime*0.045;',
+        'vec2 m=(uMouse-0.5)*0.35;uv+=m*0.12;',
+        'vec2 q=vec2(fbm(uv*1.6+vec2(0.0,t)),fbm(uv*1.6+vec2(5.2,1.3-t)));',
+        'vec2 r=vec2(fbm(uv*1.6+3.0*q+vec2(1.7,9.2)+t*1.4),fbm(uv*1.6+3.0*q+vec2(8.3,2.8)-t*1.1));',
+        'float f=fbm(uv*1.6+3.2*r);',
+        'float ridge=pow(clamp(1.0-abs(f-0.5)*2.0,0.0,1.0),13.0);',
+        'float body=clamp(dot(r,r)*0.9+f*0.35,0.0,1.0);',
+        'vec3 col=mix(NAVY,NAVYLT,body*0.75);',
+        'col=mix(col,NAVYMD,smoothstep(0.45,1.0,f)*0.35);',
+        'float heat=ridge*smoothstep(0.35,0.85,length(r));',
+        'col+=ORANGE*heat*0.50;col+=AMBER*pow(heat,2.2)*0.22;',
+        'float vig=1.0-smoothstep(0.30,1.0,length(uv));',
+        'col*=mix(0.42,1.0,vig);',
+        'float topMask=smoothstep(0.1,0.5,uv.y+0.5);',
+        'col*=mix(0.55,1.0,topMask);',
+        'gl_FragColor=vec4(dith(tm(col),gl_FragCoord.xy),1.0);',
+        '}'
+      ].join('');
 
-        reset(init) {
-          this.x  = Math.random() * width;
-          this.y  = Math.random() * height;
-          this.vx = 0;
-          this.vy = 0;
-          this.age  = init ? Math.floor(Math.random() * 300) : 0;
-          this.life = Math.random() * 200 + 100;
-        }
-
-        update() {
-          const angle = (Math.cos(this.x * 0.005) + Math.sin(this.y * 0.005)) * Math.PI;
-          this.vx += Math.cos(angle) * 0.2 * SPEED;
-          this.vy += Math.sin(angle) * 0.2 * SPEED;
-
-          const dx = mouse.x - this.x;
-          const dy = mouse.y - this.y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          const R = 150;
-          if (dist < R) {
-            const f = (R - dist) / R;
-            this.vx -= dx * f * 0.05;
-            this.vy -= dy * f * 0.05;
-          }
-
-          this.x  += this.vx;
-          this.y  += this.vy;
-          this.vx *= 0.95;
-          this.vy *= 0.95;
-          this.age++;
-
-          if (this.age > this.life) this.reset(false);
-          if (this.x < 0)      this.x = width;
-          if (this.x > width)  this.x = 0;
-          if (this.y < 0)      this.y = height;
-          if (this.y > height) this.y = 0;
-        }
-
-        draw() {
-          const alpha = 1 - Math.abs((this.age / this.life) - 0.5) * 2;
-          ctx.globalAlpha = alpha * 0.75;
-          ctx.fillStyle   = COLOR;
-          ctx.fillRect(this.x, this.y, 1.5, 1.5);
-        }
+      function compile(gl, type, src) {
+        var sh = gl.createShader(type);
+        gl.shaderSource(sh, src); gl.compileShader(sh);
+        if (!gl.getShaderParameter(sh, gl.COMPILE_STATUS))
+          throw new Error('Shader: ' + gl.getShaderInfoLog(sh));
+        return sh;
       }
 
-      function init() {
-        const dpr = window.devicePixelRatio || 1;
-        width  = section.clientWidth;
-        height = section.clientHeight;
-        canvas.width  = width  * dpr;
-        canvas.height = height * dpr;
-        canvas.style.width  = width  + 'px';
-        canvas.style.height = height + 'px';
-        ctx.scale(dpr, dpr);
-        particles = Array.from({ length: PARTICLE_COUNT }, () => new Particle());
+      var gl = canvas.getContext('webgl', { antialias: false, alpha: false, powerPreference: 'high-performance' });
+      if (!gl) {
+        canvas.style.background = 'radial-gradient(ellipse 80% 60% at 50% 0%, rgba(245,168,0,0.14), transparent)';
+        return;
       }
 
-      function animate() {
-        ctx.fillStyle = 'rgba(13,31,60,' + TRAIL_OPACITY + ')'; // navy #0D1F3C
-        ctx.fillRect(0, 0, width, height);
-        particles.forEach(p => { p.update(); p.draw(); });
-        ctx.globalAlpha = 1;
-        animId = requestAnimationFrame(animate);
+      var prog = gl.createProgram();
+      gl.attachShader(prog, compile(gl, gl.VERTEX_SHADER, VERT));
+      gl.attachShader(prog, compile(gl, gl.FRAGMENT_SHADER, FRAG));
+      gl.linkProgram(prog);
+      if (!gl.getProgramParameter(prog, gl.LINK_STATUS))
+        throw new Error('Link: ' + gl.getProgramInfoLog(prog));
+
+      var quad = gl.createBuffer();
+      gl.bindBuffer(gl.ARRAY_BUFFER, quad);
+      gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1,3,-1,-1,3]), gl.STATIC_DRAW);
+
+      var aPos   = gl.getAttribLocation(prog, 'aPos');
+      var uRes   = gl.getUniformLocation(prog, 'uRes');
+      var uTime  = gl.getUniformLocation(prog, 'uTime');
+      var uMouse = gl.getUniformLocation(prog, 'uMouse');
+      var uIntro = gl.getUniformLocation(prog, 'uIntro');
+
+      var W = 0, H = 0;
+      var DPR = Math.min(window.devicePixelRatio || 1, 2);
+
+      function resize() {
+        var w = Math.max(1, Math.floor(canvas.clientWidth * DPR));
+        var h = Math.max(1, Math.floor(canvas.clientHeight * DPR));
+        if (w === W && h === H) return;
+        W = w; H = h; canvas.width = W; canvas.height = H;
+        gl.viewport(0, 0, W, H);
       }
 
-      init();
-      animate();
+      var mx = 0.5, my = 0.5, mtx = 0.5, mty = 0.5;
+      window.addEventListener('pointermove', function(e) {
+        mtx = e.clientX / window.innerWidth;
+        mty = 1.0 - e.clientY / window.innerHeight;
+      }, { passive: true });
 
-      window.addEventListener('resize', () => {
-        cancelAnimationFrame(animId);
-        init();
-        animate();
+      var start = performance.now(), looping = false;
+      var visible = !document.hidden;
+      var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      function startLoop() {
+        if (looping || !visible) return;
+        looping = true;
+        requestAnimationFrame(frame);
+      }
+
+      document.addEventListener('visibilitychange', function() {
+        visible = !document.hidden;
+        if (visible) startLoop();
       });
 
-      section.addEventListener('mousemove', e => {
-        const r = canvas.getBoundingClientRect();
-        mouse.x = e.clientX - r.left;
-        mouse.y = e.clientY - r.top;
-      });
+      function frame(now) {
+        if (!visible) { looping = false; return; }
+        var elapsed = (now - start) / 1000;
+        resize();
+        mx += (mtx - mx) * 0.045;
+        my += (mty - my) * 0.045;
+        gl.useProgram(prog);
+        gl.bindBuffer(gl.ARRAY_BUFFER, quad);
+        gl.enableVertexAttribArray(aPos);
+        gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0);
+        gl.uniform2f(uRes, W, H);
+        gl.uniform1f(uTime, reduceMotion ? 12.0 : elapsed);
+        gl.uniform2f(uMouse, mx, my);
+        gl.uniform1f(uIntro, reduceMotion ? 1.0 : Math.min(elapsed / 2.2, 1.0));
+        gl.drawArrays(gl.TRIANGLES, 0, 3);
+        requestAnimationFrame(frame);
+      }
 
-      section.addEventListener('mouseleave', () => {
-        mouse.x = -9999;
-        mouse.y = -9999;
+      startLoop();
+
+      window.addEventListener('resize', function() {
+        DPR = Math.min(window.devicePixelRatio || 1, 2);
       });
     })();
   </script>

@@ -4,29 +4,29 @@ window.translations.cs = {
     title: 'Bohemian Flow — AI Agenti na míru'
   },
   nav: {
-    howWeWork: 'Jak pracujeme',
-    work:      'Naši agenti',
-    cta:       'Spojit se →'
+    howWeWork: 'Jak to funguje',
+    work:      'Jak pracujeme',
+    cta:       'Konzultace zdarma →'
   },
   hero: {
     eyebrow:      '◈ AI Agenti na míru',
-    heading:      'AI agenti, kteří <span class="text-gradient-orange">skutečně odvádí práci.</span>',
-    subheading:   'Navrhujeme a stavíme AI agenty na míru, kteří pro vaši firmu pracují nonstop — vyřizují e-maily, hovory, leady i reporty sami od sebe. Méně ruční práce, víc prostoru pro to, co skutečně přináší výsledky.',
-    cta_primary:  'Spojit se →',
-    cta_secondary:'Zobrazit naše agenty ↓',
-    social_proof: 'Česká firma · Globální dostupnost'
+    heading:      'Vaše firma běží na práci, <span class="text-gradient-orange">kterou by nikdo dělat neměl.</span>',
+    subheading:   'Odpovídání na dotazy, posílání nabídek, zpracování rezervací — tohle může dělat agent místo vás. My ho nastavíme, spustíme a pohlídáme. Vám zůstane práce, která potřebuje člověka.',
+    cta_primary:  'Chci konzultaci zdarma →',
+    cta_secondary:'Jak to funguje ↓',
+    social_proof: '30minutový audit · první automatizace zdarma · bez závazku'
   },
   howWeWork: {
-    label:   'Náš proces',
-    heading: 'Jak pracujeme',
-    step1_title: 'Discovery call',
-    step1_desc:  'Poznáme vaše podnikání, cíle a nástroje, které aktuálně používáte.',
-    step2_title: 'Audit & plán',
-    step2_desc:  'Zmapujeme vaše procesy a najdeme místa, kde AI agent přinese největší efekt.',
-    step3_title: 'Stavba & testování',
-    step3_desc:  'Postavíme vašeho AI agenta na míru a důkladně ho otestujeme, než se nasadí do aktivního provozu.',
-    step4_title: 'Nasazení & podpora',
-    step4_desc:  'Spustíme, monitorujeme a vylepšujeme — průběžná podpora je součástí.'
+    label:   'Jak to funguje',
+    heading: 'Tři kroky. Žádné riziko.',
+    step1_title: 'Audit zdarma za 30 minut',
+    step1_desc:  'Řeknete nám, co vás zdržuje. My navrhneme, co přesně automatizovat — bez technického žargonu, konkrétně pro vaši firmu.',
+    step2_title: 'Návrh e-mailem do 48 hodin',
+    step2_desc:  'Pošleme vám přesný plán — co postavíme, jak to bude fungovat, a kolik vám to ušetří času. Bez závazku, bez faktury.',
+    step3_title: 'Stavíme – vy neriskujete',
+    step3_desc:  'Pokud výsledek nesplní očekávání, neplatíte nic. Riziko je na nás. Chceme si to zasloužit, ne jen prodat.',
+    tagline: 'Stačí 30 minut. Zbytek je na nás.',
+    cta: 'Chci konzultaci zdarma →'
   },
   topics: {
     label:   'Co stavíme',
