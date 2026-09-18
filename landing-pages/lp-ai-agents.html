@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="cs" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bohemian Flow AI — Bezplatný AI Audit pro vaši firmu</title>
+  <meta name="description" content="AI agent, který za vás odpovídá na dotazy, posílá nabídky a hlídá rezervace. Bezplatný 30minutový audit. Pokud výsledek nesplní očekávání, neplatíte nic." />
+  <meta name="robots" content="noindex, nofollow" />
+
+  <!-- ======================================================================
+       META PIXEL — placeholder, blocked on Pixel ID from Jakub.
+       Once you have it, paste the standard base code here (between the
+       script tags below) and uncomment. Do NOT invent an ID.
+
+  <script>
+    !function(f,b,e,v,n,t,s){...}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', 'YOUR_PIXEL_ID');
+    fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1" /></noscript>
+
+  ====================================================================== -->
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&family=Exo+2:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy:   '#0D1F3C',
+            'navy-light': '#142849',
+            'navy-mid': '#1a3460',
+            orange: '#F5A800',
+            ghost:  '#EBEBEB',
+          },
+          fontFamily: {
+            display: ['Rajdhani', 'Exo 2', 'sans-serif'],
+            body:    ['Inter', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+
+  <style>
+    :root {
+      --navy:        #0D1F3C;
+      --navy-light:  #142849;
+      --navy-mid:    #1a3460;
+      --orange:      #F5A800;
+      --orange-glow: rgba(245,168,0,0.18);
+      --white:       #FFFFFF;
+      --ghost:       #EBEBEB;
+      --ghost-dim:   rgba(235,235,235,0.45);
+
+      --text-hero:    clamp(2.5rem, 6.5vw, 4.75rem);
+      --text-section: clamp(1.85rem, 3.6vw, 2.75rem);
+
+      --section-y:   clamp(4rem, 8vw, 7rem);
+      --container:   72rem;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes glowPulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(245,168,0,0), 0 4px 16px rgba(245,168,0,0.25); }
+      50%       { box-shadow: 0 0 24px 8px rgba(245,168,0,0.25), 0 4px 16px rgba(245,168,0,0.35); }
+    }
+
+    @keyframes driftGlow {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50%       { transform: translate(3%, -4%) scale(1.08); }
+    }
+
+    .reveal { opacity: 0; transform: translateY(28px); }
+    .reveal.visible { animation: fadeUp 0.65s cubic-bezier(0.22,1,0.36,1) forwards; }
+    .reveal-delay-1 { animation-delay: 0.08s; }
+    .reveal-delay-2 { animation-delay: 0.16s; }
+    .reveal-delay-3 { animation-delay: 0.24s; }
+    .reveal-delay-4 { animation-delay: 0.32s; }
+    .reveal-delay-5 { animation-delay: 0.4s; }
+
+    .shadow-navy-md { box-shadow: 0 6px 24px rgba(13,31,60,0.7), 0 2px 8px rgba(245,168,0,0.06); }
+    .shadow-orange  { box-shadow: 0 8px 32px rgba(245,168,0,0.22), 0 2px 8px rgba(245,168,0,0.1); }
+
+    .text-gradient-orange {
+      background: linear-gradient(135deg, #F5A800 0%, #ffcc55 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    body {
+      background-color: var(--navy);
+      color: white;
+      font-family: Inter, sans-serif;
+    }
+
+    * { border-color: rgba(255, 255, 255, 0.1); }
+
+    .btn-primary {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6em;
+      overflow: hidden;
+      isolation: isolate;
+      background: linear-gradient(155deg, #ffcc55 0%, var(--orange) 38%, #d98c00 100%);
+      color: var(--navy);
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      padding: 1.05rem 2.5rem;
+      border-radius: 999px;
+      font-family: Rajdhani, sans-serif;
+      font-size: 1.08rem;
+      border: 1px solid rgba(255,255,255,0.35);
+      cursor: pointer;
+      box-shadow:
+        0 2px 4px rgba(217,140,0,0.4),
+        0 10px 28px rgba(245,168,0,0.28),
+        0 1px 0 rgba(255,255,255,0.5) inset;
+      transition: transform 0.35s cubic-bezier(0.22,1,0.36,1), box-shadow 0.35s cubic-bezier(0.22,1,0.36,1);
+      animation: glowPulse 3.2s ease-in-out infinite;
+    }
+    /* Diagonal sheen sweep on hover */
+    .btn-primary::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(115deg, transparent 40%, rgba(255,255,255,0.55) 50%, transparent 60%);
+      transform: translateX(-120%);
+      transition: transform 0.7s cubic-bezier(0.22,1,0.36,1);
+      z-index: 1;
+    }
+    .btn-primary:hover::after { transform: translateX(120%); }
+    .btn-primary:hover {
+      transform: translateY(-3px) scale(1.015);
+      box-shadow:
+        0 2px 6px rgba(217,140,0,0.45),
+        0 16px 40px rgba(245,168,0,0.4),
+        0 1px 0 rgba(255,255,255,0.6) inset;
+    }
+    .btn-primary:active { transform: translateY(-1px) scale(0.99); }
+    .btn-primary:focus-visible { outline: 2px solid var(--orange); outline-offset: 3px; }
+    .btn-primary:disabled { opacity: 0.6; cursor: not-allowed; animation: none; transform: none; }
+    .btn-primary-label, .btn-primary-arrow { position: relative; z-index: 2; }
+    .btn-primary-arrow { display: inline-block; transition: transform 0.35s cubic-bezier(0.22,1,0.36,1); }
+    .btn-primary:hover .btn-primary-arrow { transform: translateX(4px); }
+
+    .card-hover {
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: transform 0.3s cubic-bezier(0.22,1,0.36,1), border-color 0.3s cubic-bezier(0.22,1,0.36,1), box-shadow 0.3s cubic-bezier(0.22,1,0.36,1);
+    }
+    .card-hover:hover {
+      border-color: rgba(245,168,0,0.35);
+      transform: translateY(-5px);
+      box-shadow: 0 6px 24px rgba(13,31,60,0.7), 0 2px 8px rgba(245,168,0,0.08);
+    }
+
+    /* Form */
+    .field-input {
+      width: 100%;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(245,168,0,0.25);
+      border-radius: 8px;
+      padding: 12px 14px;
+      color: var(--white);
+      font-family: Inter, sans-serif;
+      font-size: 0.95rem;
+      transition: border-color 0.2s, background 0.2s;
+      outline: none;
+    }
+    .field-input::placeholder { color: var(--ghost); opacity: 0.55; }
+    .field-input:focus { border-color: var(--orange); background: rgba(255,255,255,0.08); }
+    .field-label {
+      display: block;
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--ghost);
+      margin-bottom: 6px;
+    }
+    .chip-group { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip {
+      padding: 7px 15px;
+      border-radius: 20px;
+      border: 1px solid rgba(245,168,0,0.35);
+      background: rgba(255,255,255,0.04);
+      color: var(--ghost);
+      font-family: Inter, sans-serif;
+      font-size: 0.88rem;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+    }
+    .chip:hover { background: rgba(245,168,0,0.15); color: var(--white); border-color: var(--orange); }
+    .chip:focus-visible { outline: 2px solid var(--orange); outline-offset: 2px; }
+    .chip.selected { background: var(--orange); color: #0D1F3C; border-color: var(--orange); font-weight: 600; }
+
+    .step-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--orange);
+      color: var(--navy);
+      font-family: Rajdhani, sans-serif;
+      font-weight: 700;
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+
+<body class="bg-navy text-white font-body">
+
+  <!-- Minimal top bar: logo only, single CTA. No nav links out of the page. -->
+  <header class="relative z-20 px-6 md:px-10 py-5 flex items-center justify-between max-w-[var(--container)] mx-auto">
+    <div class="flex items-center gap-3">
+      <img src="../brand_assests/logo.png" alt="Bohemian Flow AI" class="h-11 md:h-12" />
+      <span class="hidden sm:block text-xs md:text-sm font-display font-bold uppercase tracking-[0.12em] text-ghost">Bohemian Flow AI</span>
+    </div>
+    <button onclick="document.getElementById('form').scrollIntoView({behavior:'smooth'})"
+      class="hidden sm:inline-flex text-xs md:text-sm font-display font-bold uppercase tracking-wide text-orange border border-orange/40 rounded-full px-4 py-2 hover:bg-orange hover:text-navy hover:shadow-orange hover:-translate-y-0.5 transition-colors" style="transition-property: color, background-color, box-shadow, transform;">
+      Chci audit zdarma
+    </button>
+  </header>
+
+  <!-- Ambient background -->
+  <div class="fixed inset-0 pointer-events-none -z-10" style="
+      background:
+        radial-gradient(ellipse 60% 45% at 18% 8%, rgba(245,168,0,0.12), transparent 60%),
+        radial-gradient(ellipse 55% 45% at 85% 30%, rgba(245,168,0,0.08), transparent 60%),
+        var(--navy);">
+  </div>
+
+  <!-- HERO -->
+  <section class="relative px-6 md:px-10 pt-8 md:pt-14 pb-16 md:pb-24">
+    <div class="max-w-3xl mx-auto text-center">
+      <div class="inline-flex items-center gap-2 mb-6 border border-orange/30 rounded-full px-4 py-1.5 reveal">
+        <span class="w-1.5 h-1.5 rounded-full bg-orange"></span>
+        <span class="text-orange font-display font-bold uppercase text-xs tracking-widest">Bezplatný AI Audit</span>
+      </div>
+
+      <h1 class="font-display font-bold mb-6 reveal reveal-delay-1" style="font-size: var(--text-hero); line-height: 1.06; letter-spacing: -0.02em;">
+        Vaše firma tráví hodiny týdně prací,
+        <span class="text-gradient-orange">kterou už zvládne AI agent.</span>
+      </h1>
+
+      <p class="text-ghost text-base md:text-lg leading-relaxed max-w-2xl mx-auto mb-9 reveal reveal-delay-2">
+        Odpovídání na dotazy, posílání nabídek, hlídání rezervací a follow-upů — nastavíme vám AI agenta na míru, který to dělá za vás. Vy si necháte jen práci, na kterou je potřeba člověk.
+      </p>
+
+      <div class="reveal reveal-delay-3">
+        <button class="btn-primary" onclick="document.getElementById('form').scrollIntoView({behavior:'smooth'})">
+          <span class="btn-primary-label">Chci bezplatný audit</span>
+          <span class="btn-primary-arrow">→</span>
+        </button>
+        <p class="text-ghost/70 text-sm mt-4">Zdarma · 30 minut · Bez závazků · Platíte, jen pokud to funguje</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEM AGITATION -->
+  <section class="relative px-6 md:px-10 py-16 md:py-20 border-t border-white/5">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="font-display font-bold text-center mb-12 reveal" style="font-size: var(--text-section); line-height: 1.15;">
+        Poznáváte se v tomhle?
+      </h2>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-5">
+        <div class="card-hover rounded-2xl p-6 bg-navy-light/40 reveal reveal-delay-1">
+          <p class="text-white text-base md:text-lg leading-relaxed">Ruční dohledávání a zpracování leadů vám bere hodiny každý týden.</p>
+        </div>
+        <div class="card-hover rounded-2xl p-6 bg-navy-light/40 reveal reveal-delay-2">
+          <p class="text-white text-base md:text-lg leading-relaxed">Follow-upy na e-maily proklouzávají a leady chladnou, aniž byste to poznali.</p>
+        </div>
+        <div class="card-hover rounded-2xl p-6 bg-navy-light/40 reveal reveal-delay-3">
+          <p class="text-white text-base md:text-lg leading-relaxed">Nemáte jeden systém, kde byste viděli stav leadů, nabídek a rezervací.</p>
+        </div>
+        <div class="card-hover rounded-2xl p-6 bg-navy-light/40 reveal reveal-delay-4">
+          <p class="text-white text-base md:text-lg leading-relaxed">Domlouvání termínů je chaos e-mailů tam a zpátky, kterému nikdo nevěnuje čas.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OFFER: agent types -->
+  <section class="relative px-6 md:px-10 py-16 md:py-20 border-t border-white/5">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center mb-12 reveal">
+        <p class="text-orange font-display font-semibold uppercase tracking-widest text-xs mb-3">Co dostanete</p>
+        <h2 class="font-display font-bold" style="font-size: var(--text-section); line-height: 1.15;">Agent na míru pro to, co vás zdržuje</h2>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div class="card-hover rounded-2xl p-6 reveal reveal-delay-1">
+          <h3 class="font-display font-bold text-lg mb-2 text-orange">Podpora</h3>
+          <p class="text-ghost text-sm leading-relaxed">Odpovídá zákazníkům na běžné dotazy — rychle a konzistentně, i mimo pracovní dobu.</p>
+        </div>
+        <div class="card-hover rounded-2xl p-6 reveal reveal-delay-2">
+          <h3 class="font-display font-bold text-lg mb-2 text-orange">Obchod</h3>
+          <p class="text-ghost text-sm leading-relaxed">Follow-upy na leady, nabídky, outreach a odpovědi — nic vám neproklouzne.</p>
+        </div>
+        <div class="card-hover rounded-2xl p-6 reveal reveal-delay-3">
+          <h3 class="font-display font-bold text-lg mb-2 text-orange">Provoz</h3>
+          <p class="text-ghost text-sm leading-relaxed">Rezervace, koordinace kalendáře a interní workflow bez ručního dohledu.</p>
+        </div>
+        <div class="card-hover rounded-2xl p-6 reveal reveal-delay-4">
+          <h3 class="font-display font-bold text-lg mb-2 text-orange">Obsah</h3>
+          <p class="text-ghost text-sm leading-relaxed">Tvorba a repurposing obsahu, aby vaše komunikace nestála jen na vás.</p>
+        </div>
+        <div class="card-hover rounded-2xl p-6 reveal reveal-delay-5">
+          <h3 class="font-display font-bold text-lg mb-2 text-orange">Data &amp; reporting</h3>
+          <p class="text-ghost text-sm leading-relaxed">Reporty, dohledávání dat a přehledy, které se dělají samy.</p>
+        </div>
+        <div class="rounded-2xl p-6 border border-orange/25 bg-orange/5 flex items-center reveal reveal-delay-1">
+          <p class="text-ghost text-sm leading-relaxed">Nejste si jistí, který typ agenta potřebujete? Probereme to na auditu zdarma — přesně na míru vašemu provozu.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS + GUARANTEE -->
+  <section class="relative px-6 md:px-10 py-16 md:py-20 border-t border-white/5">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-14 reveal">
+        <p class="text-orange font-display font-semibold uppercase tracking-widest text-xs mb-3">Jak to funguje</p>
+        <h2 class="font-display font-bold" style="font-size: var(--text-section); line-height: 1.15;">Tři kroky. Žádné riziko.</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8 mb-14">
+        <div class="flex flex-col items-center text-center reveal reveal-delay-1">
+          <div class="step-num mb-5 shadow-orange">1</div>
+          <h3 class="font-display font-bold text-lg mb-2">Audit zdarma, 30 minut</h3>
+          <p class="text-ghost text-sm leading-relaxed">Řeknete nám, co vás zdržuje. Navrhneme, co přesně automatizovat — bez žargonu, konkrétně pro vaši firmu.</p>
+        </div>
+        <div class="flex flex-col items-center text-center reveal reveal-delay-2">
+          <div class="step-num mb-5 shadow-orange">2</div>
+          <h3 class="font-display font-bold text-lg mb-2">Návrh do 48 hodin</h3>
+          <p class="text-ghost text-sm leading-relaxed">Pošleme přesný plán — co postavíme, jak to bude fungovat a kolik času to ušetří. Bez závazku, bez faktury.</p>
+        </div>
+        <div class="flex flex-col items-center text-center reveal reveal-delay-3">
+          <div class="step-num mb-5 shadow-orange">3</div>
+          <h3 class="font-display font-bold text-lg mb-2">Stavíme — vy neriskujete</h3>
+          <p class="text-ghost text-sm leading-relaxed">Pokud výsledek nesplní očekávání, neplatíte nic. Riziko je na nás.</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div class="rounded-2xl border border-orange/30 bg-navy-light/50 p-7 md:p-8 text-center reveal shadow-orange">
+          <p class="font-display font-bold text-xl md:text-2xl mb-3">Riziko neseme <span class="text-gradient-orange">my, ne vy.</span></p>
+          <p class="text-ghost text-sm md:text-base leading-relaxed">
+            Pokud výsledek nesplní vaše očekávání, neplatíte nic — chci si vaši důvěru zasloužit, ne jen prodat.
+          </p>
+        </div>
+        <div class="rounded-2xl border border-orange/30 bg-navy-light/50 p-7 md:p-8 text-center reveal reveal-delay-1 shadow-orange">
+          <p class="font-display font-bold text-xl md:text-2xl mb-3">Beru jen <span class="text-gradient-orange">5 nových klientů měsíčně.</span></p>
+          <p class="text-ghost text-sm md:text-base leading-relaxed">
+            Každý projekt vedu osobně od auditu až po nasazení — proto omezuji počet nových klientů, abych se mohl každému věnovat naplno.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOUNDER CREDIBILITY -->
+  <section class="relative px-6 md:px-10 py-16 md:py-20 border-t border-white/5">
+    <div class="max-w-3xl mx-auto rounded-2xl border border-orange/20 bg-navy-light/40 p-8 md:p-10 reveal">
+      <div class="flex flex-col sm:flex-row items-center gap-7 md:gap-9 text-center sm:text-left">
+        <div class="relative flex-shrink-0">
+          <div class="absolute inset-0 rounded-full blur-xl opacity-40" style="background: radial-gradient(circle, rgba(245,168,0,0.6), transparent 70%);"></div>
+          <img src="../brand_assests/jakub.jpg" alt="Jakub Nemčok" class="relative w-32 h-32 sm:w-40 sm:h-40 rounded-full object-cover border-2 border-orange/50 shadow-orange" style="object-position: 50% 50%;" />
+        </div>
+        <div>
+          <p class="text-orange font-display font-semibold uppercase tracking-widest text-xs mb-2">Kdo je za tím</p>
+          <p class="text-white font-display font-bold text-xl md:text-2xl mb-2">Jakub Nemčok</p>
+          <p class="text-ghost text-sm md:text-base leading-relaxed">
+            Zakladatel Bohemian Flow AI, Praha. Pozadí v IT infrastruktuře a praktické zkušenosti s vývojem AI agentů. Každý audit i projekt vedu osobně.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FORM -->
+  <section id="form" class="relative px-6 md:px-10 py-16 md:py-24 border-t border-white/5">
+    <div class="max-w-xl mx-auto">
+      <div class="text-center mb-10 reveal">
+        <h2 class="font-display font-bold mb-3" style="font-size: var(--text-section); line-height: 1.15;">Rezervujte si audit zdarma</h2>
+        <p class="text-ghost text-base leading-relaxed">30 minut, bez závazků. Zjistíte přesně, co lze automatizovat a kolik času vám to ušetří.</p>
+        <p class="text-orange/90 text-sm font-display font-bold uppercase tracking-wide mt-3">Beru jen 5 nových klientů měsíčně</p>
+      </div>
+
+      <div class="rounded-2xl border border-orange/20 bg-navy-light/40 p-6 md:p-8 reveal reveal-delay-1">
+        <form id="lp-form" onsubmit="handleLpSubmit(event)" novalidate>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-4">
+            <div class="mb-4">
+              <label class="field-label" for="lp-first-name">Jméno <span class="text-orange">*</span></label>
+              <input class="field-input" type="text" id="lp-first-name" name="first_name" placeholder="Jan" required />
+            </div>
+            <div class="mb-4">
+              <label class="field-label" for="lp-last-name">Příjmení</label>
+              <input class="field-input" type="text" id="lp-last-name" name="last_name" placeholder="Novák" />
+            </div>
+          </div>
+
+          <div class="mb-4">
+            <label class="field-label" for="lp-email">E-mail <span class="text-orange">*</span></label>
+            <input class="field-input" type="email" id="lp-email" name="email" placeholder="jan@firma.cz" required />
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-4">
+            <div class="mb-4">
+              <label class="field-label" for="lp-phone">Telefon</label>
+              <input class="field-input" type="tel" id="lp-phone" name="phone" placeholder="+420 123 456 789" />
+            </div>
+            <div class="mb-4">
+              <label class="field-label" for="lp-company">Firma</label>
+              <input class="field-input" type="text" id="lp-company" name="company" placeholder="Acme s.r.o." />
+            </div>
+          </div>
+
+          <div class="mb-4">
+            <label class="field-label">Jakého agenta potřebujete?</label>
+            <input type="hidden" id="lp-automate" name="automate" value="" />
+            <div class="chip-group" id="lp-automate-chips">
+              <button type="button" class="chip" data-value="customer-service">Podpora</button>
+              <button type="button" class="chip" data-value="lead-generation">Obchod</button>
+              <button type="button" class="chip" data-value="internal-processes">Provoz</button>
+              <button type="button" class="chip" data-value="marketing-content">Obsah</button>
+              <button type="button" class="chip" data-value="data-reports">Data / reporting</button>
+              <button type="button" class="chip" data-value="not-sure">Nejsem si jistý</button>
+            </div>
+          </div>
+
+          <div class="mb-5">
+            <label class="field-label" for="lp-project">Co vás nejvíc zdržuje? (nepovinné)</label>
+            <textarea class="field-input" id="lp-project" name="project" rows="3" placeholder="Krátce popište proces nebo problém…" style="resize:vertical;"></textarea>
+          </div>
+
+          <div id="lp-error" class="hidden text-red-400 text-sm mb-4"></div>
+
+          <button type="submit" id="lp-submit" class="btn-primary w-full">
+            <span id="lp-submit-text" class="btn-primary-label">Chci bezplatný audit →</span>
+          </button>
+          <p class="text-ghost/60 text-xs text-center mt-4">Ozveme se vám do 24 hodin. Žádný spam.</p>
+        </form>
+
+        <div id="lp-success" class="hidden text-center py-6">
+          <div class="text-orange text-5xl mb-4">✓</div>
+          <h3 class="font-display font-bold text-white text-xl mb-3">Jste na seznamu!</h3>
+          <p class="text-ghost">Ozveme se vám do 24 hodin a domluvíme termín bezplatného auditu.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="relative px-6 md:px-10 py-10 border-t border-white/5">
+    <div class="max-w-[var(--container)] mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-ghost/70 text-sm">
+      <div class="flex items-center gap-2">
+        <img src="../brand_assests/logo.png" alt="Bohemian Flow AI" class="h-8" />
+        <span>Bohemian Flow AI</span>
+      </div>
+      <div>© 2026 Bohemian Flow AI · <a href="#" class="hover:text-orange transition-colors">Ochrana soukromí</a> · <a href="#" class="hover:text-orange transition-colors">Podmínky</a></div>
+    </div>
+  </footer>
+
+  <script>
+    const LP_WEBHOOK_URL = '/api/web-lead';
+
+    document.addEventListener('DOMContentLoaded', function () {
+      // Scroll reveal
+      const reveals = document.querySelectorAll('.reveal');
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+      reveals.forEach(el => revealObserver.observe(el));
+
+      // Multi-select agent-type chips
+      document.getElementById('lp-automate-chips').addEventListener('click', function (e) {
+        const chip = e.target.closest('.chip');
+        if (!chip) return;
+        chip.classList.toggle('selected');
+        const selected = Array.from(document.querySelectorAll('#lp-automate-chips .chip.selected'))
+          .map(function (c) { return c.dataset.value; });
+        document.getElementById('lp-automate').value = selected.join(',');
+      });
+    });
+
+    async function handleLpSubmit(e) {
+      e.preventDefault();
+
+      const form = document.getElementById('lp-form');
+      const submitBtn = document.getElementById('lp-submit');
+      const submitText = document.getElementById('lp-submit-text');
+      const errorEl = document.getElementById('lp-error');
+
+      const firstName = document.getElementById('lp-first-name').value.trim();
+      const email = document.getElementById('lp-email').value.trim();
+
+      if (!firstName || !email) {
+        errorEl.textContent = 'Vyplňte prosím jméno a e-mail.';
+        errorEl.classList.remove('hidden');
+        return;
+      }
+
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        errorEl.textContent = 'Zadejte prosím platnou e-mailovou adresu.';
+        errorEl.classList.remove('hidden');
+        return;
+      }
+
+      errorEl.classList.add('hidden');
+
+      const projectRaw = document.getElementById('lp-project').value.trim();
+      const project = projectRaw
+        ? '[Landing page – placená reklama] ' + projectRaw
+        : 'Lead ze vstupní stránky placené reklamy (Meta Ads), bez popisu.';
+
+      const payload = {
+        first_name: firstName,
+        last_name: document.getElementById('lp-last-name').value.trim(),
+        email: email,
+        phone: document.getElementById('lp-phone').value.trim(),
+        company: document.getElementById('lp-company').value.trim(),
+        automate: document.getElementById('lp-automate').value,
+        project: project,
+        lang: 'cs',
+        submitted_at: new Date().toLocaleDateString('en-GB').split('/').join('.')
+      };
+
+      submitText.textContent = 'Odesílám…';
+      submitBtn.disabled = true;
+
+      try {
+        const res = await fetch(LP_WEBHOOK_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        if (!res.ok) throw new Error('Server error: ' + res.status);
+
+        // --- META PIXEL LEAD EVENT — uncomment once Pixel ID is installed above ---
+        // if (typeof fbq === 'function') { fbq('track', 'Lead'); }
+
+        form.style.display = 'none';
+        document.getElementById('lp-success').classList.remove('hidden');
+      } catch (err) {
+        errorEl.textContent = 'Něco se pokazilo. Zkuste to prosím znovu nebo nám napište přímo.';
+        errorEl.classList.remove('hidden');
+        submitText.textContent = 'Chci bezplatný audit →';
+        submitBtn.disabled = false;
+      }
+    }
+  </script>
+</body>
+</html>
