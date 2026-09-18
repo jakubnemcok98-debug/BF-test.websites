@@ -109,12 +109,6 @@
     .reveal-delay-5 { --delay: 0.5s; animation-delay: var(--delay); }
 
     /* Navbar Scroll Effect */
-    nav.scrolled {
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(245,168,0,0.12);
-      background-color: rgba(13,31,60,0.9);
-    }
-
     nav.nav-hidden {
       transform: translateY(-100%);
     }
@@ -703,12 +697,6 @@
 
     window.addEventListener('scroll', () => {
       const currentScrollY = window.scrollY;
-
-      if (currentScrollY > 40) {
-        navbar.classList.add('scrolled');
-      } else {
-        navbar.classList.remove('scrolled');
-      }
 
       if (currentScrollY < 80) {
         navbar.classList.remove('nav-hidden');
