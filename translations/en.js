@@ -27,18 +27,6 @@ window.translations.en = {
     tagline: "Just 30 minutes. We handle the rest.",
     cta: 'Get a Free Consultation →'
   },
-  topics: {
-    label:   'What We Build',
-    heading: 'Meet Your AI Agents',
-    t1: { tag: 'Email',   title: 'Email Agent',       desc: 'Reads your inbox, sorts emails into folders, drafts replies in your tone, and flags only what needs your attention. Your inbox works — you just check in.' },
-    t2: { tag: 'RAG',     title: 'Knowledge Agent',   desc: 'Reads your documents, price lists, or knowledge base — and answers from those, not from guesswork. Always current, no hallucinations. Deploy on WhatsApp, Telegram, or as a chat widget on your site.' },
-    t3: { tag: 'Sales',   title: 'Sales Agent',       desc: 'Finds companies that match your ideal customer, enriches the data, and sends a personalized first message. You get a list of warm leads — without lifting a finger.' },
-    t4: { tag: 'Content', title: 'Content Agent',     desc: 'Picks a topic, researches it, writes the post, and publishes it to your channels — on a schedule. Your social presence keeps running while you focus on the business.' },
-    t5: { tag: 'Data',    title: 'Data Agent',        desc: 'Automatically collects prices, listings, or leads from websites every morning and drops clean rows into your spreadsheet or database. Always fresh, no manual checking.' },
-    t6: { tag: 'Voice AI', title: 'Voice Agent',       desc: 'An AI agent that calls your leads, handles inbound inquiries, and books meetings — in natural voice conversation. Available in any language, 24/7, at scale.' },
-    t7: { tag: 'Ops',     title: 'Ops Agent',         desc: 'Contacts, deals, and tasks update themselves. When a lead fills a form, the CRM record is created, tagged, and assigned — before anyone even checks their inbox.' },
-    t8: { tag: 'Reporting', title: 'Reporting Agent', desc: 'Every week or month, a report on your key metrics — revenue, leads, campaign performance — lands in your inbox automatically. No manual exports, no spreadsheet juggling.' }
-  },
   about: {
     label:      'About',
     heading:    'The Founder',

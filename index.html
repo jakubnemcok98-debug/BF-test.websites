@@ -543,7 +543,7 @@
     <!-- Desktop Nav -->
     <div class="hidden md:flex items-center gap-8 lg:gap-12">
       <a href="#how-we-work" class="text-sm font-medium text-ghost hover:text-orange transition-colors" data-i18n="nav.howWeWork">How It Works</a>
-      <a href="#topics" class="text-sm font-medium text-ghost hover:text-orange transition-colors" data-i18n="nav.work">How We Work</a>
+      <a href="#about" class="text-sm font-medium text-ghost hover:text-orange transition-colors" data-i18n="nav.work">How We Work</a>
 
       <!-- Language toggle -->
       <div class="flex items-center gap-1 text-sm font-medium">
@@ -567,7 +567,7 @@
   <div id="mobile-menu" data-open="false" class="fixed top-16 left-0 right-0 z-40 bg-navy-light md:hidden border-b border-orange/20">
     <div class="flex flex-col gap-4 p-6">
       <a href="#how-we-work" class="text-sm font-medium text-ghost hover:text-orange" data-i18n="nav.howWeWork">How It Works</a>
-      <a href="#topics" class="text-sm font-medium text-ghost hover:text-orange" data-i18n="nav.work">How We Work</a>
+      <a href="#about" class="text-sm font-medium text-ghost hover:text-orange" data-i18n="nav.work">How We Work</a>
       <!-- Language toggle -->
       <div class="flex items-center gap-2 text-sm font-medium">
         <button data-lang-btn="en" onclick="setLang('en')" class="text-orange font-semibold hover:text-orange transition-colors cursor-pointer bg-transparent border-none p-0">EN</button>
@@ -578,20 +578,24 @@
     </div>
   </div>
 
-  <!-- HERO + HOW-WE-WORK share one canvas background, so the animation
-       visibly continues from the hero into the top of the next section
-       instead of cutting off at the hero's own boundary. -->
+  <!-- HERO, HOW-WE-WORK and ABOUT share one canvas background, so the
+       animation visibly continues all the way down instead of cutting off
+       at the hero's own boundary. It fades to solid navy only near the
+       bottom of the About section. -->
   <div class="relative overflow-hidden">
     <!-- Flow Field Canvas Background -->
     <canvas id="hero-flow-canvas" data-webgl="true" class="absolute inset-0 w-full h-full pointer-events-none" style="z-index:0;"></canvas>
 
+    <!-- Fade the canvas to solid navy before the footer -->
+    <div class="absolute bottom-0 left-0 right-0 pointer-events-none" style="height: 35%; z-index: 1; background: linear-gradient(to bottom, transparent, #0D1F3C);"></div>
+
+  <!-- HERO SECTION -->
+  <section id="hero" class="relative min-h-screen flex items-center justify-center px-6 md:px-12 pt-24 pb-16">
     <!-- Readability scrim: dims the centre so the shader stays vivid at the
          edges without fighting the headline for contrast -->
     <div class="absolute inset-0 pointer-events-none" style="z-index:1;
          background: radial-gradient(ellipse 70% 55% at 50% 50%, rgba(13,31,60,0.72), rgba(13,31,60,0.25) 60%, transparent 85%);"></div>
 
-  <!-- HERO SECTION -->
-  <section id="hero" class="relative min-h-screen flex items-center justify-center px-6 md:px-12 pt-24 pb-16">
     <!-- Hero Content -->
     <div class="relative z-10 max-w-3xl mx-auto text-center">
       <!-- H1 Hero -->
@@ -614,11 +618,6 @@
 
   <!-- HOW WE WORK SECTION -->
   <section id="how-we-work" class="relative py-20 md:py-28 px-6 md:px-12">
-    <!-- Fade the shared canvas (bleeding down from the hero) into solid navy
-         within this section's own top, so the animation reads as continuing
-         past the hero instead of cutting off hard at the section boundary. -->
-    <div class="absolute inset-0 pointer-events-none" style="z-index:1; background: linear-gradient(to bottom, transparent, #0D1F3C 480px);"></div>
-
     <div class="relative z-10 max-w-7xl mx-auto">
       <!-- Section Header -->
       <div class="text-center mb-16 reveal">
@@ -662,89 +661,10 @@
       </div>
     </div>
   </section>
-  </div>
-
-  <!-- TOPICS SECTION -->
-  <section id="topics" class="py-20 md:py-28 px-6 md:px-12 bg-navy">
-    <div class="max-w-7xl mx-auto">
-      <!-- Section Header -->
-      <div class="text-center mb-16 reveal">
-        <p class="text-orange font-display font-semibold uppercase tracking-widest text-xs mb-3" data-i18n="topics.label">What We Build</p>
-        <h2 class="text-white font-display font-bold" style="font-size: var(--text-section); line-height: 1.1;" data-i18n="topics.heading">Meet Your AI Agents</h2>
-      </div>
-
-      <!-- Topic Grid -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <!-- Topic 1 — Email Agent -->
-        <div class="topic-card bg-navy-light rounded-xl p-6 reveal reveal-delay-1">
-          <svg class="w-6 h-6 text-orange mb-3" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"/></svg>
-          <span class="inline-block bg-orange/12 text-orange text-xs font-semibold uppercase tracking-wider px-3 py-1 rounded-md mb-4" data-i18n="topics.t1.tag">Email</span>
-          <h3 class="font-display font-bold text-lg text-white mb-2" data-i18n="topics.t1.title">Email Agent</h3>
-          <p class="text-ghost text-sm" data-i18n="topics.t1.desc">Reads your inbox, sorts emails into folders, drafts replies in your tone, and flags only what needs your attention.</p>
-        </div>
-
-        <!-- Topic 2 — Smarter Chatbot (RAG) -->
-        <div class="topic-card bg-navy-light rounded-xl p-6 reveal reveal-delay-2">
-          <svg class="w-6 h-6 text-orange mb-3" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25"/></svg>
-          <span class="inline-block bg-orange/12 text-orange text-xs font-semibold uppercase tracking-wider px-3 py-1 rounded-md mb-4" data-i18n="topics.t2.tag">RAG</span>
-          <h3 class="font-display font-bold text-lg text-white mb-2" data-i18n="topics.t2.title">Knowledge Agent</h3>
-          <p class="text-ghost text-sm" data-i18n="topics.t2.desc">Unlike a regular chatbot, this one reads your actual documents, price lists, or knowledge base — and answers from that. Always up to date.</p>
-        </div>
-
-        <!-- Topic 3 — Sales Agent -->
-        <div class="topic-card bg-navy-light rounded-xl p-6 reveal reveal-delay-3">
-          <svg class="w-6 h-6 text-orange mb-3" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M18 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0ZM3 19.235v-.11a6.375 6.375 0 0 1 12.75 0v.109A12.318 12.318 0 0 1 9.374 21c-2.331 0-4.512-.645-6.374-1.766Z"/></svg>
-          <span class="inline-block bg-orange/12 text-orange text-xs font-semibold uppercase tracking-wider px-3 py-1 rounded-md mb-4" data-i18n="topics.t3.tag">LeadGen</span>
-          <h3 class="font-display font-bold text-lg text-white mb-2" data-i18n="topics.t3.title">Sales Agent</h3>
-          <p class="text-ghost text-sm" data-i18n="topics.t3.desc">Finds companies that match your ideal customer, enriches the data, and sends a personalized first message. Warm leads without lifting a finger.</p>
-        </div>
-
-        <!-- Topic 4 — Content Agent -->
-        <div class="topic-card bg-navy-light rounded-xl p-6 reveal reveal-delay-4">
-          <svg class="w-6 h-6 text-orange mb-3" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10"/></svg>
-          <span class="inline-block bg-orange/12 text-orange text-xs font-semibold uppercase tracking-wider px-3 py-1 rounded-md mb-4" data-i18n="topics.t4.tag">Content</span>
-          <h3 class="font-display font-bold text-lg text-white mb-2" data-i18n="topics.t4.title">Content Agent</h3>
-          <p class="text-ghost text-sm" data-i18n="topics.t4.desc">Picks a topic, researches it, writes the post, and publishes it to your channels on a schedule. Your social presence keeps running while you focus on the business.</p>
-        </div>
-
-        <!-- Topic 5 — Data Agent -->
-        <div class="topic-card bg-navy-light rounded-xl p-6 reveal reveal-delay-1">
-          <svg class="w-6 h-6 text-orange mb-3" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 5.625c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125"/></svg>
-          <span class="inline-block bg-orange/12 text-orange text-xs font-semibold uppercase tracking-wider px-3 py-1 rounded-md mb-4" data-i18n="topics.t5.tag">Data</span>
-          <h3 class="font-display font-bold text-lg text-white mb-2" data-i18n="topics.t5.title">Data Agent</h3>
-          <p class="text-ghost text-sm" data-i18n="topics.t5.desc">Automatically collects prices, listings, or leads from websites every morning and drops clean rows into your spreadsheet or database.</p>
-        </div>
-
-        <!-- Topic 6 — Voice AI Agent -->
-        <div class="topic-card bg-navy-light rounded-xl p-6 reveal reveal-delay-2">
-          <svg class="w-6 h-6 text-orange mb-3" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z"/></svg>
-          <span class="inline-block bg-orange/12 text-orange text-xs font-semibold uppercase tracking-wider px-3 py-1 rounded-md mb-4" data-i18n="topics.t6.tag">Voice AI</span>
-          <h3 class="font-display font-bold text-lg text-white mb-2" data-i18n="topics.t6.title">Voice AI Agent</h3>
-          <p class="text-ghost text-sm" data-i18n="topics.t6.desc">An AI agent that calls your leads, handles inbound inquiries, and books meetings — in natural voice conversation. Available in any language, 24/7, at scale.</p>
-        </div>
-
-        <!-- Topic 7 — Ops Agent -->
-        <div class="topic-card bg-navy-light rounded-xl p-6 reveal reveal-delay-3">
-          <svg class="w-6 h-6 text-orange mb-3" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15 9h3.75M15 12h3.75M15 15h3.75M4.5 19.5h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Zm6-10.125a1.875 1.875 0 1 1-3.75 0 1.875 1.875 0 0 1 3.75 0Zm1.294 6.336a6.721 6.721 0 0 1-3.17.789 6.721 6.721 0 0 1-3.168-.789 3.376 3.376 0 0 1 6.338 0Z"/></svg>
-          <span class="inline-block bg-orange/12 text-orange text-xs font-semibold uppercase tracking-wider px-3 py-1 rounded-md mb-4" data-i18n="topics.t7.tag">CRM</span>
-          <h3 class="font-display font-bold text-lg text-white mb-2" data-i18n="topics.t7.title">Ops Agent</h3>
-          <p class="text-ghost text-sm" data-i18n="topics.t7.desc">Contacts, deals, and tasks update themselves. When a lead fills a form, the CRM record is created, tagged, and assigned — before anyone even checks their inbox.</p>
-        </div>
-
-        <!-- Topic 8 — Reporting Agent -->
-        <div class="topic-card bg-navy-light rounded-xl p-6 reveal reveal-delay-4">
-          <svg class="w-6 h-6 text-orange mb-3" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V8.625ZM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V4.125Z"/></svg>
-          <span class="inline-block bg-orange/12 text-orange text-xs font-semibold uppercase tracking-wider px-3 py-1 rounded-md mb-4" data-i18n="topics.t8.tag">Reporting</span>
-          <h3 class="font-display font-bold text-lg text-white mb-2" data-i18n="topics.t8.title">Reporting Agent</h3>
-          <p class="text-ghost text-sm" data-i18n="topics.t8.desc">Every week or month, a report on your key metrics lands in your inbox automatically. No manual exports, no spreadsheet juggling.</p>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- ABOUT SECTION -->
-  <section id="about" class="py-20 md:py-28 px-6 md:px-12 bg-navy border-t border-orange/10">
-    <div class="max-w-5xl mx-auto">
+  <section id="about" class="relative py-20 md:py-28 px-6 md:px-12 border-t border-orange/10">
+    <div class="relative z-10 max-w-5xl mx-auto">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 items-center">
 
         <!-- Photo -->
@@ -769,6 +689,7 @@
       </div>
     </div>
   </section>
+  </div>
 
   <!-- FOOTER -->
   <footer class="bg-navy border-t border-white/5 px-6 py-6">
@@ -1137,7 +1058,7 @@
 
       var PRE = [
         'precision highp float;',
-        'uniform vec2 uRes;uniform float uTime;uniform vec2 uMouse;uniform float uIntro;',
+        'uniform vec2 uRes;uniform float uTime;uniform vec2 uMouse;uniform float uIntro;uniform float uZoom;',
         'const vec3 NAVY=vec3(0.051,0.122,0.235);',
         'const vec3 NAVYLT=vec3(0.078,0.157,0.286);',
         'const vec3 NAVYMD=vec3(0.102,0.204,0.376);',
@@ -1146,7 +1067,7 @@
         'float hash(vec2 p){p=fract(p*vec2(233.34,851.73));p+=dot(p,p+23.45);return fract(p.x*p.y);}',
         'float noise(vec2 p){vec2 i=floor(p);vec2 f=fract(p);vec2 u=f*f*(3.0-2.0*f);float a=hash(i);float b=hash(i+vec2(1,0));float c=hash(i+vec2(0,1));float d=hash(i+vec2(1,1));return mix(mix(a,b,u.x),mix(c,d,u.x),u.y);}',
         'float fbm(vec2 p){float v=0.0;float amp=0.5;mat2 rot=mat2(0.8,0.6,-0.6,0.8);for(int i=0;i<5;i++){v+=amp*noise(p);p=rot*p*2.02;amp*=0.5;}return v;}',
-        'vec2 uvC(){return(gl_FragCoord.xy-0.5*uRes)/min(uRes.x,uRes.y);}',
+        'vec2 uvC(){return(gl_FragCoord.xy-0.5*uRes)/uZoom;}',
         'vec3 tm(vec3 c){return c/(c+vec3(0.85))*1.35;}',
         'vec3 dith(vec3 c,vec2 fc){return c+(hash(fc)-0.5)*(1.4/255.0);}'
       ].join('');
@@ -1202,6 +1123,7 @@
       var uTime  = gl.getUniformLocation(prog, 'uTime');
       var uMouse = gl.getUniformLocation(prog, 'uMouse');
       var uIntro = gl.getUniformLocation(prog, 'uIntro');
+      var uZoom  = gl.getUniformLocation(prog, 'uZoom');
 
       var W = 0, H = 0;
       var DPR = Math.min(window.devicePixelRatio || 1, 2);
@@ -1249,6 +1171,10 @@
         gl.uniform1f(uTime, reduceMotion ? 12.0 : elapsed);
         gl.uniform2f(uMouse, mx, my);
         gl.uniform1f(uIntro, reduceMotion ? 1.0 : Math.min(elapsed / 2.2, 1.0));
+        // Pin the noise scale to one viewport height, not the full (now
+        // multi-section-tall) canvas — otherwise the pattern zooms out and
+        // reads as coarser the more sections the canvas is stretched across.
+        gl.uniform1f(uZoom, Math.min(W, window.innerHeight * DPR));
         gl.drawArrays(gl.TRIANGLES, 0, 3);
         requestAnimationFrame(frame);
       }

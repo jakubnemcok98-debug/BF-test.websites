@@ -27,18 +27,6 @@ window.translations.cs = {
     tagline: 'Stačí 30 minut. Zbytek je na nás.',
     cta: 'Chci konzultaci zdarma →'
   },
-  topics: {
-    label:   'Co stavíme',
-    heading: 'Poznejte naše AI agenty',
-    t1: { tag: 'Email',   title: 'E-mailový agent',     desc: 'Přečte váš inbox, roztřídí e-maily do složek, napíše odpověď vaším stylem a upozorní vás jen na to, co vyžaduje vás. Inbox funguje sám.' },
-    t2: { tag: 'RAG',     title: 'Znalostní agent',     desc: 'Čte vaše dokumenty, ceníky nebo znalostní bázi a odpovídá z nich — ne z domněnek. Vždy aktuální, bez vymýšlení. Napojíme ho na WhatsApp, Telegram nebo přímo na váš web.' },
-    t3: { tag: 'Sales',   title: 'Obchodní agent',      desc: 'Najde firmy, které odpovídají vašemu ideálnímu zákazníkovi, obohatí data a pošle personalizovanou první zprávu. Dostanete seznam leadů — bez jediného kliknutí.' },
-    t4: { tag: 'Obsah',   title: 'Agent pro obsah',     desc: 'Vybere téma, nastuduje ho, napíše příspěvek a zveřejní ho na vašich kanálech — podle plánu. Vaše online přítomnost běží dál, zatímco vy řídíte firmu.' },
-    t5: { tag: 'Data',    title: 'Datový agent',        desc: 'Každé ráno automaticky stáhne ceny, inzeráty nebo kontakty z webů a uloží je čistě do tabulky nebo databáze. Vždy aktuální, bez ručního procházení.' },
-    t6: { tag: 'Voice AI', title: 'Hlasový agent',      desc: 'AI agent, který volá vašim leadům, přijímá příchozí dotazy a domlouvá schůzky — přirozeným hlasem. Dostupný v jakémkoliv jazyce, nonstop.' },
-    t7: { tag: 'Ops',     title: 'Provozní agent',      desc: 'Kontakty, obchody a úkoly se aktualizují samy. Když lead vyplní formulář, záznam v CRM se vytvoří, označí a přiřadí — dřív než někdo zkontroluje inbox.' },
-    t8: { tag: 'Reporting', title: 'Reportingový agent', desc: 'Každý týden nebo měsíc dostanete přehled klíčových čísel — tržby, leady, výkon kampaní — rovnou do inboxu. Žádné ruční stahování, žádné přepínání tabulek.' }
-  },
   about: {
     label:        'O',
     heading:      'Zakladateli',
