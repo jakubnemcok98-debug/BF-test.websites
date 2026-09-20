@@ -294,7 +294,7 @@
       <img src="../brand_assests/logo.png" alt="Bohemian Flow AI" class="h-11 md:h-12" />
       <span class="hidden sm:block text-xs md:text-sm font-display font-bold uppercase tracking-[0.12em] text-ghost">Bohemian Flow AI</span>
     </div>
-    <button onclick="document.getElementById('form').scrollIntoView({behavior:'smooth'})"
+    <button onclick="openBookingModal()"
       class="hidden sm:inline-flex text-xs md:text-sm font-display font-bold uppercase tracking-wide text-orange border border-orange/40 rounded-full px-4 py-2 hover:bg-orange hover:text-navy hover:shadow-orange hover:-translate-y-0.5 transition-colors" style="transition-property: color, background-color, box-shadow, transform;">
       Chci audit zdarma
     </button>
@@ -326,7 +326,7 @@
       </p>
 
       <div class="reveal reveal-delay-3">
-        <button class="btn-primary" onclick="document.getElementById('form').scrollIntoView({behavior:'smooth'})">
+        <button class="btn-primary" onclick="openBookingModal()">
           <span class="btn-primary-label">Chci bezplatný audit</span>
           <span class="btn-primary-arrow">→</span>
         </button>
@@ -469,67 +469,16 @@
       </div>
 
       <div class="rounded-2xl border border-orange/20 bg-navy-light/40 p-6 md:p-8 reveal reveal-delay-1">
-        <form id="lp-form" onsubmit="handleLpSubmit(event)" novalidate>
-
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-4">
-            <div class="mb-4">
-              <label class="field-label" for="lp-first-name">Jméno <span class="text-orange">*</span></label>
-              <input class="field-input" type="text" id="lp-first-name" name="first_name" placeholder="Jan" required />
-            </div>
-            <div class="mb-4">
-              <label class="field-label" for="lp-last-name">Příjmení</label>
-              <input class="field-input" type="text" id="lp-last-name" name="last_name" placeholder="Novák" />
-            </div>
-          </div>
-
-          <div class="mb-4">
-            <label class="field-label" for="lp-email">E-mail <span class="text-orange">*</span></label>
-            <input class="field-input" type="email" id="lp-email" name="email" placeholder="jan@firma.cz" required />
-          </div>
-
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-4">
-            <div class="mb-4">
-              <label class="field-label" for="lp-phone">Telefon</label>
-              <input class="field-input" type="tel" id="lp-phone" name="phone" placeholder="+420 123 456 789" />
-            </div>
-            <div class="mb-4">
-              <label class="field-label" for="lp-company">Firma</label>
-              <input class="field-input" type="text" id="lp-company" name="company" placeholder="Acme s.r.o." />
-            </div>
-          </div>
-
-          <div class="mb-4">
-            <label class="field-label">Jakého agenta potřebujete?</label>
-            <input type="hidden" id="lp-automate" name="automate" value="" />
-            <div class="chip-group" id="lp-automate-chips">
-              <button type="button" class="chip" data-value="customer-service">Podpora</button>
-              <button type="button" class="chip" data-value="lead-generation">Obchod</button>
-              <button type="button" class="chip" data-value="internal-processes">Provoz</button>
-              <button type="button" class="chip" data-value="marketing-content">Obsah</button>
-              <button type="button" class="chip" data-value="data-reports">Data / reporting</button>
-              <button type="button" class="chip" data-value="not-sure">Nejsem si jistý</button>
-            </div>
-          </div>
-
-          <div class="mb-5">
-            <label class="field-label" for="lp-project">Co vás nejvíc zdržuje? (nepovinné)</label>
-            <textarea class="field-input" id="lp-project" name="project" rows="3" placeholder="Krátce popište proces nebo problém…" style="resize:vertical;"></textarea>
-          </div>
-
-          <div id="lp-error" class="hidden text-red-400 text-sm mb-4"></div>
-
-          <button type="submit" id="lp-submit" class="btn-primary w-full">
-            <span id="lp-submit-text" class="btn-primary-label">Chci bezplatný audit →</span>
-          </button>
-          <p class="text-ghost/60 text-xs text-center mt-4">Ozveme se vám do 24 hodin. Žádný spam.</p>
-          <p class="text-ghost/60 text-xs text-center mt-2">Údaje použijeme jen k vyřízení vaší poptávky. Podrobnosti v <a href="zasady-ochrany-soukromi.html" class="underline underline-offset-2 hover:text-orange transition-colors">Zásadách ochrany soukromí</a>.</p>
-        </form>
-
-        <div id="lp-success" class="hidden text-center py-6">
-          <div class="text-orange text-5xl mb-4">✓</div>
-          <h3 class="font-display font-bold text-white text-xl mb-3">Jste na seznamu!</h3>
-          <p class="text-ghost">Ozveme se vám do 24 hodin a domluvíme termín bezplatného auditu.</p>
-        </div>
+        <ul class="space-y-3 mb-8 text-ghost text-base">
+          <li class="flex items-start gap-3"><span class="text-orange font-bold leading-6">✓</span><span>Vyberete si termín z mého kalendáře — žádné psaní e-mailů sem a tam.</span></li>
+          <li class="flex items-start gap-3"><span class="text-orange font-bold leading-6">✓</span><span>30 minut online, projdeme, co u vás jde automatizovat.</span></li>
+          <li class="flex items-start gap-3"><span class="text-orange font-bold leading-6">✓</span><span>Do 48 hodin dostanete konkrétní návrh. Bez závazků.</span></li>
+        </ul>
+        <button type="button" class="btn-primary w-full" onclick="openBookingModal()">
+          <span class="btn-primary-label">Vybrat termín auditu</span>
+          <span class="btn-primary-arrow">→</span>
+        </button>
+        <p class="text-ghost/60 text-xs text-center mt-4">Rezervaci zajišťuje Cal.com. Údaje použijeme jen k vyřízení vaší poptávky. Podrobnosti v <a href="zasady-ochrany-soukromi.html" class="underline underline-offset-2 hover:text-orange transition-colors">Zásadách ochrany soukromí</a>.</p>
       </div>
     </div>
   </section>
@@ -558,7 +507,28 @@
   </div>
 
   <script>
-    const LP_WEBHOOK_URL = 'https://n8n.bohemianflowai.com/webhook/web-lead';
+    // ---- cal.com booking modal (same event and look as the main site) -------
+    // This snippet only queues calls. embed.js is downloaded on the first Cal() call,
+    // so nothing is requested from cal.com until the visitor clicks a booking button.
+    (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); } else p(cal, ar); return; } p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+    const CAL_LINK = 'jakub-nemcok-pigzft/objevny-hovor';
+    let calInitialised = false;
+
+    function openBookingModal() {
+      if (!calInitialised) {
+        Cal('init', { origin: 'https://cal.com' });
+        // The booking happens inside cal.com's iframe, so this embed event is the only way the
+        // page learns it succeeded. Fires Meta "Lead" like the old form did, and only with consent.
+        Cal('on', {
+          action: 'bookingSuccessful',
+          callback: function () {
+            if (readConsent() === 'granted' && typeof fbq === 'function') { fbq('track', 'Lead'); }
+          }
+        });
+        calInitialised = true;
+      }
+      Cal('modal', { calLink: CAL_LINK, config: { layout: 'month_view', theme: 'dark' } });
+    }
 
     // ---- Cookie consent + Meta Pixel -------------------------------------
     const META_PIXEL_ID = '2238515046928118';
@@ -657,83 +627,8 @@
       }, { threshold: 0.15 });
       reveals.forEach(el => revealObserver.observe(el));
 
-      // Multi-select agent-type chips
-      document.getElementById('lp-automate-chips').addEventListener('click', function (e) {
-        const chip = e.target.closest('.chip');
-        if (!chip) return;
-        chip.classList.toggle('selected');
-        const selected = Array.from(document.querySelectorAll('#lp-automate-chips .chip.selected'))
-          .map(function (c) { return c.dataset.value; });
-        document.getElementById('lp-automate').value = selected.join(',');
-      });
     });
 
-    async function handleLpSubmit(e) {
-      e.preventDefault();
-
-      const form = document.getElementById('lp-form');
-      const submitBtn = document.getElementById('lp-submit');
-      const submitText = document.getElementById('lp-submit-text');
-      const errorEl = document.getElementById('lp-error');
-
-      const firstName = document.getElementById('lp-first-name').value.trim();
-      const email = document.getElementById('lp-email').value.trim();
-
-      if (!firstName || !email) {
-        errorEl.textContent = 'Vyplňte prosím jméno a e-mail.';
-        errorEl.classList.remove('hidden');
-        return;
-      }
-
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(email)) {
-        errorEl.textContent = 'Zadejte prosím platnou e-mailovou adresu.';
-        errorEl.classList.remove('hidden');
-        return;
-      }
-
-      errorEl.classList.add('hidden');
-
-      const projectRaw = document.getElementById('lp-project').value.trim();
-      const project = projectRaw
-        ? '[Landing page – placená reklama] ' + projectRaw
-        : 'Lead ze vstupní stránky placené reklamy (Meta Ads), bez popisu.';
-
-      const payload = {
-        first_name: firstName,
-        last_name: document.getElementById('lp-last-name').value.trim(),
-        email: email,
-        phone: document.getElementById('lp-phone').value.trim(),
-        company: document.getElementById('lp-company').value.trim(),
-        automate: document.getElementById('lp-automate').value,
-        project: project,
-        lang: 'cs',
-        submitted_at: new Date().toLocaleDateString('en-GB').split('/').join('.')
-      };
-
-      submitText.textContent = 'Odesílám…';
-      submitBtn.disabled = true;
-
-      try {
-        const res = await fetch(LP_WEBHOOK_URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        });
-        if (!res.ok) throw new Error('Server error: ' + res.status);
-
-        // Fires only after n8n accepted the lead (failed submits aren't counted) and only with consent
-        if (readConsent() === 'granted' && typeof fbq === 'function') { fbq('track', 'Lead'); }
-
-        form.style.display = 'none';
-        document.getElementById('lp-success').classList.remove('hidden');
-      } catch (err) {
-        errorEl.textContent = 'Něco se pokazilo. Zkuste to prosím znovu nebo nám napište přímo.';
-        errorEl.classList.remove('hidden');
-        submitText.textContent = 'Chci bezplatný audit →';
-        submitBtn.disabled = false;
-      }
-    }
   </script>
 </body>
 </html>
