@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zásady ochrany soukromí — Bohemian Flow AI</title>
+  <meta name="description" content="Jak Bohemian Flow AI zpracovává osobní údaje z kontaktního formuláře a k čemu slouží cookies a Meta Pixel." />
+  <meta name="robots" content="noindex, nofollow" />
+
+  <!-- Google Fonts (same pair as the landing page; disclosed in section 5) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --navy:       #0D1F3C;
+      --navy-light: #142849;
+      --orange:     #F5A800;
+      --white:      #FFFFFF;
+      --ghost:      #EBEBEB;
+      --ghost-dim:  rgba(235, 235, 235, 0.72);
+      --line:       rgba(255, 255, 255, 0.1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      color: var(--ghost);
+      font-family: Inter, system-ui, sans-serif;
+      font-size: 1rem;
+      line-height: 1.7;
+      background-color: var(--navy);
+      background-image:
+        radial-gradient(ellipse 70% 40% at 15% 0%, rgba(245, 168, 0, 0.09), transparent 70%),
+        radial-gradient(ellipse 60% 50% at 90% 10%, rgba(26, 52, 96, 0.9), transparent 70%);
+      background-repeat: no-repeat;
+    }
+
+    .wrap { max-width: 46rem; margin: 0 auto; padding: 0 16px; }
+
+    header.top {
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--line);
+    }
+    header.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+    header.top img { height: 2.25rem; display: block; }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: var(--white);
+      font-weight: 600;
+      font-size: 0.8rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    /* Same as the landing page: icon only on small screens */
+    @media (max-width: 479px) { .brand span { display: none; } }
+
+    a { color: var(--orange); text-underline-offset: 3px; }
+    a:hover { text-decoration-thickness: 2px; }
+    a:focus-visible { outline: 2px solid var(--orange); outline-offset: 3px; border-radius: 3px; }
+
+    .back {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: Rajdhani, sans-serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      letter-spacing: 0.02em;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .back:hover { transform: translateX(-3px); }
+    .back:active { transform: translateX(0) scale(0.98); }
+
+    main { padding: clamp(2.5rem, 6vw, 4.5rem) 0 4rem; }
+
+    h1 {
+      font-family: Rajdhani, sans-serif;
+      font-weight: 700;
+      font-size: clamp(2.1rem, 5vw, 3.1rem);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: var(--white);
+      margin: 0 0 0.75rem;
+    }
+    .meta { color: var(--ghost-dim); font-size: 0.9rem; margin: 0 0 2.5rem; }
+
+    h2 {
+      font-family: Rajdhani, sans-serif;
+      font-weight: 700;
+      font-size: 1.55rem;
+      letter-spacing: -0.01em;
+      color: var(--orange);
+      margin: 2.75rem 0 0.75rem;
+    }
+    h3 { color: var(--white); font-size: 1rem; font-weight: 600; margin: 1.5rem 0 0.4rem; }
+
+    p { margin: 0 0 1rem; }
+    ul { margin: 0 0 1rem; padding-left: 1.25rem; }
+    li { margin-bottom: 0.4rem; }
+    strong { color: var(--white); font-weight: 600; }
+
+    .card {
+      background: rgba(20, 40, 73, 0.7);
+      border: 1px solid rgba(245, 168, 0, 0.22);
+      border-radius: 14px;
+      padding: 1.1rem 1.25rem;
+      box-shadow: 0 14px 40px rgba(6, 14, 30, 0.55), 0 2px 8px rgba(245, 168, 0, 0.06);
+      margin: 0 0 1rem;
+    }
+    .card p:last-child, .card ul:last-child { margin-bottom: 0; }
+
+    .table-scroll { overflow-x: auto; margin: 0 0 1rem; -webkit-overflow-scrolling: touch; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.9rem; min-width: 34rem; }
+    th, td { text-align: left; vertical-align: top; padding: 0.65rem 0.75rem; border-bottom: 1px solid var(--line); }
+    th {
+      color: var(--white);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      border-bottom-color: rgba(245, 168, 0, 0.3);
+    }
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.85em;
+      background: rgba(255, 255, 255, 0.07);
+      padding: 0.1em 0.4em;
+      border-radius: 4px;
+    }
+
+    footer.bottom {
+      border-top: 1px solid var(--line);
+      padding: 1.75rem 0 2.5rem;
+      color: var(--ghost-dim);
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="top">
+    <div class="wrap">
+      <span class="brand"><img src="../brand_assests/logo.png" alt="" /><span>Bohemian Flow AI</span></span>
+      <a class="back" href="lp-ai-agents.html"><span aria-hidden="true">←</span> Zpět na stránku</a>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <h1>Zásady ochrany soukromí</h1>
+      <p class="meta">Účinné od 20.09.2026</p>
+
+      <p>Tady vysvětlujeme, jaké osobní údaje o vás shromažďujeme, když vyplníte formulář na této stránce nebo když nám dáte souhlas s cookies, k čemu je používáme a jaká práva máte.</p>
+
+      <h2>1. Kdo údaje zpracovává</h2>
+      <div class="card">
+        <p><strong>Jakub Nemčok</strong>, osoba samostatně výdělečně činná<br />
+        podnikající pod značkou Bohemian Flow AI<br />
+        IČO: <strong>23047178</strong><br />
+        E-mail: <a href="mailto:jakub@bohemianflowai.com">jakub@bohemianflowai.com</a></p>
+        <p>Místo podnikání je uvedeno ve veřejném rejstříku ekonomických subjektů (<a href="https://ares.gov.cz/" rel="noopener">ARES</a>) pod výše uvedeným IČO.</p>
+      </div>
+      <p>Jsem správcem vašich osobních údajů (dále jen „správce“). V případě dotazů k ochraně osobních údajů mi napište na výše uvedený e-mail.</p>
+
+      <h2>2. Formulář „Chci bezplatný audit“</h2>
+      <h3>Jaké údaje sbíráme</h3>
+      <ul>
+        <li>jméno (povinné) a příjmení,</li>
+        <li>e-mail (povinný) a telefon,</li>
+        <li>název firmy,</li>
+        <li>jakého AI agenta potřebujete a co vás nejvíce zdržuje (volný text),</li>
+        <li>jazyk stránky, datum odeslání a označení, že poptávka přišla z této reklamní stránky.</li>
+      </ul>
+      <p>K vyřízení poptávky jsou nutné jméno a e-mail, bez nich formulář odeslat nelze. Ostatní údaje jsou dobrovolné, ale pomohou mi připravit audit.</p>
+      <p>Do volného textu prosím nepište citlivé údaje (například o zdraví) ani osobní údaje třetích osob.</p>
+
+      <h3>Proč a na jakém právním základě</h3>
+      <p>Údaje použijeme k tomu, abychom vám odpověděli, domluvili bezplatný audit a případně připravili nabídku. Právním základem je provedení opatření před uzavřením smlouvy na vaši žádost (čl. 6 odst. 1 písm. b) GDPR).</p>
+
+      <h3>Jak dlouho údaje uchováváme</h3>
+      <p>Po dobu vyřizování vaší poptávky a poté nejdéle <strong>3 roky</strong> od posledního kontaktu. Pokud se spolu nedohodneme na spolupráci a požádáte o smazání, údaje smažeme dříve. Při uzavření smlouvy se údaje uchovávají po dobu, kterou vyžadují právní předpisy (například daňové a účetní).</p>
+
+      <h2>3. Cookies a Meta Pixel</h2>
+      <p>Na stránce používáme <strong>Meta Pixel</strong> od společnosti Meta Platforms Ireland Limited. Slouží k měření, kolik lidí z naší reklamy na Facebooku a Instagramu nás kontaktovalo, a k lepšímu zacílení reklamy. <strong>Načte se pouze tehdy, když kliknete na „Přijmout“.</strong> Když zvolíte „Odmítnout“, na Facebook se neodešlou žádná data a žádné cookies společnosti Meta se neuloží.</p>
+
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr><th>Název</th><th>K čemu slouží</th><th>Kdo ho nastavuje</th><th>Platnost</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>bf_cookie_consent</code></td>
+              <td>Zapamatuje si, jak jste se rozhodli u cookies (volba a datum). Nutné pro fungování lišty.</td>
+              <td>Tato stránka (úložiště prohlížeče)</td>
+              <td>Dokud ho nesmažete</td>
+            </tr>
+            <tr>
+              <td><code>_fbp</code>, <code>_fbc</code></td>
+              <td>Meta Pixel: rozpoznání prohlížeče a reklamního kliknutí pro měření reklamy.</td>
+              <td>Meta (jen po souhlasu)</td>
+              <td>Obvykle až 90 dní (určuje Meta)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>Po souhlasu Meta Pixel zaznamenává mimo jiné vaši IP adresu, údaje o prohlížeči, zobrazení stránky a odeslání formuláře. Právním základem je váš souhlas (čl. 6 odst. 1 písm. a) GDPR). Za zpracování těchto údajů ve společnosti Meta odpovídá Meta Platforms Ireland Limited, podrobnosti najdete v jejích <a href="https://www.facebook.com/privacy/policy/" rel="noopener">zásadách ochrany soukromí</a>.</p>
+
+      <h3>Jak souhlas odvolat</h3>
+      <p>Na stránce s formulářem klikněte v patičce na <strong>Nastavení cookies</strong> a zvolte „Odmítnout“. Pixel se přestane načítat a cookies společnosti Meta uložené touto stránkou se pokusím odstranit. Můžete je také smazat ručně v nastavení prohlížeče. Odvolání souhlasu nemá vliv na zákonnost zpracování před jeho odvoláním.</p>
+
+      <h2>4. Komu údaje předáváme</h2>
+      <p>K údajům z formuláře mám přístup já jako správce. Pro technický provoz využívám tyto kategorie dodavatelů (zpracovatelů), kteří údaje zpracovávají jen podle mých pokynů:</p>
+      <ul>
+        <li>poskytovatel hostingu serveru, na kterém běží automatizace přijímající formulář,</li>
+        <li>poskytovatel cloudových nástrojů, v nichž vedu evidenci poptávek a kontaktů,</li>
+        <li>poskytovatel nástrojů umělé inteligence, které používám při zpracování poptávek,</li>
+        <li>poskytovatel hostingu této stránky.</li>
+      </ul>
+      <p>Údaje neprodávám a nepředávám je dalším osobám k jejich vlastním marketingovým účelům. Konkrétní dodavatele vám sdělím na vyžádání e-mailem.</p>
+      <p><strong>Meta Platforms Ireland Limited</strong> není můj zpracovatel. Pokud dáte souhlas s cookies, Meta Pixel předává údaje společnosti Meta, která je využívá i pro vlastní účely. Za toto zpracování odpovídáme jako <strong>společní správci</strong> (čl. 26 GDPR). Podstatu ujednání mezi mnou a společností Meta najdete v jejím <a href="https://www.facebook.com/legal/controller_addendum" rel="noopener">Dodatku pro správce</a>. Bez vašeho souhlasu s cookies se Metě žádné údaje nepředávají.</p>
+      <p>Někteří z uvedených dodavatelů sídlí nebo zpracovávají údaje mimo Evropský hospodářský prostor, zejména v USA. Předání probíhá na základě rozhodnutí Evropské komise o odpovídající ochraně (EU–US Data Privacy Framework) nebo standardních smluvních doložek. Kopii použitých záruk vám na požádání poskytnu.</p>
+
+      <h2>5. Technické údaje při návštěvě stránky</h2>
+      <p>Když stránku otevřete, váš prohlížeč si z technických důvodů stáhne některé části od třetích stran: písma od <strong>Google Fonts</strong> a stylovací knihovnu od <strong>Tailwind CSS</strong> (CDN). Tyto služby tím vidí vaši IP adresu a údaje o prohlížeči. Děje se to už před volbou u cookies, protože bez těchto prvků by se stránka nezobrazila správně. Právním základem je oprávněný zájem správce na funkčním a přehledném zobrazení webu (čl. 6 odst. 1 písm. f) GDPR). Hosting stránky (Vercel) může běžně zaznamenávat technické logy s IP adresou. Proti tomuto zpracování můžete vznést námitku (viz bod 7).</p>
+
+      <h2>6. Automatizované rozhodování</h2>
+      <p>Na základě vašich údajů neprobíhá automatizované rozhodování s právními účinky ani profilování z mé strany. V rámci reklamní sítě Meta může docházet k profilování pro účely zobrazování reklam, ale pouze pokud jste dali souhlas s cookies.</p>
+
+      <h2>7. Vaše práva</h2>
+      <p>Máte právo:</p>
+      <ul>
+        <li>na <strong>přístup</strong> k vašim údajům,</li>
+        <li>na jejich <strong>opravu</strong>,</li>
+        <li>na <strong>výmaz</strong> („právo být zapomenut“),</li>
+        <li>na <strong>omezení</strong> zpracování,</li>
+        <li>na <strong>přenositelnost</strong> údajů,</li>
+        <li>vznést <strong>námitku</strong> proti zpracování založenému na oprávněném zájmu,</li>
+        <li><strong>odvolat souhlas</strong> kdykoli, aniž by to ovlivnilo dřívější zpracování.</li>
+      </ul>
+      <p>Své právo uplatníte e-mailem na <a href="mailto:jakub@bohemianflowai.com">jakub@bohemianflowai.com</a>. Odpovím vám do jednoho měsíce.</p>
+      <p>Pokud se domníváte, že s vašimi údaji nakládám v rozporu s právními předpisy, můžete podat stížnost u dozorového úřadu: <strong>Úřad pro ochranu osobních údajů</strong>, Pplk. Sochora 27, 170 00 Praha 7, <a href="https://uoou.gov.cz/" rel="noopener">uoou.gov.cz</a>.</p>
+
+      <h2>8. Změny těchto zásad</h2>
+      <p>Tyto zásady mohu upravit, například když přidáme nový nástroj. Aktuální znění bude vždy na této stránce s datem účinnosti nahoře.</p>
+    </div>
+  </main>
+
+  <footer class="bottom">
+    <div class="wrap">© 2026 Bohemian Flow AI · Jakub Nemčok, IČO 23047178</div>
+  </footer>
+
+</body>
+</html>

@@ -4,7 +4,7 @@ Tracking sheet for standalone landing pages built for paid-ads traffic (Meta/Goo
 
 | Page | Path | Purpose / Angle | Language | Status | Created |
 |---|---|---|---|---|---|
-| AI Agents — general offer | `lp-ai-agents.html` | Meta Ads test, Czech Republic only, general "Custom AI Agents" positioning (all 5 agent types). Trimmed lead form (name + email required only). | CS | Built, not yet live — blocked on Meta Pixel ID | 18.09.2026 |
+| AI Agents — general offer | `lp-ai-agents.html` | Meta Ads test, Czech Republic only, general "Custom AI Agents" positioning (all 5 agent types). Trimmed lead form (name + email required only). | CS | Built. Meta Pixel loads only after cookie consent; privacy policy `zasady-ochrany-soukromi.html` and terms `podminky.html` written (20.09.2026). Form posts straight to the n8n webhook (incl. phone). Not yet live — texts awaiting a lawyer's review, not pushed | 18.09.2026 |
 
 ## Conventions
 
