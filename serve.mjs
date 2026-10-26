@@ -35,6 +35,8 @@ const server = http.createServer((req, res) => {
     if (ext === '.gif') contentType = 'image/gif';
     if (ext === '.svg') contentType = 'image/svg+xml';
     if (ext === '.woff' || ext === '.woff2') contentType = 'font/woff2';
+    if (ext === '.ico') contentType = 'image/x-icon';
+    if (ext === '.webmanifest') contentType = 'application/manifest+json';
 
     res.writeHead(200, { 'Content-Type': contentType });
     res.end(data);
