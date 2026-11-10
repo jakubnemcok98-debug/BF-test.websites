@@ -440,6 +440,20 @@
     const CAL_LINK = 'jakub-nemcok-pigzft/objevny-hovor-meta';
     let calInitialised = false;
 
+    // Campaign labels from the ad link (Meta fills them in: campaign / ad set / ad / platform / placement).
+    // They are passed on to cal.com so each booking can be traced back to its ad. Labels only, no personal data.
+    const TRACKING_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'platform', 'placement'];
+    function readTrackingParams() {
+      const out = {};
+      try {
+        const q = new URLSearchParams(location.search);
+        TRACKING_KEYS.forEach(function (k) { const v = q.get(k); if (v) out[k] = v.slice(0, 120); });
+      } catch (err) {
+        console.warn('Tracking params could not be read:', err);
+      }
+      return out;
+    }
+
     function openBookingModal() {
       if (!calInitialised) {
         Cal('init', { origin: 'https://cal.com' });
@@ -453,7 +467,7 @@
         });
         calInitialised = true;
       }
-      Cal('modal', { calLink: CAL_LINK, config: { layout: 'month_view', theme: 'dark' } });
+      Cal('modal', { calLink: CAL_LINK, config: Object.assign({ layout: 'month_view', theme: 'dark' }, readTrackingParams()) });
     }
 
     // ---- Cookie consent + Meta Pixel -------------------------------------
