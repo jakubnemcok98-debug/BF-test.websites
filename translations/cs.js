@@ -29,9 +29,9 @@ window.translations.cs = {
   },
   about: {
     label:        'O',
-    heading:      'Zakladateli',
+    heading:      'zakladateli',
     subheading:   'Jakub Nemčok',
-    bio:          'Pomáhám firmám nahradit manuální práci AI agenty na míru — aby se váš tým mohl soustředit na to, co skutečně posouvá podnikání kupředu.<br><br>S pozadím v IT infrastruktuře a praktickými zkušenostmi s vývojem AI agentů přináším do každého projektu technickou hloubku i pragmatické myšlení. Sídlím v Praze a pracuji se společnostmi připravenými stavět chytřeji.',
+    bio:          "Pomáhám malým a středním firmám předat AI rutinní práci — odpovídání na dotazy, nabídky, rezervace. Vašemu týmu tak zůstane čas na práci, která potřebuje člověka.<br><br>Mám zkušenosti z IT infrastruktury a stavím AI agenty i automatizace pro skutečný provoz, ne na ukázku. Neprodávám technologii, ale ušetřený čas. Proto stavím jen to, co se vám vyplatí, a když něco nedává smysl, řeknu vám to dřív, než za to zaplatíte.",
     cta_email:    'Napsat e-mail',
     cta_linkedin: 'LinkedIn'
   },
