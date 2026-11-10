@@ -1,6 +1,6 @@
 import puppeteer from 'puppeteer';
 
-const url = 'http://localhost:3000/landing-pages/lp-ai-agents.html';
+const url = 'http://localhost:3000/landing-pages/lp-ai-konzultace.html';
 const viewports = [
   { name: 'mobile', width: 375, height: 812 },
   { name: 'desktop', width: 1440, height: 900 },

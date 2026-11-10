@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="cs" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bohemian Flow AI — Chcete AI, ale nevíte co přesně?</title>
+  <meta name="description" content="Bezplatná 30minutová konzultace: zjistíme, kde vám AI ve firmě reálně ušetří čas, a kde je to zbytečné." />
+  <meta name="robots" content="noindex, nofollow" />
+
+  <!-- Meta Pixel (dataset "Bohemian Flow – Web") is deliberately NOT in <head>:
+       marketing cookies need opt-in consent in CZ/EU, so loadMetaPixel() in the
+       consent script at the bottom loads it only after the visitor clicks "Přijmout".
+       No <noscript> pixel either — it would fire without consent. -->
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&family=Exo+2:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy:   '#0D1F3C',
+            'navy-light': '#142849',
+            'navy-mid': '#1a3460',
+            orange: '#F5A800',
+            ghost:  '#EBEBEB',
+          },
+          fontFamily: {
+            display: ['Rajdhani', 'Exo 2', 'sans-serif'],
+            body:    ['Inter', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+
+  <style>
+    :root {
+      --navy:        #0D1F3C;
+      --navy-light:  #142849;
+      --navy-mid:    #1a3460;
+      --orange:      #F5A800;
+      --orange-glow: rgba(245,168,0,0.18);
+      --white:       #FFFFFF;
+      --ghost:       #EBEBEB;
+      --ghost-dim:   rgba(235,235,235,0.45);
+
+      --text-hero:    clamp(2.5rem, 6.5vw, 4.75rem);
+      --text-section: clamp(1.85rem, 3.6vw, 2.75rem);
+
+      --section-y:   clamp(4rem, 8vw, 7rem);
+      --container:   72rem;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes glowPulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(245,168,0,0), 0 4px 16px rgba(245,168,0,0.25); }
+      50%       { box-shadow: 0 0 24px 8px rgba(245,168,0,0.25), 0 4px 16px rgba(245,168,0,0.35); }
+    }
+
+    @keyframes driftGlow {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50%       { transform: translate(3%, -4%) scale(1.08); }
+    }
+
+    .reveal { opacity: 0; transform: translateY(28px); }
+    .reveal.visible { animation: fadeUp 0.65s cubic-bezier(0.22,1,0.36,1) forwards; }
+    .reveal-delay-1 { animation-delay: 0.08s; }
+    .reveal-delay-2 { animation-delay: 0.16s; }
+    .reveal-delay-3 { animation-delay: 0.24s; }
+    .reveal-delay-4 { animation-delay: 0.32s; }
+    .reveal-delay-5 { animation-delay: 0.4s; }
+
+    .shadow-navy-md { box-shadow: 0 6px 24px rgba(13,31,60,0.7), 0 2px 8px rgba(245,168,0,0.06); }
+    .shadow-orange  { box-shadow: 0 8px 32px rgba(245,168,0,0.22), 0 2px 8px rgba(245,168,0,0.1); }
+
+    .text-gradient-orange {
+      background: linear-gradient(135deg, #F5A800 0%, #ffcc55 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    body {
+      background-color: var(--navy);
+      color: white;
+      font-family: Inter, sans-serif;
+    }
+
+    * { border-color: rgba(255, 255, 255, 0.1); }
+
+    .btn-primary {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6em;
+      overflow: hidden;
+      isolation: isolate;
+      background: linear-gradient(155deg, #ffcc55 0%, var(--orange) 38%, #d98c00 100%);
+      color: var(--navy);
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      padding: 1.05rem 2.5rem;
+      border-radius: 999px;
+      font-family: Rajdhani, sans-serif;
+      font-size: 1.08rem;
+      border: 1px solid rgba(255,255,255,0.35);
+      cursor: pointer;
+      box-shadow:
+        0 2px 4px rgba(217,140,0,0.4),
+        0 10px 28px rgba(245,168,0,0.28),
+        0 1px 0 rgba(255,255,255,0.5) inset;
+      transition: transform 0.35s cubic-bezier(0.22,1,0.36,1), box-shadow 0.35s cubic-bezier(0.22,1,0.36,1);
+      animation: glowPulse 3.2s ease-in-out infinite;
+    }
+    /* Diagonal sheen sweep on hover */
+    .btn-primary::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(115deg, transparent 40%, rgba(255,255,255,0.55) 50%, transparent 60%);
+      transform: translateX(-120%);
+      transition: transform 0.7s cubic-bezier(0.22,1,0.36,1);
+      z-index: 1;
+    }
+    .btn-primary:hover::after { transform: translateX(120%); }
+    .btn-primary:hover {
+      transform: translateY(-3px) scale(1.015);
+      box-shadow:
+        0 2px 6px rgba(217,140,0,0.45),
+        0 16px 40px rgba(245,168,0,0.4),
+        0 1px 0 rgba(255,255,255,0.6) inset;
+    }
+    .btn-primary:active { transform: translateY(-1px) scale(0.99); }
+    .btn-primary:focus-visible { outline: 2px solid var(--orange); outline-offset: 3px; }
+    .btn-primary:disabled { opacity: 0.6; cursor: not-allowed; animation: none; transform: none; }
+    .btn-primary-label, .btn-primary-arrow { position: relative; z-index: 2; }
+    .btn-primary-arrow { display: inline-block; transition: transform 0.35s cubic-bezier(0.22,1,0.36,1); }
+    .btn-primary:hover .btn-primary-arrow { transform: translateX(4px); }
+
+    .card-hover {
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: transform 0.3s cubic-bezier(0.22,1,0.36,1), border-color 0.3s cubic-bezier(0.22,1,0.36,1), box-shadow 0.3s cubic-bezier(0.22,1,0.36,1);
+    }
+    .card-hover:hover {
+      border-color: rgba(245,168,0,0.35);
+      transform: translateY(-5px);
+      box-shadow: 0 6px 24px rgba(13,31,60,0.7), 0 2px 8px rgba(245,168,0,0.08);
+    }
+
+    /* Form */
+    .field-input {
+      width: 100%;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(245,168,0,0.25);
+      border-radius: 8px;
+      padding: 12px 14px;
+      color: var(--white);
+      font-family: Inter, sans-serif;
+      font-size: 0.95rem;
+      transition: border-color 0.2s, background 0.2s;
+      outline: none;
+    }
+    .field-input::placeholder { color: var(--ghost); opacity: 0.55; }
+    .field-input:focus { border-color: var(--orange); background: rgba(255,255,255,0.08); }
+    .field-label {
+      display: block;
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--ghost);
+      margin-bottom: 6px;
+    }
+    .chip-group { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip {
+      padding: 7px 15px;
+      border-radius: 20px;
+      border: 1px solid rgba(245,168,0,0.35);
+      background: rgba(255,255,255,0.04);
+      color: var(--ghost);
+      font-family: Inter, sans-serif;
+      font-size: 0.88rem;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+    }
+    .chip:hover { background: rgba(245,168,0,0.15); color: var(--white); border-color: var(--orange); }
+    .chip:focus-visible { outline: 2px solid var(--orange); outline-offset: 2px; }
+    .chip.selected { background: var(--orange); color: #0D1F3C; border-color: var(--orange); font-weight: 600; }
+
+    /* Cookie consent bar — floating layer above the page (z-50) */
+    @keyframes cookieIn {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .cookie-banner {
+      position: fixed;
+      left: 16px;
+      right: 16px;
+      bottom: 16px;
+      z-index: 50;
+      max-width: 46rem;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      padding: 1.1rem 1.25rem;
+      border-radius: 16px;
+      background: rgba(20, 40, 73, 0.96);
+      border: 1px solid rgba(245, 168, 0, 0.28);
+      box-shadow: 0 18px 48px rgba(6, 14, 30, 0.75), 0 2px 10px rgba(245, 168, 0, 0.1);
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+      animation: cookieIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+    .cookie-banner[hidden] { display: none; }
+    /* Extra room at the page bottom so the fixed bar never hides the footer links */
+    body.cookie-open { padding-bottom: 15rem; }
+    @media (min-width: 640px) { body.cookie-open { padding-bottom: 10rem; } }
+    .cookie-title {
+      font-family: Rajdhani, sans-serif;
+      font-weight: 700;
+      font-size: 1.15rem;
+      letter-spacing: 0.02em;
+      color: var(--white);
+      margin-bottom: 0.2rem;
+    }
+    .cookie-text { font-size: 0.88rem; line-height: 1.6; color: var(--ghost); }
+    .cookie-text a { color: var(--orange); text-decoration: underline; text-underline-offset: 2px; }
+    .cookie-text a:hover { text-decoration-thickness: 2px; }
+    .cookie-text a:focus-visible { outline: 2px solid var(--orange); outline-offset: 2px; border-radius: 2px; }
+    .cookie-actions { display: flex; gap: 0.6rem; flex-shrink: 0; }
+    /* Both buttons share size and weight on purpose: rejecting must be as easy as accepting. */
+    .cookie-btn {
+      flex: 1 1 0;
+      min-width: 8rem;
+      padding: 0.7rem 1.25rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      font-family: Rajdhani, sans-serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      letter-spacing: 0.01em;
+      color: var(--navy);
+      cursor: pointer;
+      transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .cookie-btn:hover { transform: translateY(-2px); }
+    .cookie-btn:active { transform: translateY(0) scale(0.98); }
+    .cookie-btn:focus-visible { outline: 2px solid var(--white); outline-offset: 3px; }
+    .cookie-btn-accept { background: linear-gradient(155deg, #ffcc55 0%, var(--orange) 45%, #d98c00 100%); }
+    .cookie-btn-reject { background: var(--ghost); }
+    @media (min-width: 640px) {
+      .cookie-banner { flex-direction: row; align-items: center; justify-content: space-between; }
+      .cookie-btn { flex: 0 0 auto; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .cookie-banner { animation: none; }
+      .cookie-btn { transition: none; }
+    }
+
+    .step-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--orange);
+      color: var(--navy);
+      font-family: Rajdhani, sans-serif;
+      font-weight: 700;
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+    .hero-q {
+      position: absolute;
+      right: -2%;
+      top: -6%;
+      font-family: Rajdhani, sans-serif;
+      font-weight: 700;
+      font-size: clamp(22rem, 48vw, 44rem);
+      line-height: 1;
+      color: transparent;
+      -webkit-text-stroke: 2px rgba(245,168,0,0.13);
+      pointer-events: none;
+      user-select: none;
+      animation: driftGlow 14s ease-in-out infinite;
+    }
+    @media (max-width: 640px) { .hero-q { right: -30%; top: 10%; opacity: .45; } }
+    @media (prefers-reduced-motion: reduce) { .hero-q, .btn-primary { animation: none; } }
+  </style>
+</head>
+
+<body class="bg-navy text-white font-body">
+
+  <!-- Minimal top bar: logo only, single CTA. No nav links out of the page. -->
+  <header class="relative z-20 px-6 md:px-10 py-5 flex items-center justify-between max-w-[var(--container)] mx-auto">
+    <div class="flex items-center gap-3">
+      <img src="../brand_assests/logo.png" alt="Bohemian Flow AI" class="h-11 md:h-12" />
+      <span class="hidden sm:block text-xs md:text-sm font-display font-bold uppercase tracking-[0.12em] text-ghost">Bohemian Flow AI</span>
+    </div>
+    <button onclick="openBookingModal()"
+      class="hidden sm:inline-flex text-xs md:text-sm font-display font-bold uppercase tracking-wide text-orange border border-orange/40 rounded-full px-4 py-2 hover:bg-orange hover:text-navy hover:shadow-orange hover:-translate-y-0.5 active:translate-y-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-orange focus-visible:outline-offset-2" style="transition-property: color, background-color, box-shadow, transform; transition-duration: .3s;">
+      Chci konzultaci zdarma
+    </button>
+  </header>
+
+  <!-- Ambient background -->
+  <div class="fixed inset-0 pointer-events-none -z-10" style="
+      background:
+        radial-gradient(ellipse 60% 45% at 18% 8%, rgba(245,168,0,0.12), transparent 60%),
+        radial-gradient(ellipse 55% 45% at 85% 30%, rgba(245,168,0,0.08), transparent 60%),
+        var(--navy);">
+  </div>
+
+  <!-- HERO -->
+  <section class="relative px-6 md:px-10 pt-10 md:pt-20 pb-20 md:pb-28 overflow-hidden">
+    <!-- Oversized outlined question mark: the page's single visual motif -->
+    <span aria-hidden="true" class="hero-q">?</span>
+    <div class="relative max-w-3xl mx-auto text-center">
+      <div class="inline-flex items-center gap-2 mb-7 border border-orange/30 rounded-full px-4 py-1.5 reveal">
+        <span class="w-1.5 h-1.5 rounded-full bg-orange"></span>
+        <span class="text-orange font-display font-bold uppercase text-xs tracking-widest">Konzultace zdarma · 30 minut</span>
+      </div>
+
+      <h1 class="font-display font-bold mb-7 reveal reveal-delay-1" style="font-size: var(--text-hero); line-height: 1.04; letter-spacing: -0.03em;">
+        Chcete AI, ale nevíte
+        <span class="text-gradient-orange">co přesně?</span>
+      </h1>
+
+      <p class="text-ghost text-base md:text-xl max-w-xl mx-auto mb-10 reveal reveal-delay-2" style="line-height: 1.7;">
+        Za 30 minut společně zjistíme, kde vám AI ve firmě reálně ušetří čas, a kde je to zbytečné.
+      </p>
+
+      <div class="reveal reveal-delay-3">
+        <button class="btn-primary" onclick="openBookingModal()">
+          <span class="btn-primary-label">Chci konzultaci zdarma</span>
+          <span class="btn-primary-arrow">→</span>
+        </button>
+        <p class="text-ghost/70 text-sm mt-4">Zdarma · 30 minut · Online · Bez závazků</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT YOU GET -->
+  <section class="relative px-6 md:px-10 py-16 md:py-20 border-t border-white/5">
+    <div class="max-w-5xl mx-auto">
+      <h2 class="font-display font-bold text-center mb-12 reveal" style="font-size: var(--text-section); line-height: 1.15; letter-spacing: -0.02em;">
+        Co si z konzultace odnesete
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <div class="card-hover rounded-2xl p-7 bg-navy-light/40 reveal reveal-delay-1">
+          <p class="font-display font-bold text-orange text-3xl mb-3">01</p>
+          <p class="text-white text-base md:text-lg" style="line-height: 1.6;">Kde ve vaší firmě AI dává smysl, a kde ne.</p>
+        </div>
+        <div class="card-hover rounded-2xl p-7 bg-navy-light/40 reveal reveal-delay-2">
+          <p class="font-display font-bold text-orange text-3xl mb-3">02</p>
+          <p class="text-white text-base md:text-lg" style="line-height: 1.6;">Co konkrétně by šlo zautomatizovat jako první.</p>
+        </div>
+        <div class="card-hover rounded-2xl p-7 bg-navy-light/40 reveal reveal-delay-3">
+          <p class="font-display font-bold text-orange text-3xl mb-3">03</p>
+          <p class="text-white text-base md:text-lg" style="line-height: 1.6;">Kolik času a peněz vám to může ušetřit.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOUNDER -->
+  <section class="relative px-6 md:px-10 py-16 md:py-20 border-t border-white/5">
+    <div class="max-w-3xl mx-auto rounded-2xl border border-orange/20 bg-navy-light/40 p-8 md:p-10 reveal">
+      <div class="flex flex-col sm:flex-row items-center gap-7 md:gap-9 text-center sm:text-left">
+        <div class="relative flex-shrink-0">
+          <div class="absolute inset-0 rounded-full blur-xl opacity-40" style="background: radial-gradient(circle, rgba(245,168,0,0.6), transparent 70%);"></div>
+          <img src="../brand_assests/jakub.jpg" alt="Jakub Nemčok" class="relative w-32 h-32 sm:w-36 sm:h-36 rounded-full object-cover border-2 border-orange/50 shadow-orange" />
+        </div>
+        <div>
+          <p class="text-orange font-display font-semibold uppercase tracking-widest text-xs mb-2">S kým budete mluvit</p>
+          <p class="text-white font-display font-bold text-xl md:text-2xl mb-2">Jakub Nemčok</p>
+          <p class="text-ghost text-sm md:text-base" style="line-height: 1.7;">
+            Zakladatel Bohemian Flow AI, Praha. Pomáhám malým firmám zjistit, kde jim AI opravdu pomůže, a pak to i postavit. Konzultaci vedu osobně.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section id="form" class="relative px-6 md:px-10 py-20 md:py-28 border-t border-white/5">
+    <div class="max-w-xl mx-auto text-center reveal">
+      <h2 class="font-display font-bold mb-4" style="font-size: var(--text-section); line-height: 1.15; letter-spacing: -0.02em;">Vyberte si termín</h2>
+      <p class="text-ghost text-base md:text-lg mb-9" style="line-height: 1.7;">30 minut online. Žádné psaní e-mailů sem a tam, termín si zvolíte rovnou v kalendáři.</p>
+      <button type="button" class="btn-primary" onclick="openBookingModal()">
+        <span class="btn-primary-label">Vybrat termín konzultace</span>
+        <span class="btn-primary-arrow">→</span>
+      </button>
+      <p class="text-ghost/60 text-xs mt-6">Rezervaci zajišťuje Cal.com. Údaje použijeme jen k vyřízení vaší poptávky. Podrobnosti v <a href="zasady-ochrany-soukromi.html" class="underline underline-offset-2 hover:text-orange transition-colors">Zásadách ochrany soukromí</a>.</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="relative px-6 md:px-10 py-10 border-t border-white/5">
+    <div class="max-w-[var(--container)] mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-ghost/70 text-sm">
+      <div class="flex items-center gap-2">
+        <img src="../brand_assests/logo.png" alt="Bohemian Flow AI" class="h-8" />
+        <span>Bohemian Flow AI</span>
+      </div>
+      <div>© 2026 Bohemian Flow AI · <a href="zasady-ochrany-soukromi.html" class="hover:text-orange transition-colors">Ochrana soukromí</a> · <button type="button" id="cookie-settings" class="hover:text-orange transition-colors">Nastavení cookies</button> · <a href="podminky.html" class="hover:text-orange transition-colors">Podmínky</a></div>
+    </div>
+  </footer>
+
+  <!-- COOKIE CONSENT — hidden until script decides no choice is stored yet -->
+  <div id="cookie-banner" class="cookie-banner" role="dialog" aria-modal="false" aria-labelledby="cookie-title" aria-describedby="cookie-text" hidden>
+    <div>
+      <p id="cookie-title" class="cookie-title">Souhlas s cookies</p>
+      <p id="cookie-text" class="cookie-text">S vaším souhlasem použijeme Meta Pixel (Facebook), abychom zjistili, kolik lidí z naší reklamy nás kontaktovalo. Bez souhlasu se na Facebook neodešlou žádná data. Více v <a href="zasady-ochrany-soukromi.html">Zásadách ochrany soukromí</a>.</p>
+    </div>
+    <div class="cookie-actions">
+      <button type="button" id="cookie-reject" class="cookie-btn cookie-btn-reject">Odmítnout</button>
+      <button type="button" id="cookie-accept" class="cookie-btn cookie-btn-accept">Přijmout</button>
+    </div>
+  </div>
+
+  <script>
+    // ---- cal.com booking modal (same event and look as the main site) -------
+    // This snippet only queues calls. embed.js is downloaded on the first Cal() call,
+    // so nothing is requested from cal.com until the visitor clicks a booking button.
+    (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); } else p(cal, ar); return; } p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+    // Separate event type (duplicate of objevny-hovor): it has its own cal.com webhook to the Meta Ads n8n workflow, so paid-ads bookings never reach the main-site workflow/sheet.
+    const CAL_LINK = 'jakub-nemcok-pigzft/objevny-hovor-meta';
+    let calInitialised = false;
+
+    function openBookingModal() {
+      if (!calInitialised) {
+        Cal('init', { origin: 'https://cal.com' });
+        // The booking happens inside cal.com's iframe, so this embed event is the only way the
+        // page learns it succeeded. Fires Meta "Lead" like the old form did, and only with consent.
+        Cal('on', {
+          action: 'bookingSuccessful',
+          callback: function () {
+            if (readConsent() === 'granted' && typeof fbq === 'function') { fbq('track', 'Lead'); }
+          }
+        });
+        calInitialised = true;
+      }
+      Cal('modal', { calLink: CAL_LINK, config: { layout: 'month_view', theme: 'dark' } });
+    }
+
+    // ---- Cookie consent + Meta Pixel -------------------------------------
+    const META_PIXEL_ID = '2238515046928118';
+    const CONSENT_KEY = 'bf_cookie_consent';
+
+    function readConsent() {
+      try {
+        const raw = localStorage.getItem(CONSENT_KEY);
+        return raw ? JSON.parse(raw).choice : null;
+      } catch (err) {
+        // Storage blocked (private mode etc.): behave as "no choice yet" so the pixel stays off.
+        console.warn('Cookie choice could not be read:', err);
+        return null;
+      }
+    }
+
+    function writeConsent(choice) {
+      const d = new Date();
+      const p = function (n) { return String(n).padStart(2, '0'); };
+      const stamp = p(d.getDate()) + '.' + p(d.getMonth() + 1) + '.' + d.getFullYear() + ' ' + p(d.getHours()) + ':' + p(d.getMinutes());
+      try {
+        localStorage.setItem(CONSENT_KEY, JSON.stringify({ choice: choice, date: stamp }));
+      } catch (err) {
+        console.warn('Cookie choice could not be stored:', err);
+      }
+    }
+
+    // Standard Meta base code, unchanged — only wrapped so it runs after consent.
+    function loadMetaPixel() {
+      if (window.fbq) return;
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', META_PIXEL_ID);
+      fbq('track', 'PageView');
+    }
+
+    // Withdrawing consent must also remove the cookies the pixel already set.
+    function clearMetaCookies() {
+      const parts = location.hostname.split('.');
+      const parentDomain = parts.length > 1 ? '.' + parts.slice(-2).join('.') : null;
+      ['_fbp', '_fbc'].forEach(function (name) {
+        document.cookie = name + '=; Max-Age=0; path=/';
+        if (parentDomain) document.cookie = name + '=; Max-Age=0; path=/; domain=' + parentDomain;
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      const banner = document.getElementById('cookie-banner');
+      const acceptBtn = document.getElementById('cookie-accept');
+      const rejectBtn = document.getElementById('cookie-reject');
+
+      function showBanner(moveFocus) {
+        banner.hidden = false;
+        document.body.classList.add('cookie-open');
+        if (moveFocus) acceptBtn.focus();
+      }
+
+      function choose(choice) {
+        writeConsent(choice);
+        banner.hidden = true;
+        document.body.classList.remove('cookie-open');
+        if (choice === 'granted') {
+          loadMetaPixel();
+        } else {
+          clearMetaCookies();
+          // A pixel already running in this page can't be unloaded, so reload without it.
+          if (window.fbq) location.reload();
+        }
+      }
+
+      acceptBtn.addEventListener('click', function () { choose('granted'); });
+      rejectBtn.addEventListener('click', function () { choose('denied'); });
+      document.getElementById('cookie-settings').addEventListener('click', function () { showBanner(true); });
+
+      const stored = readConsent();
+      if (stored === 'granted') loadMetaPixel();
+      else if (stored !== 'denied') showBanner(false);
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+      // Scroll reveal
+      const reveals = document.querySelectorAll('.reveal');
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+      reveals.forEach(el => revealObserver.observe(el));
+
+    });
+
+  </script>
+</body>
+</html>

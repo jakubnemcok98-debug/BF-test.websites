@@ -5,6 +5,7 @@ Tracking sheet for standalone landing pages built for paid-ads traffic (Meta/Goo
 | Page | Path | Purpose / Angle | Language | Status | Created |
 |---|---|---|---|---|---|
 | AI Agents — general offer | `lp-ai-agents.html` | Meta Ads test, Czech Republic only, general "Custom AI Agents" positioning (all 5 agent types). Books via a cal.com modal (event `objevny-hovor-meta`), no form. | CS | Built. Meta Pixel loads only after cookie consent; privacy policy `zasady-ochrany-soukromi.html` and terms `podminky.html` written (20.09.2026). Bookings go through their own cal.com webhook to the n8n workflow "Lead Capture Landing Page - META ADS" → spreadsheet "Leads Meta Ads" (21.09.2026; separate from main-site leads). Local commit `ffb6b40` not yet pushed; the live page still opens `objevny-hovor` until it is pushed | 18.09.2026 |
+| AI konzultace — „Chcete AI, ale nevíte co přesně?“ | `lp-ai-konzultace.html` | Meta Ads test (FB + IG, budget 2 000 Kč), minimal page: hero + 3 takeaways + founder + CTA. Free 30-min consultation. Same cal.com event `objevny-hovor-meta`, cookie consent and Pixel as `lp-ai-agents.html`. Ad copy, campaign setup and creatives in `Marketing/meta-ads-konzultace/` (repo root) | CS | Built and tested locally (cookie reject = no Facebook requests, accept = Pixel loads, modal opens `objevny-hovor-meta`). Not committed or pushed | 09.11.2026 |
 
 ## Conventions
 
