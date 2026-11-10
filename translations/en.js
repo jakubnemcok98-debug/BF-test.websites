@@ -10,20 +10,20 @@ window.translations.en = {
   },
   hero: {
     eyebrow:      '◈ Custom AI Agents',
-    heading:      'Your business runs on work <span class="text-gradient-orange">nobody should be doing.</span>',
-    subheading:   'Answering questions, sending quotes, handling bookings — an agent can do this instead of you. We set it up, launch it, and keep watch. You keep the work that actually needs a human.',
+    heading:      'You know AI could help. <span class="text-gradient-orange whitespace-nowrap">We know how.</span>',
+    subheading:   "Together we'll find where AI saves you the most time — whether that's answering questions, sending quotes or handling bookings. Then we build it, launch it and keep watch. Clear, simple and risk-free.",
     cta_primary:  'Get a Free Consultation →',
     cta_secondary:'How It Works ↓'
   },
   howWeWork: {
     label:   'How It Works',
     heading: 'Three steps. No risk.',
-    step1_title: 'Free 30-minute audit',
-    step1_desc:  "Tell us what's slowing you down. We'll map out exactly what to automate — no jargon, tailored to your business.",
+    step1_title: 'Free consultation (30 minutes)',
+    step1_desc:  "Tell us what's slowing you down. We'll suggest exactly what to hand over to AI — clearly, and tailored to your business.",
     step2_title: 'Proposal by email in 48 hours',
-    step2_desc:  "We send you an exact plan — what we'll build, how it'll work, and how much time it'll save you. No commitment, no invoice.",
+    step2_desc:  "We send you an exact plan — what we'll build, how it'll work and how much time it'll save you. No commitment, no invoice.",
     step3_title: "We build — you don't risk it",
-    step3_desc:  "If the result doesn't meet expectations, you pay nothing. The risk is ours. We want to earn it, not just sell it.",
+    step3_desc:  "If the result doesn't deliver what we agreed in the proposal, you pay nothing. The risk is ours.",
     tagline: "Just 30 minutes. We handle the rest.",
     cta: 'Get a Free Consultation →'
   },

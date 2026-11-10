@@ -10,20 +10,20 @@ window.translations.cs = {
   },
   hero: {
     eyebrow:      '◈ AI Agenti na míru',
-    heading:      'Vaše firma běží na práci, <span class="text-gradient-orange">kterou by nikdo dělat neměl.</span>',
-    subheading:   'Odpovídání na dotazy, posílání nabídek, zpracování rezervací — tohle může dělat agent místo vás. My ho nastavíme, spustíme a pohlídáme. Vám zůstane práce, která potřebuje člověka.',
+    heading:      'Víte, že by vám AI pomohla. <span class="text-gradient-orange whitespace-nowrap">My víme jak.</span>',
+    subheading:   'Společně najdeme, kde vám AI ušetří nejvíc času — ať jde o odpovídání na dotazy, nabídky nebo rezervace. Pak to postavíme, spustíme a pohlídáme. Srozumitelně a bez rizika.',
     cta_primary:  'Chci konzultaci zdarma →',
     cta_secondary:'Jak to funguje ↓'
   },
   howWeWork: {
     label:   'Jak to funguje',
     heading: 'Tři kroky. Žádné riziko.',
-    step1_title: 'Audit zdarma za 30 minut',
-    step1_desc:  'Řeknete nám, co vás zdržuje. My navrhneme, co přesně automatizovat — bez technického žargonu, konkrétně pro vaši firmu.',
+    step1_title: 'Konzultace zdarma (30 minut)',
+    step1_desc:  'Řeknete nám, co vás zdržuje. My navrhneme, co přesně svěřit AI — srozumitelně a na míru vaší firmě.',
     step2_title: 'Návrh e-mailem do 48 hodin',
-    step2_desc:  'Pošleme vám přesný plán — co postavíme, jak to bude fungovat, a kolik vám to ušetří času. Bez závazku, bez faktury.',
+    step2_desc:  'Pošleme vám přesný plán — co postavíme, jak to bude fungovat a kolik času vám to ušetří. Bez závazku, bez faktury.',
     step3_title: 'Stavíme – vy neriskujete',
-    step3_desc:  'Pokud výsledek nesplní očekávání, neplatíte nic. Riziko je na nás. Chceme si to zasloužit, ne jen prodat.',
+    step3_desc:  'Pokud výsledek nesplní, co jsme si domluvili v\u00A0návrhu, nezaplatíte nic. Riziko neseme my.',
     tagline: 'Stačí 30 minut. Zbytek je na nás.',
     cta: 'Chci konzultaci zdarma →'
   },
