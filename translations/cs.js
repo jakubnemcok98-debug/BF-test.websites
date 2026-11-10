@@ -31,7 +31,7 @@ window.translations.cs = {
     label:        'O',
     heading:      'zakladateli',
     subheading:   'Jakub Nemčok',
-    bio:          "Pomáhám malým a středním firmám předat AI rutinní práci — odpovídání na dotazy, nabídky, rezervace. Vašemu týmu tak zůstane čas na práci, která potřebuje člověka.<br><br>Mám zkušenosti z IT infrastruktury a stavím AI agenty i automatizace pro skutečný provoz, ne na ukázku. Neprodávám technologii, ale ušetřený čas. Proto stavím jen to, co se vám vyplatí, a když něco nedává smysl, řeknu vám to dřív, než za to zaplatíte.",
+    bio:          "Pomáhám malým a středním firmám předat AI rutinní práci. Vašemu týmu tak zůstane čas na práci, která potřebuje člověka.<br><br>Mám zkušenosti z IT infrastruktury a stavím AI agenty i automatizace pro skutečný provoz, ne na ukázku. Neprodávám technologii, ale ušetřený čas. Proto stavím jen to, co se vám vyplatí, a když něco nedává smysl, řeknu vám to dřív, než za to zaplatíte.",
     cta_email:    'Napsat e-mail',
     cta_linkedin: 'LinkedIn'
   },

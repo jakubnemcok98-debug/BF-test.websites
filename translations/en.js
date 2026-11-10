@@ -31,7 +31,7 @@ window.translations.en = {
     label:      'About',
     heading:    'The Founder',
     subheading: 'Jakub Nemcok',
-    bio:        "I help small and medium businesses hand routine work over to AI — answering questions, sending quotes, handling bookings. Your team keeps its time for the work that needs a human.<br><br>My background is in IT infrastructure, and I build AI agents and automations for real day-to-day use, not for show. I don't sell technology, I sell time saved. That's why I only build what pays off for you — and if something doesn't make sense, I'll tell you before you pay for it.",
+    bio:        "I help small and medium businesses hand routine work over to AI. Your team keeps its time for the work that needs a human.<br><br>My background is in IT infrastructure, and I build AI agents and automations for real day-to-day use, not for show. I don't sell technology, I sell time saved. That's why I only build what pays off for you — and if something doesn't make sense, I'll tell you before you pay for it.",
     cta_email:  'Send an Email',
     cta_linkedin: 'LinkedIn'
   },
